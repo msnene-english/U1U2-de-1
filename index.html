@@ -5,865 +5,491 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>U1-U2 Đề 1</title>
     <style>
-        :root {
-            --color-primary: #4F46E5;
-            --color-secondary: #06B6D4;
-            --color-accent: #F59E0B;
-            --color-bg: #F8FAFC;
-            --color-card: #FFFFFF;
-            --color-correct: #22C55E;
-            --color-wrong: #EF4444;
-            --color-selecting: #2563EB;
-            --color-pending: #FEF3C7;
-            --color-pending-text: #92400E;
-        }
-
+        :root{--color-primary:#4F46E5;--color-secondary:#06B6D4;--color-accent:#F59E0B;--color-bg:#F8FAFC;--color-card:#FFFFFF;--color-correct:#22C55E;--color-wrong:#EF4444;--color-selecting:#2563EB;--color-pending:#FEF3C7;--color-pending-text:#92400E;}
         body {
             font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
             background-color: var(--color-bg);
-            background-image: radial-gradient(var(--color-primary) 1px, transparent 1px);
-            background-size: 20px 20px;
-            background-position: 0 0;
             margin: 0;
             padding: 0;
-            color: #1E293B;
-            padding-bottom: 100px;
+            color: #333;
         }
-
         .header {
-            background: var(--color-card);
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            background: #fff;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             text-align: center;
-            margin-bottom: 30px;
-            position: relative;
         }
-
-        h1 {
-            font-size: 22px;
-            font-weight: 700;
-            margin: 0 0 10px 0;
-            color: #4F46E5;
-        }
-
-        .progress-container {
+        .progress-bar-container {
+            width: 100%;
             max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .progress-text {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-
-        .progress-bar-bg {
+            background: #e2e8f0;
             height: 8px;
-            background: #E2E8F0;
             border-radius: 4px;
+            margin: 10px auto;
             overflow: hidden;
         }
-
-        .progress-bar-fill {
+        .progress-bar {
             height: 100%;
             background: var(--color-primary);
             width: 0%;
-            transition: width 0.3s ease;
+            transition: width 0.3s;
         }
-
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 16px;
+        }
         .card {
             background: var(--color-card);
             border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            max-width: 800px;
-            margin: 0 auto 30px auto;
-            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.08);
+            padding: 20px;
+            margin-bottom: 24px;
+            transition: transform 0.25s, box-shadow 0.25s;
         }
-
         .question {
-            font-size: 22px;
-            font-weight: 700;
+            font-size: 21px;
+            font-weight: 600;
             line-height: 1.6;
             margin-bottom: 20px;
         }
-
+        @media (max-width: 600px) {
+            .question { font-size: 20px; font-weight: 700; }
+        }
         .options {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            margin-bottom: 20px;
-        }
-
-        .option-btn {
-            background: #F1F5F9;
-            border: 2px solid transparent;
-            border-radius: 12px;
-            padding: 14px 20px;
-            font-size: 19px;
-            font-weight: 500;
-            line-height: 1.6;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: #334155;
-            display: flex;
-            align-items: flex-start;
-            overflow-wrap: break-word;
-            min-height: 52px;
-        }
-
-        .option-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-color: var(--color-selecting);
-        }
-
-        .option-btn.pending {
-            background-color: var(--color-pending);
-            color: var(--color-pending-text);
-            border-color: var(--color-pending-text);
-            transform: scale(1.02);
-        }
-
-        .option-btn.correct {
-            background-color: var(--color-correct);
-            color: white;
-            border-color: var(--color-correct);
-        }
-
-        .option-btn.wrong {
-            background-color: var(--color-wrong);
-            color: white;
-            border-color: var(--color-wrong);
-            animation: shake 0.1s ease-in-out 2;
-        }
-
-        .option-btn:disabled {
-            pointer-events: none;
-        }
-
-        .option-label {
-            font-weight: 700;
-            margin-right: 12px;
-            min-width: 24px;
-        }
-
-        .action-btn {
-            background: var(--color-primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 14px 24px;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-            display: block;
-            margin-left: auto;
-        }
-
-        .action-btn:hover:not(:disabled) {
-            background: #4338CA;
-        }
-
-        .action-btn:disabled {
-            background: #CBD5E1;
-            cursor: not-allowed;
-            display: none;
-        }
-
-        .explanation {
-            display: none;
-            margin-top: 20px;
-            padding: 16px;
-            background: #F0FDF4;
-            border-radius: 8px;
-            border-left: 4px solid var(--color-correct);
-            font-size: 18px;
-            font-weight: 400;
-            line-height: 1.8;
-            color: #166534;
-        }
-        
-        .student-info {
-            max-width: 800px;
-            margin: 0 auto 30px auto;
-            background: var(--color-card);
-            border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            padding: 24px;
-        }
-        
-        .student-info input {
-            width: 100%;
-            padding: 14px 20px;
-            font-size: 19px;
-            border: 2px solid #E2E8F0;
-            border-radius: 8px;
-            box-sizing: border-box;
-            margin-top: 10px;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-bottom: 40px;
-        }
-
-        .submit-btn {
-  width: 100%;
-  max-width: 400px;
-  margin: 30px auto;
-  display: block;
-  padding: 15px 40px;
-  font-size: 20px;
-  font-weight: 700;
-  background: var(--color-correct);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(34,197,94,0.3);
-  font-family: inherit;
-}
-
-
-        .submit-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            background: #D97706;
-        }
-
-        .summary-table {
-            width: 100%;
-            max-width: 800px;
-            margin: 30px auto;
-            border-collapse: collapse;
-            background: white;
-            display: none;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .summary-table th, .summary-table td {
-            border: 1px solid #E2E8F0;
-            padding: 8px 4px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .summary-table th {
-            background: #F8FAFC;
-        }
-
-        .cell-correct { background-color: var(--color-correct); color: white; }
-        .cell-wrong { background-color: var(--color-wrong); color: white; }
-        .cell-empty { background-color: var(--color-wrong); color: white; }
-        
-        .gap-btn {
-            background: #E2E8F0;
-            border: 2px solid #94A3B8;
-            border-radius: 6px;
-            padding: 2px 12px;
-            cursor: pointer;
-            font-weight: 600;
-            display: inline-block;
-            min-width: 80px;
-            text-align: center;
-            margin: 0 5px;
-            color: #334155;
-        }
-        
-        .gap-btn.filled {
-            background: var(--color-pending);
-            color: var(--color-pending-text);
-            border-color: var(--color-pending-text);
-        }
-        
-        .gap-btn.correct {
-            background: var(--color-correct);
-            color: white;
-            border-color: var(--color-correct);
-        }
-        
-        .gap-btn.wrong {
-            background: var(--color-wrong);
-            color: white;
-            border-color: var(--color-wrong);
-        }
-        
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        
-        .modal-content {
-            background: white;
-            padding: 24px;
-            border-radius: 16px;
-            width: 90%;
-            max-width: 400px;
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
-        
-        .modal-option {
-            padding: 16px;
-            background: #F1F5F9;
-            border: 2px solid transparent;
-            border-radius: 8px;
-            font-size: 18px;
+        .option {
+            padding: 14px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
             cursor: pointer;
-            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            line-height: 1.6;
         }
-        
-        .modal-option:hover {
-            border-color: #4F46E5;
+        .option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,.05);
         }
-
+        .option.pending {
+            background: var(--color-pending);
+            color: var(--color-pending-text);
+            border-color: var(--color-pending);
+            transform: scale(1.02);
+        }
+        .option.correct {
+            background: var(--color-correct);
+            color: #fff;
+            border-color: var(--color-correct);
+        }
+        .option.wrong {
+            background: var(--color-wrong);
+            color: #fff;
+            border-color: var(--color-wrong);
+            animation: shake 0.15s;
+        }
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
+            25% { transform: translateX(-4px); }
+            75% { transform: translateX(4px); }
         }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 20px; }
-            .question { font-size: 20px; }
-            .option-btn { font-size: 17px; padding: 12px 16px; }
-            .explanation { font-size: 16px; }
-            .action-btn { font-size: 16px; }
-            .summary-table th, .summary-table td { font-size: 13px; }
-            .student-info input { font-size: 17px; }
+        .btn {
+            background: var(--color-primary);
+            color: #fff;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            min-height: 52px;
+            transition: opacity 0.2s;
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .explanation {
+            margin-top: 20px;
+            padding: 16px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            font-size: 17px;
+            line-height: 1.8;
+            display: none;
+        }
+        .gap-input {
+            font-size: 18px;
+            padding: 4px 8px;
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            width: 150px;
+            font-family: inherit;
+        }
+        .gap-input.correct {
+            border-color: var(--color-correct);
+            background: #dcfce7;
+        }
+        .gap-input.wrong {
+            border-color: var(--color-wrong);
+            background: #fee2e2;
+            text-decoration: line-through;
+            color: var(--color-wrong);
+        }
+        .correct-answer-badge {
+            color: var(--color-correct);
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        #submit-btn {
+            width: 100%;
+            background: var(--color-accent);
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        #results-section {
+            display: none;
+            margin-bottom: 40px;
+        }
+        .result-card {
+            border-left: 6px solid var(--color-wrong);
+        }
+        #popup {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            z-index: 1000;
+            display: none;
+        }
+        #overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
         }
     </style>
-
-<style>
-.question-text b, .question b {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-thickness: 2px;
-    color: #4F46E5;
-    background-color: #FEF08A;
-    padding: 2px 4px;
-    border-radius: 4px;
-}
-.footer-text {
-    text-align: center; 
-    margin-top: 20px; 
-    margin-bottom: 30px;
-    font-weight: 600; 
-    color: #64748B; 
-    font-size: 16px;
-}
-</style>
-
-
-<style>
-/* UNIFIED BUTTON STYLES */
-.submit-btn {
-  width: 100% !important;
-  max-width: 400px !important;
-  margin: 30px auto !important;
-  display: block !important;
-  padding: 15px 40px !important;
-  font-size: 20px !important;
-  font-weight: 700 !important;
-  background-color: #22C55E !important; /* Green */
-  color: white !important;
-  border: none !important;
-  border-radius: 12px !important;
-  cursor: pointer !important;
-  box-shadow: 0 4px 12px rgba(34,197,94,0.3) !important;
-  font-family: inherit !important;
-}
-.submit-btn:disabled {
-  background-color: #CBD5E1 !important;
-  cursor: not-allowed !important;
-  box-shadow: none !important;
-}
-
-.check-btn {
-  margin-top: 15px !important;
-  padding: 10px 24px !important;
-  font-size: 16px !important;
-  font-weight: 600 !important;
-  background-color: #4F46E5 !important; /* Blue */
-  color: white !important;
-  border: none !important;
-  border-radius: 8px !important;
-  cursor: pointer !important;
-  display: block !important;
-  margin-left: auto !important;
-  margin-right: 0 !important;
-  float: none !important; 
-  font-family: inherit !important;
-}
-.check-btn:disabled {
-  background-color: #CBD5E1 !important;
-  cursor: not-allowed !important;
-}
-</style>
-
-<style>
-
-/* PROGRESS BAR CSS */
-.progress-container {
-  max-width: 800px;
-  margin: 0 auto 20px;
-  background: #E2E8F0;
-  border-radius: 10px;
-  height: 10px;
-  overflow: hidden;
-}
-.progress-bar-inner {
-  height: 100%;
-  background: #4F46E5;
-  width: 0%;
-  transition: width 0.3s;
-}
-.progress-text-container {
-  text-align: center;
-  font-size: 15px;
-  margin-bottom: 10px;
-  font-weight: 600;
-  color: #475569;
-}
-
-</style>
 </head>
 <body>
-<div style="text-align: left; margin-bottom: 20px; font-weight: 600; color: #64748B; font-size: 15px;">GV biên soạn: Ms Chí Nên - 0852639652</div>
 
-    
-<div class="progress-text-container"><span id="top-progress-text">0</span> / <span id="top-total-text">0</span> answered</div>
-<div class="progress-container"><div class="progress-bar-inner" id="top-progress-bar"></div></div>
-
-<div class="header">
+    <div class="header">
         <h1>U1-U2 Đề 1</h1>
-        <div class="progress-container">
-                        <div class="progress-bar-bg">
-                <div class="progress-bar-fill" id="progress-bar"></div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="student-info">
-        <label for="student-name" style="font-size: 19px; font-weight: 600; color: #1E293B;">Họ và tên học sinh:</label>
-        <input type="text" id="student-name" placeholder="Nhập họ tên của bạn..." required>
+        <div class="progress-bar-container"><div class="progress-bar" id="progress-bar"></div></div>
+        <div id="progress-text">Tiến độ: 0/50 câu</div>
     </div>
 
-    <div id="quiz-container"></div>
+    <div class="container" id="quiz-container"></div>
 
-    <div class="footer">
-        <button class="submit-btn" id="submit-test-btn" onclick="submitTest()">Nộp bài</button>
-        <div id="result-message" style="margin-top: 20px; font-size: 22px; font-weight: 700; color: #4F46E5; display: none;"></div>
-        <div id="summary-container"></div>
-    </div>
-    
-    <div class="modal-overlay" id="gap-modal">
-        <div class="modal-content" id="gap-options-container">
-            <!-- Options dynamically added here -->
+    <div class="container">
+        <button id="submit-btn" class="btn" onclick="submitQuiz()">Nộp bài</button>
+        <div id="results-section">
+            <h2>DANH SÁCH CÁC CÂU LÀM SAI</h2>
+            <div id="wrong-list"></div>
         </div>
+    </div>
+
+    <div id="overlay"></div>
+    <div id="popup">
+        <h2 id="score-text"></h2>
+        <p id="feedback-text"></p>
+        <button class="btn" onclick="closePopup()">Xem chi tiết</button>
     </div>
 
     <script>
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-        function playTone(frequency, duration, type, volume = 0.1) {
-            try {
-                if (audioCtx.state === 'suspended') audioCtx.resume();
-                const oscillator = audioCtx.createOscillator();
-                const gainNode = audioCtx.createGain();
-                
-                oscillator.type = type;
-                oscillator.frequency.value = frequency;
-                
-                gainNode.gain.setValueAtTime(volume, audioCtx.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioCtx.destination);
-                
-                oscillator.start();
-                oscillator.stop(audioCtx.currentTime + duration);
-            } catch (e) { console.warn("Audio play failed", e); }
-        }
-
-        function playSelectSound() {
-            playTone(600, 0.08, 'sine', 0.15);
-        }
-
-        function playCorrectSound() {
-            try {
-                if (audioCtx.state === 'suspended') audioCtx.resume();
-                const gainNode = audioCtx.createGain();
-                gainNode.connect(audioCtx.destination);
-                gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
-                
-                const osc1 = audioCtx.createOscillator();
-                osc1.type = 'sine';
-                osc1.frequency.value = 800;
-                osc1.connect(gainNode);
-                osc1.start(audioCtx.currentTime);
-                osc1.stop(audioCtx.currentTime + 0.1);
-                
-                const osc2 = audioCtx.createOscillator();
-                osc2.type = 'sine';
-                osc2.frequency.value = 1200;
-                osc2.connect(gainNode);
-                osc2.start(audioCtx.currentTime + 0.1);
-                osc2.stop(audioCtx.currentTime + 0.25);
-                
-                gainNode.gain.setTargetAtTime(0, audioCtx.currentTime + 0.2, 0.05);
-            } catch (e) { console.warn("Audio play failed", e); }
-        }
-
-        function playWrongSound() {
-            playTone(150, 0.2, 'sawtooth', 0.12);
-        }
-
-        const quizData = [{"id": 1, "type": "vocab", "questionHTML": "Look! The tour guide _____ towards the museum right now.", "options": [{"label": "A", "html": "heads", "isCorrect": false}, {"label": "B", "html": "is heading", "isCorrect": true}, {"label": "C", "html": "has headed", "isCorrect": false}, {"label": "D", "html": "head", "isCorrect": false}], "explanationHTML": "A. heads (v): hướng đến (hiện tại đơn)<br>B. is heading (v): đang hướng đến (hiện tại tiếp diễn)<br>C. has headed (v): đã hướng đến (hiện tại hoàn thành)<br>D. head (v): hướng đến (hiện tại đơn số nhiều)<br>Nhìn kìa! Hướng dẫn viên du lịch đang đi về phía bảo tàng ngay lúc này.<br>Đáp án đúng là B vì có dấu hiệu 'right now' và 'Look!' chỉ hành động đang diễn ra tại thời điểm nói nên dùng thì hiện tại tiếp diễn.<br>Các đáp án khác sai thì."}, {"id": 2, "type": "vocab", "questionHTML": "I _____ to Paris three times this year, but this trip is the best.", "options": [{"label": "A", "html": "travel", "isCorrect": false}, {"label": "B", "html": "am travelling", "isCorrect": false}, {"label": "C", "html": "have travelled", "isCorrect": true}, {"label": "D", "html": "have been travelling", "isCorrect": false}], "explanationHTML": "A. travel (v): du lịch (hiện tại đơn)<br>B. am travelling (v): đang du lịch (hiện tại tiếp diễn)<br>C. have travelled (v): đã du lịch (hiện tại hoàn thành)<br>D. have been travelling (v): đã và đang du lịch (hiện tại hoàn thành tiếp diễn)<br>Tôi đã đi du lịch tới Paris ba lần trong năm nay, nhưng chuyến đi này là tuyệt nhất.<br>Đáp án đúng là C vì 'three times this year' chỉ số lần thực hiện hành động từ quá khứ đến hiện tại, dùng hiện tại hoàn thành.<br>Các đáp án khác sai thì."}, {"id": 3, "type": "vocab", "questionHTML": "The train to Manchester _____ at 8:00 AM every day.", "options": [{"label": "A", "html": "is leaving", "isCorrect": false}, {"label": "B", "html": "leaves", "isCorrect": true}, {"label": "C", "html": "has left", "isCorrect": false}, {"label": "D", "html": "has been leaving", "isCorrect": false}], "explanationHTML": "A. is leaving (v): đang rời đi<br>B. leaves (v): rời đi<br>C. has left (v): đã rời đi<br>D. has been leaving (v): đã và đang rời đi<br>Chuyến tàu đến Manchester rời đi lúc 8:00 sáng mỗi ngày.<br>Đáp án đúng là B vì lịch trình của tàu xe dùng thì hiện tại đơn mang ý nghĩa tương lai.<br>Các đáp án khác sai vì không dùng cho lịch trình cố định."}, {"id": 4, "type": "vocab", "questionHTML": "We need to _____ early tomorrow to avoid the heavy traffic.", "options": [{"label": "A", "html": "set out", "isCorrect": true}, {"label": "B", "html": "pull in", "isCorrect": false}, {"label": "C", "html": "drop off", "isCorrect": false}, {"label": "D", "html": "see off", "isCorrect": false}], "explanationHTML": "A. set out (phr v): khởi hành<br>B. pull in (phr v): tấp vào (xe)<br>C. drop off (phr v): thả xuống, cho xuống xe<br>D. see off (phr v): tiễn ai đó<br>Chúng ta cần khởi hành sớm vào ngày mai để tránh tắc đường.<br>Đáp án đúng là A vì phù hợp với ngữ cảnh 'khởi hành sớm'.<br>Các đáp án khác sai nghĩa."}, {"id": 5, "type": "vocab", "questionHTML": "Why are you _____ the soup? Do you think it has gone bad?", "options": [{"label": "A", "html": "taste", "isCorrect": false}, {"label": "B", "html": "tasting", "isCorrect": true}, {"label": "C", "html": "tastes", "isCorrect": false}, {"label": "D", "html": "tasted", "isCorrect": false}], "explanationHTML": "A. taste (v): có vị<br>B. tasting (v): nếm<br>C. tastes (v): có vị<br>D. tasted (v): đã nếm<br>Tại sao bạn lại đang nếm món súp? Bạn nghĩ nó đã bị hỏng à?<br>Đáp án đúng là B vì 'taste' mang nghĩa hành động 'nếm' có thể dùng ở tiếp diễn (đang nếm).<br>Các đáp án khác sai ngữ pháp vì 'are' + V-ing."}, {"id": 6, "type": "vocab", "questionHTML": "You should book your accommodation _____ advance during the peak season.", "options": [{"label": "A", "html": "in", "isCorrect": true}, {"label": "B", "html": "on", "isCorrect": false}, {"label": "C", "html": "at", "isCorrect": false}, {"label": "D", "html": "with", "isCorrect": false}], "explanationHTML": "A. in<br>B. on<br>C. at<br>D. with<br>Bạn nên đặt chỗ ở trước trong suốt mùa cao điểm.<br>Đáp án đúng là A vì cụm từ cố định 'in advance' (trước).<br>Các đáp án khác sai cụm từ."}, {"id": 7, "type": "vocab", "questionHTML": "I _____ of visiting Japan for years, and now I finally have the ticket.", "options": [{"label": "A", "html": "am dreaming", "isCorrect": false}, {"label": "B", "html": "dream", "isCorrect": false}, {"label": "C", "html": "have been dreaming", "isCorrect": true}, {"label": "D", "html": "dreams", "isCorrect": false}], "explanationHTML": "A. am dreaming (v): đang mơ<br>B. dream (v): mơ<br>C. have been dreaming (v): đã và đang mơ<br>D. dreams (v): mơ<br>Tôi đã hằng mơ ước được đến thăm Nhật Bản nhiều năm nay, và bây giờ tôi cuối cùng đã có vé.<br>Đáp án đúng là C vì 'for years' và kết quả 'now I finally have the ticket' nhấn mạnh quá trình dài dẳng đến hiện tại, dùng hiện tại hoàn thành tiếp diễn.<br>Các đáp án khác sai thì."}, {"id": 8, "type": "vocab", "questionHTML": "The manager has _____ for a taxi to pick us up at the airport.", "options": [{"label": "A", "html": "differed", "isCorrect": false}, {"label": "B", "html": "arranged", "isCorrect": true}, {"label": "C", "html": "regretted", "isCorrect": false}, {"label": "D", "html": "continued", "isCorrect": false}], "explanationHTML": "A. differed (v): khác biệt<br>B. arranged (v): sắp xếp<br>C. regretted (v): hối tiếc<br>D. continued (v): tiếp tục<br>Quản lý đã sắp xếp một chiếc taxi để đón chúng tôi tại sân bay.<br>Đáp án đúng là B vì 'arrange for sth' nghĩa là sắp xếp cho việc gì đó.<br>Các đáp án khác sai nghĩa."}, {"id": 9, "type": "vocab", "questionHTML": "The taxi driver _____ us off right outside the departure lounge.", "options": [{"label": "A", "html": "dropped", "isCorrect": true}, {"label": "B", "html": "picked", "isCorrect": false}, {"label": "C", "html": "saw", "isCorrect": false}, {"label": "D", "html": "made", "isCorrect": false}], "explanationHTML": "A. dropped (v): đánh rơi, thả xuống<br>B. picked (v): nhặt, đón<br>C. saw (v): thấy<br>D. made (v): làm<br>Tài xế taxi đã thả chúng tôi xuống ngay bên ngoài phòng chờ khởi hành.<br>Đáp án đúng là A vì cụm phrasal verb 'drop sb off' nghĩa là thả ai đó xuống xe.<br>Các đáp án khác sai cấu trúc/nghĩa."}, {"id": 10, "type": "vocab", "questionHTML": "This is the first time I _____ such a beautiful view of the ocean.", "options": [{"label": "A", "html": "see", "isCorrect": false}, {"label": "B", "html": "am seeing", "isCorrect": false}, {"label": "C", "html": "have seen", "isCorrect": true}, {"label": "D", "html": "saw", "isCorrect": false}], "explanationHTML": "A. see (v): thấy<br>B. am seeing (v): đang thấy<br>C. have seen (v): đã thấy<br>D. saw (v): đã thấy<br>Đây là lần đầu tiên tôi nhìn thấy một cảnh biển đẹp như vậy.<br>Đáp án đúng là C vì cấu trúc 'This is the first time + S + have/has + V3/ed' (hiện tại hoàn thành).<br>Các đáp án khác sai thì."}, {"id": 11, "type": "vocab", "questionHTML": "He _____ out of the window when travelling by train.", "options": [{"label": "A", "html": "is always looking", "isCorrect": true}, {"label": "B", "html": "always look", "isCorrect": false}, {"label": "C", "html": "look always", "isCorrect": false}, {"label": "D", "html": "has always looked", "isCorrect": false}], "explanationHTML": "A. is always looking (v): luôn luôn nhìn (phàn nàn hoặc thói quen lặp đi lặp lại)<br>B. always look (v): sai ngữ pháp chủ ngữ He<br>C. look always (v): sai trật tự từ<br>D. has always looked (v): luôn nhìn (từ trước tới nay)<br>Anh ấy luôn nhìn ra ngoài cửa sổ khi đi tàu.<br>Đáp án đúng là A vì 'always' kết hợp với hiện tại tiếp diễn diễn tả thói quen lặp đi lặp lại.<br>Các đáp án khác sai ngữ pháp/thì."}, {"id": 12, "type": "vocab", "questionHTML": "Did you know that air travel _____ increasingly safe?", "options": [{"label": "A", "html": "get", "isCorrect": false}, {"label": "B", "html": "is getting", "isCorrect": true}, {"label": "C", "html": "has got", "isCorrect": false}, {"label": "D", "html": "gets", "isCorrect": false}], "explanationHTML": "A. get (v)<br>B. is getting (v)<br>C. has got (v)<br>D. gets (v)<br>Bạn có biết rằng du lịch hàng không đang ngày càng trở nên an toàn hơn không?<br>Đáp án đúng là B vì 'increasingly safe' chỉ sự thay đổi dần dần, dùng hiện tại tiếp diễn.<br>Các đáp án khác sai thì."}, {"id": 13, "type": "vocab", "questionHTML": "They _____ to be very keen on the new itinerary.", "options": [{"label": "A", "html": "are appearing", "isCorrect": false}, {"label": "B", "html": "appears", "isCorrect": false}, {"label": "C", "html": "appear", "isCorrect": true}, {"label": "D", "html": "has appeared", "isCorrect": false}], "explanationHTML": "A. are appearing (v)<br>B. appears (v)<br>C. appear (v)<br>D. has appeared (v)<br>Họ có vẻ rất hào hứng với lịch trình mới.<br>Đáp án đúng là C vì 'appear' (có vẻ) là động từ trạng thái, không dùng thì tiếp diễn. Chủ ngữ 'They' nên dùng 'appear'.<br>Các đáp án khác sai ngữ pháp."}, {"id": 14, "type": "vocab", "questionHTML": "It’s hard to _____ up with him because he walks so fast on these excursions.", "options": [{"label": "A", "html": "make", "isCorrect": false}, {"label": "B", "html": "keep", "isCorrect": true}, {"label": "C", "html": "catch", "isCorrect": false}, {"label": "D", "html": "pull", "isCorrect": false}], "explanationHTML": "A. make<br>B. keep<br>C. catch<br>D. pull<br>Thật khó để theo kịp anh ấy vì anh ấy đi quá nhanh trong những chuyến du ngoạn này.<br>Đáp án đúng là B vì cụm 'keep up with' nghĩa là theo kịp ai đó.<br>Các đáp án khác sai cụm từ ('catch up with' cũng có nghĩa theo kịp nhưng đề bài cho 'make/keep/catch/pull', catch cũng đúng, nhưng thường dùng keep up with sb walking, catch up with sb mang nghĩa đuổi kịp). Wait, catch up with = đuổi kịp, keep up with = duy trì tốc độ ngang bằng. Câu này cả B và C đều có vẻ đúng, nhưng keep up with hợp lý hơn vì 'walks so fast'. Để an toàn, B là đáp án chuẩn xác nhất cho ngữ cảnh đi bộ nhanh để bắt kịp nhịp độ.<br>Các đáp án khác sai collocation."}, {"id": 15, "type": "vocab", "questionHTML": "If we don’t hurry, we will _____ our flight!", "options": [{"label": "A", "html": "lose", "isCorrect": false}, {"label": "B", "html": "miss", "isCorrect": true}, {"label": "C", "html": "drop", "isCorrect": false}, {"label": "D", "html": "fail", "isCorrect": false}], "explanationHTML": "A. lose (v): đánh mất<br>B. miss (v): lỡ<br>C. drop (v): làm rơi<br>D. fail (v): thất bại<br>Nếu chúng ta không nhanh lên, chúng ta sẽ lỡ chuyến bay!<br>Đáp án đúng là B vì 'miss a flight' nghĩa là lỡ chuyến bay.<br>Các đáp án khác sai collocation."}, {"id": 16, "type": "vocab", "questionHTML": "The _____ from London to Berlin is about 919 kilometres.", "options": [{"label": "A", "html": "measure", "isCorrect": false}, {"label": "B", "html": "length", "isCorrect": false}, {"label": "C", "html": "distance", "isCorrect": true}, {"label": "D", "html": "gap", "isCorrect": false}], "explanationHTML": "A. measure (n): thước đo<br>B. length (n): chiều dài<br>C. distance (n): khoảng cách<br>D. gap (n): khoảng trống<br>Khoảng cách từ London đến Berlin là khoảng 919 kilomet.<br>Đáp án đúng là C vì 'distance' nghĩa là khoảng cách địa lý.<br>Các đáp án khác sai nghĩa."}, {"id": 17, "type": "vocab", "questionHTML": "I _____ my way, could you tell me how to get to the station?", "options": [{"label": "A", "html": "lose", "isCorrect": false}, {"label": "B", "html": "am losing", "isCorrect": false}, {"label": "C", "html": "have lost", "isCorrect": true}, {"label": "D", "html": "have been losing", "isCorrect": false}], "explanationHTML": "A. lose<br>B. am losing<br>C. have lost<br>D. have been losing<br>Tôi đã bị lạc đường, bạn có thể chỉ cho tôi đường đến ga được không?<br>Đáp án đúng là C vì hành động lạc đường đã xảy ra và hậu quả (không biết đường) lưu lại ở hiện tại (dùng hiện tại hoàn thành).<br>Các đáp án khác sai thì."}, {"id": 18, "type": "vocab", "questionHTML": "Mary is _____ to tell us that the flight has been cancelled.", "options": [{"label": "A", "html": "regretting", "isCorrect": true}, {"label": "B", "html": "regret", "isCorrect": false}, {"label": "C", "html": "regrets", "isCorrect": false}, {"label": "D", "html": "to regret", "isCorrect": false}], "explanationHTML": "A. regretting (v)<br>B. regret (v)<br>C. regrets (v)<br>D. to regret (v)<br>Mary đang rất tiếc phải nói với chúng tôi rằng chuyến bay đã bị hủy.<br>Đáp án đúng là A vì theo cấu trúc 'is + V-ing', Mary is regretting... ('regret' ở đây có thể dùng dạng tiếp diễn khi nhấn mạnh cảm xúc hiện tại). Tuy nhiên 'regret' hiếm khi dùng V-ing. Chờ đã, 'Mary is to regret'? Không hợp lý. Có lẽ đề bài muốn nói 'Mary is regretting'? Hoặc 'Mary regrets' nhưng có 'is'? À, cấu trúc 'regret to tell sb'. Nếu có 'is' thì chỉ có thể là V-ing. Wait, có thể đề là 'Mary is regretting'.<br>Đáp án khác sai ngữ pháp."}, {"id": 19, "type": "vocab", "questionHTML": "What's the _____ limit on this highway?", "options": [{"label": "A", "html": "speed", "isCorrect": true}, {"label": "B", "html": "fast", "isCorrect": false}, {"label": "C", "html": "pace", "isCorrect": false}, {"label": "D", "html": "rate", "isCorrect": false}], "explanationHTML": "A. speed (n): tốc độ<br>B. fast (adj): nhanh<br>C. pace (n): nhịp độ<br>D. rate (n): tỷ lệ<br>Giới hạn tốc độ trên đường cao tốc này là bao nhiêu?<br>Đáp án đúng là A vì cụm 'speed limit' nghĩa là giới hạn tốc độ.<br>Các đáp án khác sai collocation."}, {"id": 20, "type": "vocab", "questionHTML": "They are _____ for the coast to spend the weekend.", "options": [{"label": "A", "html": "making", "isCorrect": true}, {"label": "B", "html": "catching", "isCorrect": false}, {"label": "C", "html": "taking", "isCorrect": false}, {"label": "D", "html": "setting", "isCorrect": false}], "explanationHTML": "A. making<br>B. catching<br>C. taking<br>D. setting<br>Họ đang tiến về phía bờ biển để nghỉ cuối tuần.<br>Đáp án đúng là A vì cụm 'make for' nghĩa là đi về hướng nào đó.<br>Các đáp án khác sai giới từ (set thì đi với out/off)."}, {"id": 21, "type": "vocab", "questionHTML": "The children _____ about the trip to Disneyland all morning!", "options": [{"label": "A", "html": "are talking", "isCorrect": false}, {"label": "B", "html": "talk", "isCorrect": false}, {"label": "C", "html": "have talked", "isCorrect": false}, {"label": "D", "html": "have been talking", "isCorrect": true}], "explanationHTML": "A. are talking<br>B. talk<br>C. have talked<br>D. have been talking<br>Bọn trẻ đã và đang nói chuyện về chuyến đi đến Disneyland cả buổi sáng!<br>Đáp án đúng là D vì 'all morning' nhấn mạnh quá trình liên tục của hành động từ quá khứ đến hiện tại, dùng hiện tại hoàn thành tiếp diễn.<br>Các đáp án khác sai thì."}, {"id": 22, "type": "vocab", "questionHTML": "Could you tell me off the _____ of your head what time the ferry leaves?", "options": [{"label": "A", "html": "tip", "isCorrect": false}, {"label": "B", "html": "top", "isCorrect": true}, {"label": "C", "html": "back", "isCorrect": false}, {"label": "D", "html": "mind", "isCorrect": false}], "explanationHTML": "A. tip<br>B. top<br>C. back<br>D. mind<br>Bạn có thể cho tôi biết ngay lập tức (không cần suy nghĩ) mấy giờ phà rời đi không?<br>Đáp án đúng là B vì cụm thành ngữ 'off the top of your head' nghĩa là nói ra ngay điều gì mà không cần suy nghĩ hay tra cứu.<br>Các đáp án khác sai thành ngữ."}, {"id": 23, "type": "vocab", "questionHTML": "I don't _____ with you that traveling by bus is relaxing.", "options": [{"label": "A", "html": "am agreeing", "isCorrect": false}, {"label": "B", "html": "agree", "isCorrect": true}, {"label": "C", "html": "have agreed", "isCorrect": false}, {"label": "D", "html": "agrees", "isCorrect": false}], "explanationHTML": "A. am agreeing<br>B. agree<br>C. have agreed<br>D. agrees<br>Tôi không đồng ý với bạn rằng đi du lịch bằng xe buýt thì thư giãn.<br>Đáp án đúng là B vì 'agree' là động từ trạng thái, không dùng thì tiếp diễn và có trợ động từ 'don't' nên dùng động từ nguyên thể.<br>Các đáp án khác sai ngữ pháp."}, {"id": 24, "type": "vocab", "questionHTML": "We decided to take the scenic _____ along the coast.", "options": [{"label": "A", "html": "route", "isCorrect": true}, {"label": "B", "html": "way", "isCorrect": false}, {"label": "C", "html": "direction", "isCorrect": false}, {"label": "D", "html": "line", "isCorrect": false}], "explanationHTML": "A. route (n): tuyến đường<br>B. way (n): con đường/cách thức<br>C. direction (n): hướng đi<br>D. line (n): hàng, lối<br>Chúng tôi đã quyết định đi tuyến đường có phong cảnh đẹp dọc theo bờ biển.<br>Đáp án đúng là A vì 'scenic route' là cụm từ chỉ tuyến đường có phong cảnh đẹp.<br>Các đáp án khác sai collocation."}, {"id": 25, "type": "vocab", "questionHTML": "My parents always come to the station to _____ me off.", "options": [{"label": "A", "html": "set", "isCorrect": false}, {"label": "B", "html": "drop", "isCorrect": false}, {"label": "C", "html": "see", "isCorrect": true}, {"label": "D", "html": "check", "isCorrect": false}], "explanationHTML": "A. set<br>B. drop<br>C. see<br>D. check<br>Bố mẹ tôi luôn đến ga để tiễn tôi.<br>Đáp án đúng là C vì cụm phrasal verb 'see sb off' nghĩa là tiễn ai đó.<br>Các đáp án khác sai nghĩa."}, {"id": 26, "type": "gapfill", "questionHTML": "We _____ in the departure lounge for over an hour now.", "options": [{"label": "A", "html": "have been waiting", "isCorrect": true}, {"label": "B", "html": "have waited", "isCorrect": false}, {"label": "C", "html": "are waiting", "isCorrect": false}, {"label": "D", "html": "wait", "isCorrect": false}], "explanationHTML": "A. have been waiting<br>B. have waited<br>C. are waiting<br>D. wait<br>Chúng tôi đã và đang chờ ở phòng chờ khởi hành hơn một giờ rồi.<br>Đáp án đúng là 'have been waiting' vì 'for over an hour now' nhấn mạnh quá trình liên tục của hành động, dùng thì hiện tại hoàn thành tiếp diễn.<br>Các đáp án khác sai thì."}, {"id": 27, "type": "gapfill", "questionHTML": "The customs officer _____ at my passport at the moment.", "options": [{"label": "A", "html": "is looking", "isCorrect": true}, {"label": "B", "html": "looks", "isCorrect": false}, {"label": "C", "html": "has looked", "isCorrect": false}, {"label": "D", "html": "looked", "isCorrect": false}], "explanationHTML": "A. is looking<br>B. looks<br>C. has looked<br>D. looked<br>Nhân viên hải quan đang xem hộ chiếu của tôi vào lúc này.<br>Đáp án đúng là 'is looking' vì có 'at the moment' chỉ hành động đang diễn ra.<br>Các đáp án khác sai thì."}, {"id": 28, "type": "gapfill", "questionHTML": "My flight _____ at 7:30 PM tomorrow.", "options": [{"label": "A", "html": "arrives", "isCorrect": true}, {"label": "B", "html": "is arriving", "isCorrect": false}, {"label": "C", "html": "will arrive", "isCorrect": false}, {"label": "D", "html": "has arrived", "isCorrect": false}], "explanationHTML": "A. arrives<br>B. is arriving<br>C. will arrive<br>D. has arrived<br>Chuyến bay của tôi đến lúc 7:30 tối ngày mai.<br>Đáp án đúng là 'arrives' vì lịch trình của tàu xe, máy bay dùng thì hiện tại đơn để chỉ tương lai.<br>Các đáp án khác không phù hợp bằng hiện tại đơn cho lịch trình cố định."}, {"id": 29, "type": "gapfill", "questionHTML": "He is always _____ about the bad service in hotels!", "options": [{"label": "A", "html": "complaining", "isCorrect": true}, {"label": "B", "html": "complains", "isCorrect": false}, {"label": "C", "html": "complain", "isCorrect": false}, {"label": "D", "html": "complained", "isCorrect": false}], "explanationHTML": "A. complaining<br>B. complains<br>C. complain<br>D. complained<br>Anh ta lúc nào cũng phàn nàn về dịch vụ tồi tệ ở các khách sạn!<br>Đáp án đúng là 'complaining' vì cấu trúc 'is always + V-ing' dùng để phàn nàn về một thói quen gây khó chịu.<br>Các đáp án khác sai cấu trúc."}, {"id": 30, "type": "gapfill", "questionHTML": "I _____ on a cruise ship before.", "options": [{"label": "A", "html": "have never been", "isCorrect": true}, {"label": "B", "html": "am never", "isCorrect": false}, {"label": "C", "html": "was never", "isCorrect": false}, {"label": "D", "html": "never be", "isCorrect": false}], "explanationHTML": "A. have never been<br>B. am never<br>C. was never<br>D. never be<br>Tôi chưa từng ở trên một chiếc tàu du lịch trước đây.<br>Đáp án đúng là 'have never been' vì 'before' đứng cuối câu chỉ kinh nghiệm tính đến hiện tại, dùng hiện tại hoàn thành.<br>Các đáp án khác sai thì."}, {"id": 31, "type": "gapfill", "questionHTML": "The smell of local street food _____ me of my childhood.", "options": [{"label": "A", "html": "reminds", "isCorrect": true}, {"label": "B", "html": "is reminding", "isCorrect": false}, {"label": "C", "html": "remind", "isCorrect": false}, {"label": "D", "html": "has reminded", "isCorrect": false}], "explanationHTML": "A. reminds<br>B. is reminding<br>C. remind<br>D. has reminded<br>Mùi của thức ăn đường phố địa phương gợi nhắc tôi về tuổi thơ.<br>Đáp án đúng là 'reminds' vì sự thật hiển nhiên hoặc thói quen dùng hiện tại đơn; chủ ngữ 'The smell' là số ít nên thêm 's'.<br>Các đáp án khác sai thì/ngữ pháp."}, {"id": 32, "type": "gapfill", "questionHTML": "I'm quite afraid _____ flying, so I prefer taking the train.", "options": [{"label": "A", "html": "of", "isCorrect": true}, {"label": "B", "html": "about", "isCorrect": false}, {"label": "C", "html": "with", "isCorrect": false}, {"label": "D", "html": "for", "isCorrect": false}], "explanationHTML": "A. of<br>B. about<br>C. with<br>D. for<br>Tôi khá sợ đi máy bay, nên tôi thích đi tàu hơn.<br>Đáp án đúng là 'of' vì tính từ 'afraid' đi kèm với giới từ 'of' (afraid of: sợ điều gì).<br>Các đáp án khác sai giới từ."}, {"id": 33, "type": "gapfill", "questionHTML": "Did you do that by _____ or was it intentional?", "options": [{"label": "A", "html": "accident", "isCorrect": true}, {"label": "B", "html": "mistake", "isCorrect": false}, {"label": "C", "html": "chance", "isCorrect": false}, {"label": "D", "html": "purpose", "isCorrect": false}], "explanationHTML": "A. accident<br>B. mistake<br>C. chance<br>D. purpose<br>Bạn làm điều đó do vô tình hay cố ý?<br>Đáp án đúng là 'accident' vì 'by accident' = vô tình, trái nghĩa với 'intentional' (cố ý). 'by mistake' cũng có nghĩa tương tự nhưng 'by accident' phổ biến hơn khi đi cùng intentional.<br>Các đáp án khác sai cụm từ/nghĩa."}, {"id": 34, "type": "gapfill", "questionHTML": "We need to _____ in at the hotel before 2 PM.", "options": [{"label": "A", "html": "check", "isCorrect": true}, {"label": "B", "html": "get", "isCorrect": false}, {"label": "C", "html": "come", "isCorrect": false}, {"label": "D", "html": "sign", "isCorrect": false}], "explanationHTML": "A. check<br>B. get<br>C. come<br>D. sign<br>Chúng ta cần nhận phòng khách sạn trước 2 giờ chiều.<br>Đáp án đúng là 'check' vì cụm 'check in' nghĩa là nhận phòng.<br>Các đáp án khác sai phrasal verb."}, {"id": 35, "type": "gapfill", "questionHTML": "As soon as you _____ reach your destination, give me a call.", "options": [{"label": "A", "html": "reach", "isCorrect": true}, {"label": "B", "html": "will reach", "isCorrect": false}, {"label": "C", "html": "reached", "isCorrect": false}, {"label": "D", "html": "have reached", "isCorrect": false}], "explanationHTML": "A. reach<br>B. will reach<br>C. reached<br>D. have reached<br>Ngay khi bạn đến đích, hãy gọi cho tôi.<br>Đáp án đúng là 'reach' vì mệnh đề thời gian (As soon as) ở tương lai dùng thì hiện tại đơn.<br>Các đáp án khác sai ngữ pháp/thì."}, {"id": 36, "type": "gapfill", "questionHTML": "We are not used to this area; we like to go off the beaten _____.", "options": [{"label": "A", "html": "track", "isCorrect": true}, {"label": "B", "html": "path", "isCorrect": false}, {"label": "C", "html": "road", "isCorrect": false}, {"label": "D", "html": "way", "isCorrect": false}], "explanationHTML": "A. track<br>B. path<br>C. road<br>D. way<br>Chúng tôi không quen với khu vực này; chúng tôi thích đi đến những nơi hoang sơ ít người biết.<br>Đáp án đúng là 'track' vì thành ngữ 'off the beaten track' nghĩa là xa xôi, hẻo lánh, ít người tới.<br>Các đáp án khác sai thành ngữ."}, {"id": 37, "type": "gapfill", "questionHTML": "She _____ this car for over ten years.", "options": [{"label": "A", "html": "has had", "isCorrect": true}, {"label": "B", "html": "has", "isCorrect": false}, {"label": "C", "html": "is having", "isCorrect": false}, {"label": "D", "html": "had", "isCorrect": false}], "explanationHTML": "A. has had<br>B. has<br>C. is having<br>D. had<br>Cô ấy đã sở hữu chiếc xe này hơn mười năm rồi.<br>Đáp án đúng là 'has had' vì 'for over ten years' dùng hiện tại hoàn thành; 'have' mang nghĩa sở hữu không dùng dạng V-ing.<br>Các đáp án khác sai thì."}, {"id": 38, "type": "gapfill", "questionHTML": "They _____ of going to Italy this summer.", "options": [{"label": "A", "html": "are thinking", "isCorrect": true}, {"label": "B", "html": "think", "isCorrect": false}, {"label": "C", "html": "have thought", "isCorrect": false}, {"label": "D", "html": "thinks", "isCorrect": false}], "explanationHTML": "A. are thinking<br>B. think<br>C. have thought<br>D. thinks<br>Họ đang nghĩ đến việc đi Ý vào mùa hè này.<br>Đáp án đúng là 'are thinking' vì 'think of/about' mang nghĩa đang cân nhắc, xem xét thì được phép dùng tiếp diễn.<br>Các đáp án khác sai ngữ pháp/thì."}, {"id": 39, "type": "gapfill", "questionHTML": "The geography of this country differs greatly _____ its neighbor's.", "options": [{"label": "A", "html": "from", "isCorrect": true}, {"label": "B", "html": "with", "isCorrect": false}, {"label": "C", "html": "to", "isCorrect": false}, {"label": "D", "html": "than", "isCorrect": false}], "explanationHTML": "A. from<br>B. with<br>C. to<br>D. than<br>Địa lý của quốc gia này khác biệt rất nhiều so với nước láng giềng.<br>Đáp án đúng là 'from' vì động từ 'differ' đi kèm với giới từ 'from' (khác biệt với).<br>Các đáp án khác sai giới từ."}, {"id": 40, "type": "gapfill", "questionHTML": "Don't pull _____ here, it’s illegal to stop on this side of the road.", "options": [{"label": "A", "html": "over", "isCorrect": true}, {"label": "B", "html": "in", "isCorrect": false}, {"label": "C", "html": "up", "isCorrect": false}, {"label": "D", "html": "off", "isCorrect": false}], "explanationHTML": "A. over<br>B. in<br>C. up<br>D. off<br>Đừng tấp xe vào đây, việc dừng ở bên này đường là bất hợp pháp.<br>Đáp án đúng là 'over' vì 'pull over' là tấp xe vào lề đường.<br>Các đáp án khác sai giới từ."}, {"id": 41, "type": "gapfill", "questionHTML": "Do you have your boarding pass _____ you?", "options": [{"label": "A", "html": "with", "isCorrect": true}, {"label": "B", "html": "on", "isCorrect": false}, {"label": "C", "html": "by", "isCorrect": false}, {"label": "D", "html": "at", "isCorrect": false}], "explanationHTML": "A. with<br>B. on<br>C. by<br>D. at<br>Bạn có mang theo thẻ lên máy bay không?<br>Đáp án đúng là 'with' vì cụm 'have sth with you' nghĩa là mang theo cái gì bên mình.<br>Các đáp án khác sai giới từ."}, {"id": 42, "type": "gapfill", "questionHTML": "I can’t remember the hotel's name; I'll have to look it _____ online.", "options": [{"label": "A", "html": "up", "isCorrect": true}, {"label": "B", "html": "out", "isCorrect": false}, {"label": "C", "html": "for", "isCorrect": false}, {"label": "D", "html": "at", "isCorrect": false}], "explanationHTML": "A. up<br>B. out<br>C. for<br>D. at<br>Tôi không thể nhớ tên khách sạn; tôi sẽ phải tra cứu nó trên mạng.<br>Đáp án đúng là 'up' vì 'look sth up' nghĩa là tra cứu thông tin.<br>Các đáp án khác sai nghĩa phrasal verb."}, {"id": 43, "type": "gapfill", "questionHTML": "The sunset over the mountains is a magnificent _____.", "options": [{"label": "A", "html": "sight", "isCorrect": true}, {"label": "B", "html": "view", "isCorrect": false}, {"label": "C", "html": "scene", "isCorrect": false}, {"label": "D", "html": "look", "isCorrect": false}], "explanationHTML": "A. sight<br>B. view<br>C. scene<br>D. look<br>Cảnh mặt trời lặn trên núi là một cảnh tượng tráng lệ.<br>Đáp án đúng là 'sight' vì 'a magnificent sight' là cụm collocation tự nhiên (cảnh tượng kỳ vĩ).<br>Các đáp án khác sai collocation."}, {"id": 44, "type": "gapfill", "questionHTML": "The tour guide _____ a group of 20 tourists right now.", "options": [{"label": "A", "html": "is leading", "isCorrect": true}, {"label": "B", "html": "leads", "isCorrect": false}, {"label": "C", "html": "has led", "isCorrect": false}, {"label": "D", "html": "led", "isCorrect": false}], "explanationHTML": "A. is leading<br>B. leads<br>C. has led<br>D. led<br>Hướng dẫn viên đang dẫn dắt một nhóm 20 du khách ngay lúc này.<br>Đáp án đúng là 'is leading' vì 'right now' chỉ thời điểm hiện tại đang diễn ra, dùng tiếp diễn.<br>Các đáp án khác sai thì."}, {"id": 45, "type": "gapfill", "questionHTML": "My uncle works _____ a pilot for a commercial airline.", "options": [{"label": "A", "html": "as", "isCorrect": true}, {"label": "B", "html": "like", "isCorrect": false}, {"label": "C", "html": "for", "isCorrect": false}, {"label": "D", "html": "with", "isCorrect": false}], "explanationHTML": "A. as<br>B. like<br>C. for<br>D. with<br>Chú tôi làm nghề phi công cho một hãng hàng không thương mại.<br>Đáp án đúng là 'as' vì cấu trúc 'work as + danh từ chỉ nghề nghiệp' (làm nghề gì).<br>Các đáp án khác sai giới từ/nghĩa."}, {"id": 46, "type": "gapfill", "questionHTML": "She _____ a five-star hotel for our trip.", "options": [{"label": "A", "html": "has just booked", "isCorrect": true}, {"label": "B", "html": "just booked", "isCorrect": false}, {"label": "C", "html": "is just booking", "isCorrect": false}, {"label": "D", "html": "just books", "isCorrect": false}], "explanationHTML": "A. has just booked<br>B. just booked<br>C. is just booking<br>D. just books<br>Cô ấy vừa mới đặt một khách sạn năm sao cho chuyến đi của chúng tôi.<br>Đáp án đúng là 'has just booked' vì 'just' là dấu hiệu của thì hiện tại hoàn thành chỉ hành động vừa mới xảy ra.<br>Các đáp án khác sai thì."}, {"id": 47, "type": "gapfill", "questionHTML": "We like to travel _____ so we only bring a small backpack each.", "options": [{"label": "A", "html": "light", "isCorrect": true}, {"label": "B", "html": "lightly", "isCorrect": false}, {"label": "C", "html": "heavy", "isCorrect": false}, {"label": "D", "html": "easy", "isCorrect": false}], "explanationHTML": "A. light<br>B. lightly<br>C. heavy<br>D. easy<br>Chúng tôi thích đi du lịch gọn nhẹ nên mỗi người chỉ mang một chiếc ba lô nhỏ.<br>Đáp án đúng là 'light' vì cụm thành ngữ 'travel light' nghĩa là đi du lịch mang ít hành lý.<br>Các đáp án khác sai thành ngữ/từ loại."}, {"id": 48, "type": "gapfill", "questionHTML": "They _____ out of a suitcase for the past three months.", "options": [{"label": "A", "html": "have been living", "isCorrect": true}, {"label": "B", "html": "have lived", "isCorrect": false}, {"label": "C", "html": "are living", "isCorrect": false}, {"label": "D", "html": "lived", "isCorrect": false}], "explanationHTML": "A. have been living<br>B. have lived<br>C. are living<br>D. lived<br>Họ đã và đang sống trong cảnh di chuyển liên tục (sống với hành lý trong vali) suốt ba tháng qua.<br>Đáp án đúng là 'have been living' vì 'for the past three months' nhấn mạnh quá trình liên tục kéo dài, dùng hiện tại hoàn thành tiếp diễn.<br>Các đáp án khác sai thì."}, {"id": 49, "type": "gapfill", "questionHTML": "I _____ why people like crowded tourist spots.", "options": [{"label": "A", "html": "don't understand", "isCorrect": true}, {"label": "B", "html": "am not understanding", "isCorrect": false}, {"label": "C", "html": "haven't understood", "isCorrect": false}, {"label": "D", "html": "didn't understand", "isCorrect": false}], "explanationHTML": "A. don't understand<br>B. am not understanding<br>C. haven't understood<br>D. didn't understand<br>Tôi không hiểu tại sao mọi người lại thích những điểm du lịch đông đúc.<br>Đáp án đúng là 'don't understand' vì 'understand' là động từ trạng thái, không dùng ở thì tiếp diễn, và đây là sự thật ở hiện tại.<br>Các đáp án khác sai thì."}, {"id": 50, "type": "gapfill", "questionHTML": "Have you taken a tour _____ the castle yet?", "options": [{"label": "A", "html": "of", "isCorrect": true}, {"label": "B", "html": "around", "isCorrect": false}, {"label": "C", "html": "to", "isCorrect": false}, {"label": "D", "html": "in", "isCorrect": false}], "explanationHTML": "A. of<br>B. around<br>C. to<br>D. in<br>Bạn đã tham gia một chuyến tham quan lâu đài chưa?<br>Đáp án đúng là 'of' vì cụm 'a tour of somewhere' nghĩa là tham quan vòng quanh nơi nào đó (bên trong).<br>Các đáp án khác sai giới từ."}];
-
-        const userState = {};
+        const quizData = [{"id": 1, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> Look! The tour guide _____ towards the museum right now.", "explanationHTML": "<b>Dịch câu hỏi:</b> Nhìn kìa! Hướng dẫn viên du lịch đang tiến về phía bảo tàng ngay lúc này.<br><b>A. heads</b> (tiến về - hiện tại đơn): Sai vì hành động đang xảy ra (right now).<br><b>B. head</b> (tiến về - hiện tại đơn số nhiều): Sai vì chủ ngữ số ít và sai thì.<br><b>C. is heading</b> (đang tiến về - hiện tại tiếp diễn): Đúng vì có 'right now' chỉ hành động đang xảy ra.<br><b>D. has headed</b> (đã tiến về - hiện tại hoàn thành): Sai vì không phải hành động đã hoàn tất.", "passageId": null, "options": [{"label": "A", "html": "heads", "isCorrect": false}, {"label": "B", "html": "head", "isCorrect": false}, {"label": "C", "html": "is heading", "isCorrect": true}, {"label": "D", "html": "has headed", "isCorrect": false}]}, {"id": 2, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> I _____ to Paris three times this year, but this trip is the best.", "explanationHTML": "<b>Dịch câu hỏi:</b> Tôi đã du lịch đến Paris ba lần trong năm nay, nhưng chuyến đi này là tuyệt nhất.<br><b>A. have travelled</b> (đã du lịch - hiện tại hoàn thành): Đúng vì chỉ số lần đã thực hiện trong khoảng thời gian chưa kết thúc (three times this year).<br><b>B. travel</b> (du lịch - hiện tại đơn): Sai thì.<br><b>C. am travelling</b> (đang du lịch - hiện tại tiếp diễn): Sai thì.<br><b>D. have been travelling</b> (đã và đang du lịch - hiện tại hoàn thành tiếp diễn): Sai vì nhấn mạnh số lần nên dùng hiện tại hoàn thành đơn.", "passageId": null, "options": [{"label": "A", "html": "have travelled", "isCorrect": true}, {"label": "B", "html": "travel", "isCorrect": false}, {"label": "C", "html": "am travelling", "isCorrect": false}, {"label": "D", "html": "have been travelling", "isCorrect": false}]}, {"id": 3, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> The train to Manchester _____ at 8:00 AM every day.", "explanationHTML": "<b>Dịch câu hỏi:</b> Chuyến tàu đến Manchester rời đi lúc 8:00 sáng mỗi ngày.<br><b>A. is leaving</b>: Sai thì.<br><b>B. has left</b>: Sai thì.<br><b>C. has been leaving</b>: Sai thì.<br><b>D. leaves</b> (rời đi - hiện tại đơn): Đúng vì diễn tả một lịch trình cố định (every day).", "passageId": null, "options": [{"label": "A", "html": "is leaving", "isCorrect": false}, {"label": "B", "html": "has left", "isCorrect": false}, {"label": "C", "html": "has been leaving", "isCorrect": false}, {"label": "D", "html": "leaves", "isCorrect": true}]}, {"id": 4, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> We need to _____ early tomorrow to avoid the heavy traffic.", "explanationHTML": "<b>Dịch câu hỏi:</b> Chúng ta cần khởi hành sớm vào ngày mai để tránh tắc đường.<br><b>A. pull in</b> (tấp vào lề): Sai nghĩa.<br><b>B. set out</b> (khởi hành): Đúng nghĩa.<br><b>C. drop off</b> (thả ai xuống xe): Sai nghĩa.<br><b>D. see off</b> (tiễn ai): Sai nghĩa.", "passageId": null, "options": [{"label": "A", "html": "pull in", "isCorrect": false}, {"label": "B", "html": "set out", "isCorrect": true}, {"label": "C", "html": "drop off", "isCorrect": false}, {"label": "D", "html": "see off", "isCorrect": false}]}, {"id": 5, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> Why are you _____ the soup? Do you think it has gone bad?", "explanationHTML": "<b>Dịch câu hỏi:</b> Tại sao bạn lại đang nếm món súp? Bạn nghĩ nó đã bị hỏng à?<br><b>A. taste</b>: Sai cấu trúc sau 'are'.<br><b>B. tastes</b>: Sai cấu trúc.<br><b>C. tasting</b> (đang nếm - hiện tại tiếp diễn): Đúng vì đây là hành động chủ ý đang diễn ra (động từ taste mang nghĩa hành động).<br><b>D. tasted</b>: Sai thì/cấu trúc.", "passageId": null, "options": [{"label": "A", "html": "taste", "isCorrect": false}, {"label": "B", "html": "tastes", "isCorrect": false}, {"label": "C", "html": "tasting", "isCorrect": true}, {"label": "D", "html": "tasted", "isCorrect": false}]}, {"id": 6, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> You should book your accommodation _____ advance during the peak season.", "explanationHTML": "<b>Dịch câu hỏi:</b> Bạn nên đặt chỗ ở trước trong suốt mùa cao điểm.<br><b>A. in</b>: Đúng vì cụm từ cố định là 'in advance' (trước).<br><b>B. on</b>: Sai giới từ.<br><b>C. at</b>: Sai giới từ.<br><b>D. with</b>: Sai giới từ.", "passageId": null, "options": [{"label": "A", "html": "in", "isCorrect": true}, {"label": "B", "html": "on", "isCorrect": false}, {"label": "C", "html": "at", "isCorrect": false}, {"label": "D", "html": "with", "isCorrect": false}]}, {"id": 7, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> I _____ of visiting Japan for years, and now I finally have the ticket.", "explanationHTML": "<b>Dịch câu hỏi:</b> Tôi đã luôn mơ ước được đến thăm Nhật Bản trong nhiều năm, và bây giờ tôi cuối cùng đã có vé.<br><b>A. am dreaming</b>: Sai thì.<br><b>B. dream</b>: Sai thì.<br><b>C. dreams</b>: Sai thì/sai chia động từ.<br><b>D. have been dreaming</b> (đã và đang mơ ước - hiện tại hoàn thành tiếp diễn): Đúng vì hành động bắt đầu trong quá khứ, kéo dài liên tục đến hiện tại (for years) và nhấn mạnh quá trình.", "passageId": null, "options": [{"label": "A", "html": "am dreaming", "isCorrect": false}, {"label": "B", "html": "dream", "isCorrect": false}, {"label": "C", "html": "dreams", "isCorrect": false}, {"label": "D", "html": "have been dreaming", "isCorrect": true}]}, {"id": 8, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> The manager has _____ for a taxi to pick us up at the airport.", "explanationHTML": "<b>Dịch câu hỏi:</b> Quản lý đã sắp xếp một chiếc taxi để đón chúng tôi tại sân bay.<br><b>A. differed</b> (khác biệt): Sai nghĩa.<br><b>B. arranged</b> (sắp xếp): Đúng nghĩa (arrange for something).<br><b>C. regretted</b> (hối tiếc): Sai nghĩa.<br><b>D. continued</b> (tiếp tục): Sai nghĩa.", "passageId": null, "options": [{"label": "A", "html": "differed", "isCorrect": false}, {"label": "B", "html": "arranged", "isCorrect": true}, {"label": "C", "html": "regretted", "isCorrect": false}, {"label": "D", "html": "continued", "isCorrect": false}]}, {"id": 9, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> The taxi driver _____ us off right outside the departure lounge.", "explanationHTML": "<b>Dịch câu hỏi:</b> Tài xế taxi đã thả chúng tôi xuống ngay bên ngoài phòng chờ khởi hành.<br><b>A. picked</b> (đón - pick up): Sai giới từ 'off'.<br><b>B. saw</b> (tiễn - see off): Sai vì tài xế thì không 'tiễn'.<br><b>C. dropped</b> (thả xuống - drop off): Đúng nghĩa.<br><b>D. made</b> (tạo ra/làm): Sai nghĩa.", "passageId": null, "options": [{"label": "A", "html": "picked", "isCorrect": false}, {"label": "B", "html": "saw", "isCorrect": false}, {"label": "C", "html": "dropped", "isCorrect": true}, {"label": "D", "html": "made", "isCorrect": false}]}, {"id": 10, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> This is the first time I _____ such a beautiful view of the ocean.", "explanationHTML": "<b>Dịch câu hỏi:</b> Đây là lần đầu tiên tôi nhìn thấy cảnh đại dương đẹp như vậy.<br><b>A. have seen</b> (hiện tại hoàn thành): Đúng vì cấu trúc 'This is the first time + S + have/has + V3/ed'.<br><b>B. am seeing</b>: Sai thì.<br><b>C. see</b>: Sai thì.<br><b>D. saw</b>: Sai thì.", "passageId": null, "options": [{"label": "A", "html": "have seen", "isCorrect": true}, {"label": "B", "html": "am seeing", "isCorrect": false}, {"label": "C", "html": "see", "isCorrect": false}, {"label": "D", "html": "saw", "isCorrect": false}]}, {"id": 11, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> He _____ out of the window when travelling by train.", "explanationHTML": "<b>Dịch câu hỏi:</b> Anh ấy luôn nhìn ra ngoài cửa sổ khi đi tàu.<br><b>A. always look</b>: Sai chia động từ (he thì phải looks).<br><b>B. is always looking</b> (hiện tại tiếp diễn + always): Đúng vì diễn tả một thói quen hoặc hành động lặp đi lặp lại có tính chất đặc trưng hoặc gây chú ý.<br><b>C. look always</b>: Sai trật tự từ và chia động từ.<br><b>D. has always looked</b>: Không phù hợp ngữ cảnh bằng hiện tại tiếp diễn.", "passageId": null, "options": [{"label": "A", "html": "always look", "isCorrect": false}, {"label": "B", "html": "is always looking", "isCorrect": true}, {"label": "C", "html": "look always", "isCorrect": false}, {"label": "D", "html": "has always looked", "isCorrect": false}]}, {"id": 12, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> Did you know that air travel _____ increasingly safe?", "explanationHTML": "<b>Dịch câu hỏi:</b> Bạn có biết rằng du lịch hàng không đang ngày càng trở nên an toàn hơn không?<br><b>A. get</b>: Sai chia động từ.<br><b>B. has got</b>: Không diễn tả sự thay đổi dần dần tốt bằng.<br><b>C. gets</b>: Không diễn tả sự thay đổi đang diễn ra.<br><b>D. is getting</b> (đang trở nên - HTTD): Đúng vì có 'increasingly' chỉ một quá trình đang thay đổi dần dần.", "passageId": null, "options": [{"label": "A", "html": "get", "isCorrect": false}, {"label": "B", "html": "has got", "isCorrect": false}, {"label": "C", "html": "gets", "isCorrect": false}, {"label": "D", "html": "is getting", "isCorrect": true}]}, {"id": 13, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> They _____ to be very keen on the new itinerary.", "explanationHTML": "<b>Dịch câu hỏi:</b> Họ dường như rất hứng thú với lịch trình mới.<br><b>A. appear</b> (dường như - hiện tại đơn): Đúng vì 'appear' là động từ trạng thái, không dùng ở tiếp diễn, và chủ ngữ số nhiều.<br><b>B. appears</b>: Sai chia động từ.<br><b>C. are appearing</b>: Sai vì động từ trạng thái.<br><b>D. has appeared</b>: Sai thì và sai chia số ít/nhiều.", "passageId": null, "options": [{"label": "A", "html": "appear", "isCorrect": true}, {"label": "B", "html": "appears", "isCorrect": false}, {"label": "C", "html": "are appearing", "isCorrect": false}, {"label": "D", "html": "has appeared", "isCorrect": false}]}, {"id": 14, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> It’s hard to _____ up with him because he walks so fast on these excursions.", "explanationHTML": "<b>Dịch câu hỏi:</b> Thật khó để theo kịp anh ấy vì anh ấy đi bộ rất nhanh trong những chuyến du ngoạn này.<br><b>A. make</b> (make up with: làm hòa): Sai nghĩa.<br><b>B. catch</b> (catch up with: theo kịp): Cũng đúng nghĩa nhưng 'keep up with' phổ biến hơn cho việc duy trì cùng tốc độ đi bộ. Trong các lựa chọn, 'keep up with' là collocation chuẩn xác nhất cho 'walk fast'.<br><b>C. keep</b> (keep up with: theo kịp): Đúng nghĩa.<br><b>D. pull</b>: Sai nghĩa.", "passageId": null, "options": [{"label": "A", "html": "make", "isCorrect": false}, {"label": "B", "html": "catch", "isCorrect": false}, {"label": "C", "html": "keep", "isCorrect": true}, {"label": "D", "html": "pull", "isCorrect": false}]}, {"id": 15, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> If we don’t hurry, we will _____ our flight!", "explanationHTML": "<b>Dịch câu hỏi:</b> Nếu chúng ta không nhanh lên, chúng ta sẽ lỡ chuyến bay!<br><b>A. lose</b> (mất, làm mất): Không dùng với chuyến bay (nghĩa là lỡ).<br><b>B. miss</b> (lỡ chuyến): Đúng nghĩa.<br><b>C. drop</b> (làm rơi): Sai nghĩa.<br><b>D. fail</b> (thất bại): Sai nghĩa.", "passageId": null, "options": [{"label": "A", "html": "lose", "isCorrect": false}, {"label": "B", "html": "miss", "isCorrect": true}, {"label": "C", "html": "drop", "isCorrect": false}, {"label": "D", "html": "fail", "isCorrect": false}]}, {"id": 16, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> The _____ from London to Berlin is about 919 kilometres.", "explanationHTML": "<b>Dịch câu hỏi:</b> Khoảng cách từ London đến Berlin là khoảng 919 kilomet.<br><b>A. measure</b> (biện pháp/sự đo lường): Sai nghĩa.<br><b>B. length</b> (độ dài): Thường dùng cho vật thể, không dùng cho khoảng cách địa lý.<br><b>C. gap</b> (khoảng trống): Sai nghĩa.<br><b>D. distance</b> (khoảng cách): Đúng nghĩa.", "passageId": null, "options": [{"label": "A", "html": "measure", "isCorrect": false}, {"label": "B", "html": "length", "isCorrect": false}, {"label": "C", "html": "gap", "isCorrect": false}, {"label": "D", "html": "distance", "isCorrect": true}]}, {"id": 17, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> I _____ my way, could you tell me how to get to the station?", "explanationHTML": "<b>Dịch câu hỏi:</b> Tôi đã bị lạc đường, bạn có thể chỉ cho tôi cách đến nhà ga không?<br><b>A. have lost</b> (đã lạc - HTHT): Đúng vì hành động xảy ra trong quá khứ và để lại hậu quả hiện tại (đang bị lạc).<br><b>B. am losing</b>: Sai thì.<br><b>C. lose</b>: Sai thì.<br><b>D. have been losing</b>: Sai thì.", "passageId": null, "options": [{"label": "A", "html": "have lost", "isCorrect": true}, {"label": "B", "html": "am losing", "isCorrect": false}, {"label": "C", "html": "lose", "isCorrect": false}, {"label": "D", "html": "have been losing", "isCorrect": false}]}, {"id": 18, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> Mary is _____ to tell us that the flight has been cancelled.", "explanationHTML": "<b>Dịch câu hỏi:</b> Mary đang rất tiếc khi phải nói với chúng ta rằng chuyến bay đã bị hủy.<br><b>A. regret</b>: Sai ngữ pháp sau 'is'.<br><b>B. regrets</b>: Sai ngữ pháp sau 'is'.<br><b>C. regretting</b>: Đúng. Mặc dù 'regret' hiếm khi dùng tiếp diễn, nhưng trong một số ngữ cảnh có thể dùng 'is regretting' để nhấn mạnh cảm xúc hiện tại. (Câu hỏi có thể có chút lỗi diễn đạt của người ra đề, nhưng đây là lựa chọn đúng ngữ pháp duy nhất).<br><b>D. to regret</b>: Không hợp nghĩa.", "passageId": null, "options": [{"label": "A", "html": "regret", "isCorrect": false}, {"label": "B", "html": "regrets", "isCorrect": false}, {"label": "C", "html": "regretting", "isCorrect": true}, {"label": "D", "html": "to regret", "isCorrect": false}]}, {"id": 19, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> What's the _____ limit on this highway?", "explanationHTML": "<b>Dịch câu hỏi:</b> Giới hạn tốc độ trên đường cao tốc này là bao nhiêu?<br><b>A. fast</b> (nhanh): Sai từ loại.<br><b>B. speed</b> (tốc độ): Đúng cụm từ 'speed limit' (giới hạn tốc độ).<br><b>C. pace</b> (nhịp độ): Sai collocation.<br><b>D. rate</b> (tỷ lệ): Sai collocation.", "passageId": null, "options": [{"label": "A", "html": "fast", "isCorrect": false}, {"label": "B", "html": "speed", "isCorrect": true}, {"label": "C", "html": "pace", "isCorrect": false}, {"label": "D", "html": "rate", "isCorrect": false}]}, {"id": 20, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> They are _____ for the coast to spend the weekend.", "explanationHTML": "<b>Dịch câu hỏi:</b> Họ đang đi hướng về phía bờ biển để nghỉ cuối tuần.<br><b>A. catching</b>: Sai nghĩa.<br><b>B. taking</b>: Sai nghĩa.<br><b>C. setting</b> (thường là set off/out): Không dùng 'setting for'.<br><b>D. making</b> (make for = đi về hướng): Đúng nghĩa (make for somewhere).", "passageId": null, "options": [{"label": "A", "html": "catching", "isCorrect": false}, {"label": "B", "html": "taking", "isCorrect": false}, {"label": "C", "html": "setting", "isCorrect": false}, {"label": "D", "html": "making", "isCorrect": true}]}, {"id": 21, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> The children _____ about the trip to Disneyland all morning!", "explanationHTML": "<b>Dịch câu hỏi:</b> Lũ trẻ đã và đang nói chuyện về chuyến đi đến Disneyland suốt cả buổi sáng!<br><b>A. have been talking</b> (hiện tại hoàn thành tiếp diễn): Đúng vì hành động kéo dài liên tục (all morning) tới hiện tại.<br><b>B. talk</b>: Sai thì.<br><b>C. are talking</b>: Sai thì.<br><b>D. have talked</b>: Không nhấn mạnh quá trình liên tục bằng HTHT tiếp diễn.", "passageId": null, "options": [{"label": "A", "html": "have been talking", "isCorrect": true}, {"label": "B", "html": "talk", "isCorrect": false}, {"label": "C", "html": "are talking", "isCorrect": false}, {"label": "D", "html": "have talked", "isCorrect": false}]}, {"id": 22, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> Could you tell me off the _____ of your head what time the ferry leaves?", "explanationHTML": "<b>Dịch câu hỏi:</b> Bạn có thể nói ngay lập tức (không cần suy nghĩ/tra cứu) chuyến phà rời đi lúc mấy giờ không?<br><b>A. tip</b>: Sai thành ngữ (thường là 'on the tip of my tongue').<br><b>B. back</b>: Sai thành ngữ.<br><b>C. top</b>: Đúng thành ngữ 'off the top of your head' (nói ngay lập tức mà không cần suy nghĩ kỹ).<br><b>D. mind</b>: Sai thành ngữ.", "passageId": null, "options": [{"label": "A", "html": "tip", "isCorrect": false}, {"label": "B", "html": "back", "isCorrect": false}, {"label": "C", "html": "top", "isCorrect": true}, {"label": "D", "html": "mind", "isCorrect": false}]}, {"id": 23, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> I don't _____ with you that traveling by bus is relaxing.", "explanationHTML": "<b>Dịch câu hỏi:</b> Tôi không đồng ý với bạn rằng đi du lịch bằng xe buýt là thư giãn.<br><b>A. am agreeing</b>: Sai trật tự/từ loại sau 'don\\'t'.<br><b>B. have agreed</b>: Sai thì.<br><b>C. agrees</b>: Sai chia động từ.<br><b>D. agree</b> (đồng ý): Đúng cấu trúc 'don\\'t + V (nguyên thể)'.", "passageId": null, "options": [{"label": "A", "html": "am agreeing", "isCorrect": false}, {"label": "B", "html": "have agreed", "isCorrect": false}, {"label": "C", "html": "agrees", "isCorrect": false}, {"label": "D", "html": "agree", "isCorrect": true}]}, {"id": 24, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> We decided to take the scenic _____ along the coast.", "explanationHTML": "<b>Dịch câu hỏi:</b> Chúng tôi quyết định đi theo tuyến đường có cảnh đẹp dọc theo bờ biển.<br><b>A. way</b>: Không kết hợp tự nhiên bằng 'scenic route'.<br><b>B. route</b>: Đúng cụm từ 'scenic route' (tuyến đường có cảnh đẹp).<br><b>C. direction</b>: Sai nghĩa.<br><b>D. line</b>: Sai nghĩa.", "passageId": null, "options": [{"label": "A", "html": "way", "isCorrect": false}, {"label": "B", "html": "route", "isCorrect": true}, {"label": "C", "html": "direction", "isCorrect": false}, {"label": "D", "html": "line", "isCorrect": false}]}, {"id": 25, "type": "multiple_choice", "questionHTML": "<b>Chọn đáp án đúng:</b> My parents always come to the station to _____ me off.", "explanationHTML": "<b>Dịch câu hỏi:</b> Bố mẹ tôi luôn đến nhà ga để tiễn tôi.<br><b>A. see</b> (see off: tiễn): Đúng nghĩa.<br><b>B. drop</b> (drop off: thả xuống): Không phù hợp ngữ cảnh 'đến nhà ga để...'.<br><b>C. set</b> (set off: khởi hành): Sai nghĩa.<br><b>D. check</b>: Sai nghĩa.", "passageId": null, "options": [{"label": "A", "html": "see", "isCorrect": true}, {"label": "B", "html": "drop", "isCorrect": false}, {"label": "C", "html": "set", "isCorrect": false}, {"label": "D", "html": "check", "isCorrect": false}]}, {"id": 26, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> We {{blank:b1}} (wait) in the departure lounge for over an hour now.", "explanationHTML": "<b>Dịch câu:</b> Chúng tôi đã và đang chờ đợi ở phòng chờ khởi hành hơn một giờ đồng hồ rồi.<br><b>Giải thích:</b> Có cụm từ 'for over an hour now' nhấn mạnh hành động bắt đầu trong quá khứ, kéo dài liên tục đến hiện tại, nên dùng thì Hiện tại hoàn thành tiếp diễn (have been waiting).", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["have been waiting"]}]}, {"id": 27, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> The customs officer {{blank:b1}} (look) at my passport at the moment.", "explanationHTML": "<b>Dịch câu:</b> Nhân viên hải quan đang nhìn vào hộ chiếu của tôi vào lúc này.<br><b>Giải thích:</b> Dấu hiệu 'at the moment' (ngay lúc này) chỉ hành động đang xảy ra tại thời điểm nói, dùng thì Hiện tại tiếp diễn (is looking).", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["is looking"]}]}, {"id": 28, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> My flight {{blank:b1}} (arrive) at 7:30 PM tomorrow.", "explanationHTML": "<b>Dịch câu:</b> Chuyến bay của tôi đến lúc 7:30 tối ngày mai.<br><b>Giải thích:</b> Lịch trình cố định của tàu xe/máy bay dùng thì Hiện tại đơn (arrives) mang ý nghĩa tương lai.", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["arrives", "is arriving", "will arrive"]}]}, {"id": 29, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> He is always {{blank:b1}} (complain) about the bad service in hotels!", "explanationHTML": "<b>Dịch câu:</b> Anh ấy luôn phàn nàn về dịch vụ tồi tệ ở các khách sạn!<br><b>Giải thích:</b> Cấu trúc 'be always + V-ing' dùng để phàn nàn về một thói quen gây bực mình (complaining).", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["complaining"]}]}, {"id": 30, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> I {{blank:b1}} (never / be) on a cruise ship before.", "explanationHTML": "<b>Dịch câu:</b> Tôi chưa bao giờ ở trên một chiếc du thuyền trước đây.<br><b>Giải thích:</b> 'before' chỉ một kinh nghiệm tính đến thời điểm hiện tại, dùng thì Hiện tại hoàn thành (have never been).", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["have never been"]}]}, {"id": 31, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> The smell of local street food {{blank:b1}} (remind) me of my childhood.", "explanationHTML": "<b>Dịch câu:</b> Mùi hương của thức ăn đường phố địa phương gợi nhắc tôi về tuổi thơ của mình.<br><b>Giải thích:</b> Diễn tả một sự thật/trạng thái luôn đúng ở hiện tại. 'smell' là chủ ngữ số ít nên thêm 's' (reminds).", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["reminds"]}]}, {"id": 32, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> I'm quite afraid {{blank:b1}} flying, so I prefer taking the train.", "explanationHTML": "<b>Dịch câu:</b> Tôi khá sợ việc đi máy bay, vì vậy tôi thích đi tàu hơn.<br><b>Giải thích:</b> Tính từ 'afraid' luôn đi với giới từ 'of' (afraid of: sợ hãi điều gì).", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["of"]}]}, {"id": 33, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> Did you do that by {{blank:b1}} or was it intentional?", "explanationHTML": "<b>Dịch câu:</b> Bạn đã làm điều đó một cách tình cờ hay là cố ý?<br><b>Giải thích:</b> Cụm từ cố định 'by accident' (tình cờ, vô tình) trái nghĩa với 'intentional' (cố ý).", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["accident"]}]}, {"id": 34, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> We need to {{blank:b1}} in at the hotel before 2 PM.", "explanationHTML": "<b>Dịch câu:</b> Chúng ta cần làm thủ tục nhận phòng (check in) tại khách sạn trước 2 giờ chiều.<br><b>Giải thích:</b> Cụm động từ 'check in' có nghĩa là làm thủ tục nhận phòng/đăng ký tại khách sạn hoặc sân bay.", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["check"]}]}, {"id": 35, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> As soon as you {{blank:b1}} reach your destination, give me a call.", "explanationHTML": "<b>Dịch câu:</b> Ngay khi bạn đến đích (một cách an toàn), hãy gọi cho tôi.<br><b>Giải thích:</b> Chỗ trống cần một trạng từ bổ nghĩa cho động từ 'reach'. 'safely' (an toàn) là một lựa chọn phổ biến và hợp lý.", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["safely", "finally"]}]}, {"id": 36, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> We are not used to this area; we like to go off the beaten {{blank:b1}}.", "explanationHTML": "<b>Dịch câu:</b> Chúng tôi không quen với khu vực này; chúng tôi thích đi đến những nơi hoang vắng, ít người biết.<br><b>Giải thích:</b> Thành ngữ 'off the beaten track/path' nghĩa là nơi hẻo lánh, ít người lui tới.", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["track", "path"]}]}, {"id": 37, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> She {{blank:b1}} (have) this car for over ten years.", "explanationHTML": "<b>Dịch câu:</b> Cô ấy đã sở hữu chiếc ô tô này hơn mười năm rồi.<br><b>Giải thích:</b> 'for over ten years' chỉ khoảng thời gian, dùng thì Hiện tại hoàn thành (has had).", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["has had"]}]}, {"id": 38, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> They {{blank:b1}} (think) of going to Italy this summer.", "explanationHTML": "<b>Dịch câu:</b> Họ đang nghĩ đến việc đi Ý vào mùa hè này.<br><b>Giải thích:</b> Động từ 'think' mang nghĩa xem xét/cân nhắc một kế hoạch thì được dùng ở tiếp diễn (are thinking).", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["are thinking"]}]}, {"id": 39, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> The geography of this country differs greatly {{blank:b1}} its neighbor's.", "explanationHTML": "<b>Dịch câu:</b> Địa lý của quốc gia này khác biệt rất lớn so với quốc gia láng giềng.<br><b>Giải thích:</b> Động từ 'differ' đi với giới từ 'from' (differ from: khác biệt với).", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["from"]}]}, {"id": 40, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> Don't pull {{blank:b1}} here, it’s illegal to stop on this side of the road.", "explanationHTML": "<b>Dịch câu:</b> Đừng tấp xe vào đây, việc dừng xe ở bên này đường là bất hợp pháp.<br><b>Giải thích:</b> Cụm động từ 'pull over' hoặc 'pull up' có nghĩa là tấp xe vào lề đường và dừng lại.", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["up", "over"]}]}, {"id": 41, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> Do you have your boarding pass {{blank:b1}} you?", "explanationHTML": "<b>Dịch câu:</b> Bạn có mang theo thẻ lên máy bay bên mình không?<br><b>Giải thích:</b> Cấu trúc 'have something with you' hoặc 'have something on you' nghĩa là mang theo cái gì bên người.", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["with", "on"]}]}, {"id": 42, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> I can’t remember the hotel's name; I'll have to look it {{blank:b1}} online.", "explanationHTML": "<b>Dịch câu:</b> Tôi không thể nhớ tên khách sạn; tôi sẽ phải tra cứu nó trên mạng.<br><b>Giải thích:</b> Cụm động từ 'look up' có nghĩa là tra cứu thông tin (từ điển, trên mạng, v.v.).", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["up"]}]}, {"id": 43, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> The sunset over the mountains is a magnificent {{blank:b1}} (view/sight).", "explanationHTML": "<b>Dịch câu:</b> Cảnh hoàng hôn trên những ngọn núi là một cảnh tượng tráng lệ.<br><b>Giải thích:</b> 'sight' thường dùng để chỉ một cảnh tượng đáng chú ý/ngoạn mục, phù hợp hơn với tính từ 'magnificent' trong ngữ cảnh này.", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["sight"]}]}, {"id": 44, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> The tour guide {{blank:b1}} (lead) a group of 20 tourists right now.", "explanationHTML": "<b>Dịch câu:</b> Hướng dẫn viên du lịch đang dẫn dắt một nhóm gồm 20 du khách ngay lúc này.<br><b>Giải thích:</b> Có 'right now' (ngay lúc này) nên dùng thì Hiện tại tiếp diễn (is leading).", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["is leading"]}]}, {"id": 45, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> My uncle works {{blank:b1}} a pilot for a commercial airline.", "explanationHTML": "<b>Dịch câu:</b> Chú tôi làm việc với tư cách là một phi công cho một hãng hàng không thương mại.<br><b>Giải thích:</b> Cấu trúc 'work as + nghề nghiệp' (làm nghề gì).", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["as"]}]}, {"id": 46, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> She {{blank:b1}} (just / book) a five-star hotel for our trip.", "explanationHTML": "<b>Dịch câu:</b> Cô ấy vừa mới đặt một khách sạn năm sao cho chuyến đi của chúng ta.<br><b>Giải thích:</b> Có trạng từ 'just' (vừa mới) nên dùng thì Hiện tại hoàn thành (has just booked).", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["has just booked"]}]}, {"id": 47, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> We like to travel {{blank:b1}} so we only bring a small backpack each.", "explanationHTML": "<b>Dịch câu:</b> Chúng tôi thích đi du lịch gọn nhẹ nên mỗi người chỉ mang theo một chiếc ba lô nhỏ.<br><b>Giải thích:</b> Cụm từ cố định 'travel light' có nghĩa là đi du lịch mà mang theo rất ít hành lý.", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["light"]}]}, {"id": 48, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> They {{blank:b1}} (live) out of a suitcase for the past three months.", "explanationHTML": "<b>Dịch câu:</b> Họ đã sống cảnh rày đây mai đó (sống với đồ đạc trong vali) trong suốt 3 tháng qua.<br><b>Giải thích:</b> 'for the past three months' chỉ quá trình kéo dài, dùng HTHT tiếp diễn (have been living) để nhấn mạnh tính liên tục, hoặc HTHT đơn (have lived) đều được.", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["have been living", "have lived"]}]}, {"id": 49, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> I {{blank:b1}} (not / understand) why people like crowded tourist spots.", "explanationHTML": "<b>Dịch câu:</b> Tôi không hiểu tại sao mọi người lại thích những điểm du lịch đông đúc.<br><b>Giải thích:</b> 'understand' là động từ trạng thái chỉ nhận thức, không dùng ở tiếp diễn, nên chia Hiện tại đơn (don\\'t understand).", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["don't understand", "do not understand"]}]}, {"id": 50, "type": "gap_fill_text", "questionHTML": "<b>Điền từ:</b> Have you taken a tour {{blank:b1}} the castle yet?", "explanationHTML": "<b>Dịch câu:</b> Bạn đã tham gia một chuyến tham quan tòa lâu đài chưa?<br><b>Giải thích:</b> Cấu trúc 'take a tour of/around a place' (tham quan nơi nào).", "passageId": null, "blanks": [{"blankId": "b1", "correctAnswers": ["of", "around"]}]}];
+        let userState = {};
+        
+        // Init state
         quizData.forEach(q => {
-            userState[q.id] = {
-                selected: null,
-                checked: false,
-                isCorrect: null,
-                displayState: null 
-            };
+            if(q.type === 'multiple_choice') {
+                userState[q.id] = { answer: null, checked: false, isCorrect: null };
+            } else if(q.type === 'gap_fill_text') {
+                userState[q.id] = { answer: {}, checked: false, isCorrect: null, blankResults: {} };
+                q.blanks.forEach(b => userState[q.id].answer[b.blankId] = null);
+            }
         });
 
-        function shuffleArray(array) {
-            const arr = [...array];
-            for (let i = arr.length - 1; i > 0; i--) {
-                const j = 0;
-                
-            }
-            return arr;
+        function escapeHTML(str) {
+            if(!str) return '';
+            const d = document.createElement('div');
+            d.textContent = str;
+            return d.innerHTML;
+        }
+
+        function normalizeAnswer(str) {
+            return str.trim().replace(/\s+/g, ' ').toLowerCase();
+        }
+
+        // Audio setup
+        let audioCtx;
+        function initAudio() {
+            if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        function playTone(freq, type, duration, gainVal) {
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.value = freq;
+                gain.gain.value = gainVal;
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + duration);
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e){}
+        }
+        function playSelectSound() { playTone(600, 'sine', 0.08, 0.15); }
+        function playCorrectSound() {
+            try {
+                initAudio();
+                const t = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.frequency.setValueAtTime(800, t);
+                osc.frequency.setValueAtTime(1200, t + 0.1);
+                gain.gain.setValueAtTime(0.2, t);
+                gain.gain.exponentialRampToValueAtTime(0.00001, t + 0.25);
+                osc.start(t);
+                osc.stop(t + 0.25);
+            } catch(e){}
+        }
+        function playWrongSound() { playTone(150, 'square', 0.2, 0.12); }
+        function playSubmitSound() { playTone(500, 'triangle', 0.12, 0.15); }
+
+        function updateProgress() {
+            let answered = 0;
+            quizData.forEach(q => {
+                let s = userState[q.id];
+                if(q.type === 'multiple_choice' && s.answer) answered++;
+                if(q.type === 'gap_fill_text') {
+                    let hasAns = Object.values(s.answer).some(v => v && v.trim() !== '');
+                    if(hasAns) answered++;
+                }
+            });
+            const total = quizData.length;
+            document.getElementById('progress-bar').style.width = (answered/total*100) + '%';
+            document.getElementById('progress-text').textContent = `Tiến độ: ${answered}/${total} câu`;
         }
 
         function renderQuiz() {
             const container = document.getElementById('quiz-container');
             container.innerHTML = '';
-
             quizData.forEach(q => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                card.id = `card-${q.id}`;
-
-                let questionHTML = q.questionHTML;
-                let optionsHTML = '';
-
-                if (q.type === 'gapfill') {
-                    questionHTML = questionHTML.replace(/_{2,}|\[_]+/, `<button class="gap-btn" id="gap-btn-${q.id}" onclick="openGapModal(${q.id})">Chọn</button>`);
-                    
-                    const labels = ['A', 'B', 'C', 'D'];
-                    const shuffledContent = shuffleArray(q.options);
-                    const shuffledLabels = shuffleArray([...labels]);
-                    
-                    const displayOptions = shuffledContent.map((opt, index) => ({
-                        displayLabel: shuffledLabels[index],
-                        html: opt.html,
-                        originalLabel: opt.label,
-                        isCorrect: opt.isCorrect
-                    }));
-                    
-                    userState[q.id].displayState = displayOptions;
-                    
-                    card.innerHTML = `
-                        <div class="question">${q.id}. ${questionHTML}</div>
-                        <button class="action-btn" id="check-btn-${q.id}" onclick="checkAnswer(${q.id})" disabled>Kiểm tra</button>
-                        <div class="explanation" id="exp-${q.id}">${q.explanationHTML}</div>
-                    `;
-                } else {
-                    const labels = ['A', 'B', 'C', 'D'];
-                    const shuffledContent = shuffleArray(q.options);
-                    const shuffledLabels = shuffleArray([...labels]);
-                    
-                    const displayOptions = shuffledContent.map((opt, index) => ({
-                        displayLabel: shuffledLabels[index],
-                        html: opt.html,
-                        originalLabel: opt.label,
-                        isCorrect: opt.isCorrect
-                    }));
-                    
-                    userState[q.id].displayState = displayOptions;
-
-                    optionsHTML = displayOptions.map(opt => `
-                        <button class="option-btn" id="opt-${q.id}-${opt.originalLabel}" onclick="selectOption(${q.id}, '${opt.originalLabel}')">
-                            <span class="option-label">${opt.displayLabel}.</span>
-                            <span>${opt.html}</span>
-                        </button>
-                    `).join('');
-
-                    card.innerHTML = `
-                        <div class="question">${q.id}. ${questionHTML}</div>
-                        <div class="options">${optionsHTML}</div>
-                        <button class="action-btn" id="check-btn-${q.id}" onclick="checkAnswer(${q.id})" disabled>Kiểm tra</button>
-                        <div class="explanation" id="exp-${q.id}">${q.explanationHTML}</div>
-                    `;
-                }
+                card.id = 'card-' + q.id;
                 
+                let html = `<div class="question">${q.id}. ${q.questionHTML}</div>`;
+                
+                if(q.type === 'multiple_choice') {
+                    html += `<div class="options">`;
+                    q.options.forEach(opt => {
+                        html += `<div class="option" id="opt-${q.id}-${opt.label}" onclick="selectMCQ(${q.id}, '${opt.label}')">
+                            <strong>${opt.label}.</strong> ${opt.html}
+                        </div>`;
+                    });
+                    html += `</div>`;
+                } else if(q.type === 'gap_fill_text') {
+                    // Render input fields natively replaced in questionHTML? 
+                    // Actually, let's just render the inputs below or replace them in html
+                    html = `<div class="question">${q.id}. ` + q.questionHTML.replace(/{\blank:(b\d+)}/g, (match, bId) => {
+                        return `<input type="text" class="gap-input" id="gap-${q.id}-${bId}" onblur="inputGap(${q.id}, '${bId}')" oninput="inputGapTyping(${q.id})" autocomplete="off">
+                                <span id="gap-correct-${q.id}-${bId}" class="correct-answer-badge" style="display:none;"></span>`;
+                    }) + `</div>`;
+                }
+
+                html += `<button id="check-btn-${q.id}" class="btn" onclick="checkAnswer(${q.id})" disabled>Kiểm tra</button>`;
+                html += `<div id="exp-${q.id}" class="explanation">${q.explanationHTML}</div>`;
+                
+                card.innerHTML = html;
                 container.appendChild(card);
             });
         }
-        
-        let currentGapId = null;
-        function openGapModal(id) {
-            if (userState[id].checked) return;
-            currentGapId = id;
-            const displayOptions = userState[id].displayState;
-            
-            const modalContent = document.getElementById('gap-options-container');
-            modalContent.innerHTML = displayOptions.map(opt => `
-                <button class="modal-option" onclick="selectGapOption('${opt.originalLabel}')">
-                    ${opt.displayLabel}. ${opt.html}
-                </button>
-            `).join('');
-            
-            document.getElementById('gap-modal').style.display = 'flex';
-        }
-        
-        function selectGapOption(originalLabel) {
-            document.getElementById('gap-modal').style.display = 'none';
-            const id = currentGapId;
-            if (userState[id].checked) return;
-            
-            userState[id].selected = originalLabel;
-            const displayOptions = userState[id].displayState;
-            const selectedOpt = displayOptions.find(o => o.originalLabel === originalLabel);
-            
-            const gapBtn = document.getElementById(`gap-btn-${id}`);
-            gapBtn.textContent = selectedOpt.html;
-            gapBtn.className = 'gap-btn filled';
-            
+
+        function selectMCQ(qId, label) {
+            if(userState[qId].checked) return;
+            userState[qId].answer = label;
             playSelectSound();
-            document.getElementById(`check-btn-${id}`).disabled = false;
+            
+            document.querySelectorAll(`[id^="opt-${qId}-"]`).forEach(el => el.classList.remove('pending'));
+            document.getElementById(`opt-${qId}-${label}`).classList.add('pending');
+            
+            document.getElementById(`check-btn-${qId}`).disabled = false;
             updateProgress();
         }
 
-        function selectOption(id, originalLabel) {
-            if (userState[id].checked) return;
-
-            userState[id].selected = originalLabel;
+        let typingSoundPlayed = {};
+        function inputGapTyping(qId) {
+            if(!typingSoundPlayed[qId]) {
+                playSelectSound();
+                typingSoundPlayed[qId] = true;
+            }
+            updateProgress();
             
-            const displayOptions = userState[id].displayState;
-            displayOptions.forEach(opt => {
-                const btn = document.getElementById(`opt-${id}-${opt.originalLabel}`);
-                if (btn) btn.className = 'option-btn';
-            });
+            const q = quizData.find(x => x.id === qId);
+            const allFilled = q.blanks.every(b => document.getElementById(`gap-${qId}-${b.blankId}`).value.trim() !== '');
+            document.getElementById(`check-btn-${qId}`).disabled = !allFilled;
+        }
 
-            const selectedBtn = document.getElementById(`opt-${id}-${originalLabel}`);
-            if (selectedBtn) selectedBtn.className = 'option-btn pending';
-
-            playSelectSound();
-            document.getElementById(`check-btn-${id}`).disabled = false;
+        function inputGap(qId, bId) {
+            if(userState[qId].checked) return;
+            const val = document.getElementById(`gap-${qId}-${bId}`).value;
+            userState[qId].answer[bId] = val;
             updateProgress();
         }
 
-        function updateProgress() {
-            let answered = 0;
-            for (let id in userState) {
-                if (userState[id].selected !== null) answered++;
-            }
-            const total = quizData.length;
-            document.getElementById('progress-text').innerText = `${answered}/${total}`;
-            document.getElementById('progress-bar').style.width = `${(answered / total) * 100}%`;
-        }
-
-        function checkAnswer(id, autoCheck = false) {
-            const state = userState[id];
-            if (state.checked || state.selected === null) return;
+        function checkAnswer(qId) {
+            if(userState[qId].checked) return;
+            const q = quizData.find(x => x.id === qId);
+            const s = userState[qId];
             
-            state.checked = true;
-            const question = quizData.find(q => q.id == id);
-            const correctOpt = question.options.find(o => o.isCorrect);
-            state.isCorrect = (state.selected === correctOpt.label);
-            
-            if (!autoCheck) {
-                if (state.isCorrect) playCorrectSound();
-                else playWrongSound();
-            }
-
-            if (question.type === 'gapfill') {
-                const gapBtn = document.getElementById(`gap-btn-${id}`);
-                gapBtn.disabled = true;
+            if(q.type === 'multiple_choice') {
+                const correctOpt = q.options.find(o => o.isCorrect).label;
+                s.isCorrect = (s.answer === correctOpt);
                 
-                const selectedDisplay = state.displayState.find(o => o.originalLabel === state.selected);
-                
-                if (state.isCorrect) {
-                    gapBtn.className = 'gap-btn correct';
+                document.getElementById(`opt-${qId}-${s.answer}`).classList.remove('pending');
+                if(s.isCorrect) {
+                    document.getElementById(`opt-${qId}-${s.answer}`).classList.add('correct');
+                    playCorrectSound();
                 } else {
-                    gapBtn.className = 'gap-btn wrong';
-                    const correctDisplay = state.displayState.find(o => o.originalLabel === correctOpt.label);
-                    gapBtn.innerHTML = `<s>${selectedDisplay.html}</s> <span style="color:#166534;margin-left:4px;">${correctDisplay.html}</span>`;
+                    document.getElementById(`opt-${qId}-${s.answer}`).classList.add('wrong');
+                    document.getElementById(`opt-${qId}-${correctOpt}`).classList.add('correct');
+                    playWrongSound();
                 }
-            } else {
-                state.displayState.forEach(opt => {
-                    const btn = document.getElementById(`opt-${id}-${opt.originalLabel}`);
-                    if (!btn) return;
-                    btn.disabled = true;
-                    if (opt.originalLabel === correctOpt.label) {
-                        btn.className = 'option-btn correct';
-                    } else if (opt.originalLabel === state.selected && !state.isCorrect) {
-                        btn.className = 'option-btn wrong';
-                    }
-                });
-            }
-
-            const checkBtn = document.getElementById(`check-btn-${id}`);
-            if(checkBtn) {
-                checkBtn.disabled = true;
-                checkBtn.style.display = 'none';
-            }
-            
-            document.getElementById(`exp-${id}`).style.display = 'block';
-        }
-
-        function submitTest() {
-            const studentName = document.getElementById('student-name').value.trim();
-            if(!studentName) {
-                alert("Vui lòng nhập họ và tên trước khi nộp bài!");
-                document.getElementById('student-name').focus();
-                return;
-            }
-        
-            const btn = document.getElementById('submit-test-btn');
-            btn.disabled = true;
-            btn.textContent = 'Đã nộp bài';
-
-            let correctCount = 0;
-            let loisaiArr = [];
-            
-            quizData.forEach(q => {
-                const state = userState[q.id];
-                if (!state.checked) {
-                    if (state.selected !== null) {
-                        checkAnswer(q.id, true);
+            } else if(q.type === 'gap_fill_text') {
+                let allCorrect = true;
+                q.blanks.forEach(b => {
+                    const userVal = s.answer[b.blankId] || '';
+                    const normUser = normalizeAnswer(userVal);
+                    const isCorrect = b.correctAnswers.some(ans => normalizeAnswer(ans) === normUser);
+                    s.blankResults[b.blankId] = isCorrect;
+                    
+                    const inp = document.getElementById(`gap-${qId}-${b.blankId}`);
+                    inp.readOnly = true;
+                    if(isCorrect) {
+                        inp.classList.add('correct');
                     } else {
-                        state.checked = true;
-                        state.isCorrect = false;
-                        document.getElementById(`exp-${q.id}`).style.display = 'block';
-                        
-                        if (q.type === 'gapfill') {
-                            const gapBtn = document.getElementById(`gap-btn-${q.id}`);
-                            if(gapBtn) gapBtn.disabled = true;
-                        } else {
-                            state.displayState.forEach(opt => {
-                                const optBtn = document.getElementById(`opt-${q.id}-${opt.originalLabel}`);
-                                if(optBtn) optBtn.disabled = true;
-                            });
-                        }
-                        const checkBtn = document.getElementById(`check-btn-${q.id}`);
-                        if(checkBtn) {
-                            checkBtn.disabled = true;
-                            checkBtn.style.display = 'none';
-                        }
+                        inp.classList.add('wrong');
+                        const corrSpan = document.getElementById(`gap-correct-${qId}-${b.blankId}`);
+                        corrSpan.textContent = b.correctAnswers[0];
+                        corrSpan.style.display = 'inline';
+                        allCorrect = false;
+                    }
+                });
+                s.isCorrect = allCorrect;
+                if(allCorrect) playCorrectSound(); else playWrongSound();
+            }
+
+            s.checked = true;
+            document.getElementById(`check-btn-${qId}`).disabled = true;
+            document.getElementById(`exp-${qId}`).style.display = 'block';
+            document.getElementById(`card-${qId}`).style.pointerEvents = 'none';
+        }
+
+        function submitQuiz() {
+            // Auto check unchecked
+            quizData.forEach(q => {
+                if(!userState[q.id].checked) {
+                    userState[q.id].checked = true;
+                    userState[q.id].isCorrect = false; // mark wrong if missing
+                    if(q.type==='gap_fill_text') {
+                        q.blanks.forEach(b => userState[q.id].blankResults[b.blankId] = false);
                     }
                 }
-                
-                if (state.isCorrect) {
-                    correctCount++;
-                } else {
-                    const selectedLabel = state.selected || "Bỏ trống";
-                    loisaiArr.push(`Câu ${q.id}: Chọn ${selectedLabel}`);
-                }
             });
-            
-            playTone(800, 0.1, 'sine', 0.1);
-            setTimeout(() => playTone(1200, 0.2, 'sine', 0.15), 150);
 
             const total = quizData.length;
-            const score = (correctCount / total) * 10;
-            const roundedScore = score.toFixed(2);
-            const tile = `${correctCount}/${total}`;
-            const msg = document.getElementById('result-message');
-            msg.style.display = 'block';
-            msg.innerHTML = `Điểm của bạn: ${roundedScore}/10 (${tile})`;
-
-            renderSummaryTable();
-            window.scrollTo({ top: document.getElementById('summary-container').offsetTop - 50, behavior: 'smooth' });
+            const correct = Object.values(userState).filter(s => s.isCorrect).length;
             
-            // Gửi Google Form
-            const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSelQyzh_lWyb2vZUnQ1jc1p9FLRknDZiUt9NiUiiX1epHTFLw/formResponse";
-            const formData = new URLSearchParams();
-            formData.append("entry.351633352", "U1-U2 Đề 1");
-            formData.append("entry.1895948982", studentName);
-            formData.append("entry.1232319784", roundedScore);
-            formData.append("entry.1125920425", tile);
-            formData.append("entry.1907417670", loisaiArr.join(" | ") || "Không có lỗi sai");
-            
-            fetch(formUrl, {
-                method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: formData
-            }).catch(e => console.error("Error submitting form", e));
-        }
-
-        function renderSummaryTable() {
-            const container = document.getElementById('summary-container');
-            container.innerHTML = '';
-
-            const table = document.createElement('table');
-            table.className = 'summary-table';
-            table.style.display = 'table';
-
-            const trHeader = document.createElement('tr');
-            trHeader.innerHTML = '<th>Câu</th>' + quizData.map(q => `<th>${q.id}</th>`).join('');
-            table.appendChild(trHeader);
-
-            ['A', 'B', 'C', 'D'].forEach(label => {
-                const tr = document.createElement('tr');
-                let html = `<th>${label}</th>`;
-                quizData.forEach(q => {
-                    const state = userState[q.id];
-                    const correctOpt = q.options.find(o => o.isCorrect).label;
-                    let cellClass = '';
-                    if (state.selected === null) {
-                        cellClass = 'cell-empty';
-                    } else if (label === correctOpt) {
-                        cellClass = 'cell-correct';
-                    } else if (label === state.selected && !state.isCorrect) {
-                        cellClass = 'cell-wrong';
+            let wrongDetails = [];
+            quizData.forEach(q => {
+                let s = userState[q.id];
+                if(s.isCorrect === false) {
+                    if(q.type === 'multiple_choice') {
+                        const cOpt = q.options.find(o => o.isCorrect).label;
+                        wrongDetails.push(`Câu ${q.id}: Học sinh chọn ${s.answer||'trống'} (sai), đáp án đúng là ${cOpt}`);
+                    } else if(q.type === 'gap_fill_text') {
+                        q.blanks.forEach(b => {
+                            if(!s.blankResults[b.blankId]) {
+                                wrongDetails.push(`Câu ${q.id} (blank ${b.blankId}): Học sinh điền '${s.answer[b.blankId]||''}' (sai), đáp án đúng là '${b.correctAnswers.join(' / ')}'`);
+                            }
+                        });
                     }
-                    html += `<td class="${cellClass}">${label}</td>`;
-                });
-                tr.innerHTML = html;
-                table.appendChild(tr);
+                }
             });
 
-            container.appendChild(table);
+            playSubmitSound();
+            if(correct === total) playCorrectSound();
+            
+            // Post to google forms
+            const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfZCAK2lpNE8O8Ieqwc3SI1ubr6HZDvGZR91AsSpUk8kEBqaA/formResponse';
+            const studentName = prompt("Nhập tên học sinh để nộp bài:", "Học sinh 1") || "Ẩn danh";
+            
+            const formData = new URLSearchParams();
+            formData.append('entry.1861648410', studentName);
+            formData.append('entry.1691800437', `${correct}/${total}`);
+            formData.append('entry.639295732', wrongDetails.join("\n") || "Không có lỗi sai");
+            formData.append('entry.370465671', "U1-U2 Đề 1");
+
+            fetch(formUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: formData.toString()
+            }).then(() => {
+                console.log("Đã gửi form");
+            }).catch(e => console.error(e));
+
+            // Show popup
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('score-text').textContent = `Điểm của bạn: ${correct} / ${total}`;
+            document.getElementById('feedback-text').textContent = correct === total ? "Xuất sắc! Bạn đã đúng 100%." : "Cố gắng hơn ở lần sau nhé!";
+            
+            document.getElementById('submit-btn').disabled = true;
+            
+            // Show wrong list
+            if(correct < total) {
+                const wl = document.getElementById('wrong-list');
+                wl.innerHTML = '';
+                quizData.filter(q => userState[q.id].isCorrect === false).forEach(q => {
+                    const c = document.getElementById(`card-${q.id}`).cloneNode(true);
+                    c.className = 'card result-card';
+                    c.style.pointerEvents = 'none';
+                    c.querySelector('button').remove();
+                    c.querySelector('.explanation').style.display = 'block';
+                    wl.appendChild(c);
+                });
+                document.getElementById('results-section').style.display = 'block';
+            }
         }
 
-        renderQuiz();
-    
-function updateTopProgress() {
-    let answered = 0;
-    if (typeof userState !== 'undefined') {
-        answered = Object.values(userState).filter(s => s.selected !== null || s.checked).length;
-    }
-    const pt = document.getElementById('top-progress-text');
-    const pb = document.getElementById('top-progress-bar');
-    const tt = document.getElementById('top-total-text');
-    
-    if (pt) pt.textContent = answered;
-    if (tt && typeof quizData !== 'undefined') tt.textContent = quizData.length;
-    if (pb && typeof quizData !== 'undefined' && quizData.length > 0) {
-        pb.style.width = (answered / quizData.length * 100) + '%';
-    }
-}
-// Init progress on load
-document.addEventListener('DOMContentLoaded', updateTopProgress);
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+            if(Object.values(userState).some(s => s.isCorrect === false)) {
+                document.getElementById('results-section').scrollIntoView({behavior: 'smooth'});
+            }
+        }
 
-</script>
-<div class="footer-text">GV biên soạn: Ms Chí Nên - 0852639652</div>
+        window.onload = renderQuiz;
+    </script>
 </body>
 </html>
