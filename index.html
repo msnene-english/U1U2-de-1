@@ -1,88 +1,75 @@
 <!DOCTYPE html>
-    <html lang="vi">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>U1-U2 Đề 1</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f0f2f5; position: relative; z-index: 1; overflow-x: hidden; }
-        .watermark { position: absolute; top: 30px; left: 0; right: 0; text-align: center; font-size: 50px; color: rgba(0, 0, 0, 0.04); font-weight: bold; pointer-events: none; z-index: -1; user-select: none; }
-        .watermark div { transform: rotate(-30deg); margin: 200px 0; }
-@media (max-width: 600px) {
-    .watermark { font-size: 20px; top: 10px; }
-    .watermark div { margin: 90px 0; }
-}
-@media (max-width: 400px) {
-    .watermark { font-size: 16px; }
-    .watermark div { margin: 70px 0; }
-}
-        h1, h2 { color: #2c3e50; text-align: center; }
-        .screen { display: none; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .screen.active { display: block; }
-        
-        input[type="text"] { width: 100%; padding: 12px; margin: 10px 0 20px; border: 2px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 16px; transition: border-color 0.3s; }
-        input[type="text"]:focus { border-color: #3498db; outline: none; }
-        
-        button { background: #3498db; color: #fff; border: none; padding: 12px 24px; font-size: 16px; border-radius: 6px; cursor: pointer; transition: background 0.3s, transform 0.1s; }
-        button:hover { background: #2980b9; }
-        button:active { transform: scale(0.98); }
-        button:disabled { background: #95a5a6; cursor: not-allowed; }
-        
-        .question-block { margin-bottom: 25px; padding: 15px; background: #f9f9f9; border-left: 4px solid #3498db; border-radius: 0 8px 8px 0; }
-        .instruction-box { margin-bottom: 15px; padding: 10px 15px; background: #e8f4fd; border: 1px solid #b6d4fe; border-radius: 6px; font-weight: bold; color: #004085; }
-        .question-text { font-weight: 500; margin-bottom: 15px; font-size: 16px; line-height: 1.8; }
-        
-        .options { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
-        .option { padding: 12px 15px; background: #fff; border: 2px solid #eee; border-radius: 8px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 10px; }
-        .option:hover { border-color: #3498db; background: #f8faff; }
-        .option.selected { border-color: #3498db; background: #ebf5ff; }
-        .option.correct-opt { border-color: #2ecc71; background: #eafaf1; }
-        .option.wrong-opt { border-color: #e74c3c; background: #fdedec; }
-        
-        .radio-circle { width: 20px; height: 20px; border: 2px solid #ddd; border-radius: 50%; position: relative; }
-        .option.selected .radio-circle::after { content: ''; position: absolute; top: 4px; left: 4px; width: 12px; height: 12px; background: #3498db; border-radius: 50%; }
-        
-        .gap-fill-input { width: 120px !important; padding: 4px 8px !important; margin: 0 5px !important; display: inline-block !important; border: 1px solid #ccc !important; border-radius: 4px !important; font-size: 16px !important; }
-        
-        .reordering-container { display: flex; flex-direction: column; gap: 15px; }
-        .word-bank, .drop-zone { display: flex; flex-wrap: wrap; gap: 8px; min-height: 45px; padding: 10px; background: #fff; border: 2px dashed #ddd; border-radius: 8px; }
-        .word-chip { padding: 8px 16px; background: #3498db; color: #fff; border-radius: 20px; cursor: pointer; user-select: none; font-weight: 500; transition: transform 0.1s; }
-        .word-chip:active { transform: scale(0.95); }
-        .word-chip.correct { background: #2ecc71; }
-        .word-chip.wrong { background: #e74c3c; }
-        
-        .rewrite-input { width: 100%; height: 80px; padding: 12px; border: 2px solid #ddd; border-radius: 6px; resize: vertical; font-size: 16px; font-family: inherit; }
-        
-        .check-btn { margin-top: 15px; background: #3498db; font-size: 14px; padding: 8px 16px; }
-        .explanation { display: none; margin-top: 15px; padding: 15px; background: #eef2f5; border-radius: 6px; font-size: 14.5px; line-height: 1.5; color: #2c3e50; border-left: 4px solid #2ecc71; }
-        
-        .progress-bar { width: 100%; height: 10px; background: #ddd; border-radius: 5px; margin-bottom: 20px; overflow: hidden; }
-        .progress-fill { height: 100%; background: #2ecc71; width: 0%; transition: width 0.3s; }
-        
-        .result-details { margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 6px; text-align: left; max-height: 300px; overflow-y: auto; font-size: 14px; }
-        .error-item { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee; color: #e74c3c; }
-    </style>
-    </head>
-    <body>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>U1U2 đề 1</title>
+<style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f0f2f5; position: relative; z-index: 1; overflow-x: hidden; }
+    .watermark { position: absolute; top: 30px; left: 0; right: 0; text-align: center; font-size: 50px; color: rgba(0, 0, 0, 0.04); font-weight: bold; pointer-events: none; z-index: -1; user-select: none; }
+    .watermark div { transform: rotate(-30deg); margin: 200px 0; }
+    @media (max-width: 600px) { .watermark { font-size: 20px; top: 10px; } .watermark div { margin: 90px 0; } }
+    @media (max-width: 400px) { .watermark { font-size: 16px; } .watermark div { margin: 70px 0; } }
+    h1, h2 { color: #2c3e50; text-align: center; }
+    .screen { position: relative; display: none; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .screen.active { display: block; }
+    
+    input[type="text"] { width: 100%; padding: 12px; margin: 10px 0 20px; border: 2px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 16px; transition: border-color 0.3s; }
+    input[type="text"]:focus { border-color: #3498db; outline: none; }
+    
+    button { background: #3498db; color: #fff; border: none; padding: 12px 24px; font-size: 16px; border-radius: 6px; cursor: pointer; transition: background 0.3s, transform 0.1s; }
+    button:hover { background: #2980b9; }
+    button:active { transform: scale(0.98); }
+    button:disabled { background: #95a5a6; cursor: not-allowed; }
+    
+    .question-block { margin-bottom: 25px; padding: 15px; background: #f9f9f9; border-left: 4px solid #3498db; border-radius: 0 8px 8px 0; }
+    .instruction-box { margin-bottom: 15px; padding: 10px 15px; background: #e8f4fd; border: 1px solid #b6d4fe; border-radius: 6px; font-weight: bold; color: #004085; }
+    .question-text { font-weight: 500; margin-bottom: 15px; font-size: 16px; line-height: 1.8; }
+    
+    .options { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+    .option { padding: 12px 15px; background: #fff; border: 2px solid #eee; border-radius: 8px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 10px; }
+    .option:hover { border-color: #3498db; background: #f8faff; }
+    .option.selected { border-color: #3498db; background: #ebf5ff; }
+    .option.correct-opt { border-color: #2ecc71; background: #eafaf1; }
+    .option.wrong-opt { border-color: #e74c3c; background: #fdedec; }
+    
+    .radio-circle { width: 20px; height: 20px; border: 2px solid #ddd; border-radius: 50%; position: relative; }
+    .option.selected .radio-circle::after { content: ''; position: absolute; top: 4px; left: 4px; width: 12px; height: 12px; background: #3498db; border-radius: 50%; }
+    
+    .gap-fill-input { width: 120px !important; padding: 4px 8px !important; margin: 0 5px !important; display: inline-block !important; border: 1px solid #ccc !important; border-radius: 4px !important; font-size: 16px !important; }
+    
+    .word-bank, .drop-zone { display: flex; flex-wrap: wrap; gap: 8px; min-height: 45px; padding: 10px; background: #fff; border: 2px dashed #ddd; border-radius: 8px; margin-top: 10px;}
+    .word-chip { padding: 8px 16px; background: #3498db; color: #fff; border-radius: 20px; cursor: pointer; user-select: none; font-weight: 500; transition: transform 0.1s; }
+    .word-chip:active { transform: scale(0.95); }
+    
+    .rewrite-input { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 16px; font-family: inherit; }
+    
+    .check-btn { margin-top: 15px; background: #3498db; font-size: 14px; padding: 8px 16px; }
+    .explanation { display: none; margin-top: 15px; padding: 15px; background: #eef2f5; border-radius: 6px; font-size: 14.5px; line-height: 1.5; color: #2c3e50; border-left: 4px solid #2ecc71; }
+    
+    .result-details { margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 6px; text-align: left; max-height: 400px; overflow-y: auto; font-size: 14px; border: 1px solid #ddd; }
+    .error-item { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee; color: #333; }
+</style>
+</head>
+<body>
     <div class="watermark">
-        <div>U1-U2 Đề 1<br>GV biên soạn: Ms Chí Nên - 0852639652</div>
-        <div>U1-U2 Đề 1<br>GV biên soạn: Ms Chí Nên - 0852639652</div>
-        <div>U1-U2 Đề 1<br>GV biên soạn: Ms Chí Nên - 0852639652</div>
-        <div>U1-U2 Đề 1<br>GV biên soạn: Ms Chí Nên - 0852639652</div>
+        <div>U1U2 đề 1<br>GV biên soạn: Ms Chí Nên - 0852639652</div>
+        <div>U1U2 đề 1<br>GV biên soạn: Ms Chí Nên - 0852639652</div>
+        <div>U1U2 đề 1<br>GV biên soạn: Ms Chí Nên - 0852639652</div>
+        <div>U1U2 đề 1<br>GV biên soạn: Ms Chí Nên - 0852639652</div>
     </div>
     
     <div id="startScreen" class="screen active">
-        <h1>U1-U2 Đề 1</h1>
+        <h1>U1U2 đề 1</h1>
         <p style="text-align: center; color: #7f8c8d;">Nhập họ và tên của bạn để bắt đầu làm bài</p>
-        <input type="text" id="studentName" placeholder="Ví dụ: Nguyễn Văn A" autocomplete="off">
+        <input type="text" id="studentName"  autocomplete="off">
         <div style="text-align: center;">
             <button onclick="startTest()">Bắt đầu làm bài</button>
         </div>
     </div>
     
     <div id="testScreen" class="screen">
-        <h2>U1-U2 Đề 1</h2>
-        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div style="position:absolute; top:15px; left:20px; font-size:13px; color:#7f8c8d;">GV biên soạn: Ms Chí Nên - 0852639652</div><h2>U1U2 đề 1</h2>
         <div id="questionsContainer"></div>
         <div style="text-align: center; margin-top: 30px;">
             <button id="submitBtn" onclick="confirmSubmit()" style="background: #2ecc71; font-weight: bold; padding: 15px 40px;">NỘP BÀI</button>
@@ -91,864 +78,575 @@
     
     <div id="resultScreen" class="screen" style="text-align: center;">
         <h1 style="color: #2ecc71; font-size: 36px;">Hoàn thành!</h1>
-        <h2 id="scoreDisplay" style="font-size: 48px; margin: 20px 0; color: #2c3e50;"></h2>
-        <p id="feedbackText" style="font-size: 18px; color: #7f8c8d;"></p>
+        <div style="font-size: 24px; color: #555;">Điểm của bạn:</div>
+        <h2 id="scoreDisplay" style="font-size: 48px; margin: 10px 0; color: #2c3e50;"></h2>
         <div class="result-details" id="resultDetails"></div>
     </div>
     
-    <div style="text-align: center; margin-top: 50px; padding: 20px; color: #7f8c8d; font-size: 14px; border-top: 1px solid #ddd;">
-        GV biên soạn: Ms Chí Nên - 0852639652
-    </div>
-    
     <script>
-        const testName = 'U1-U2 Đề 1';
-        const quizData = [
-            // MCQs
-            {
-                id: 1, type: 'multiple_choice',
-                question: "<b>I. Choose the correct answer.</b><br>1. Look! The tour guide _____ towards the museum right now.",
-                options: [
-                    { text: "A. heads", isCorrect: false },
-                    { text: "B. is heading", isCorrect: true },
-                    { text: "C. has headed", isCorrect: false },
-                    { text: "D. head", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Nhìn kìa! Hướng dẫn viên du lịch đang đi về phía bảo tàng ngay lúc này.<br><strong>Giải thích:</strong> Có dấu hiệu 'Look!' (Nhìn kìa) và 'right now' (ngay lúc này) chỉ hành động đang diễn ra tại thời điểm nói, nên dùng thì Hiện tại tiếp diễn (is heading)."
-            },
-            {
-                id: 2, type: 'multiple_choice',
-                question: "2. I _____ to Paris three times this year, but this trip is the best.",
-                options: [
-                    { text: "A. travel", isCorrect: false },
-                    { text: "B. am travelling", isCorrect: false },
-                    { text: "C. have travelled", isCorrect: true },
-                    { text: "D. have been travelling", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Tôi đã đến Paris 3 lần trong năm nay, nhưng chuyến đi này là tuyệt nhất.<br><strong>Giải thích:</strong> 'three times this year' chỉ số lần thực hiện hành động tính đến hiện tại, ta dùng thì Hiện tại hoàn thành (have travelled)."
-            },
-            {
-                id: 3, type: 'multiple_choice',
-                question: "3. The train to Manchester _____ at 8:00 AM every day.",
-                options: [
-                    { text: "A. is leaving", isCorrect: false },
-                    { text: "B. leaves", isCorrect: true },
-                    { text: "C. has left", isCorrect: false },
-                    { text: "D. has been leaving", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Chuyến tàu đến Manchester rời đi lúc 8:00 sáng mỗi ngày.<br><strong>Giải thích:</strong> Lịch trình tàu xe cố định mang tính lặp lại ('every day'), dùng thì Hiện tại đơn (leaves)."
-            },
-            {
-                id: 4, type: 'multiple_choice',
-                question: "4. We need to _____ early tomorrow to avoid the heavy traffic.",
-                options: [
-                    { text: "A. set out", isCorrect: true },
-                    { text: "B. pull in", isCorrect: false },
-                    { text: "C. drop off", isCorrect: false },
-                    { text: "D. see off", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Chúng ta cần khởi hành sớm vào ngày mai để tránh tắc đường.<br><strong>Giải thích:</strong> 'set out' = khởi hành; 'pull in' = tấp vào; 'drop off' = thả ai xuống xe; 'see off' = tiễn. Hợp nghĩa nhất là A."
-            },
-            {
-                id: 5, type: 'multiple_choice',
-                question: "5. Why are you _____ the soup? Do you think it has gone bad?",
-                options: [
-                    { text: "A. taste", isCorrect: false },
-                    { text: "B. tasting", isCorrect: true },
-                    { text: "C. tastes", isCorrect: false },
-                    { text: "D. tasted", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Tại sao bạn lại đang nếm món súp? Bạn nghĩ nó bị thiu rồi à?<br><strong>Giải thích:</strong> Động từ 'taste' khi mang nghĩa hành động chủ động (nếm) thì có thể dùng ở tiếp diễn (are tasting)."
-            },
-            {
-                id: 6, type: 'multiple_choice',
-                question: "6. You should book your accommodation _____ advance during the peak season.",
-                options: [
-                    { text: "A. in", isCorrect: true },
-                    { text: "B. on", isCorrect: false },
-                    { text: "C. at", isCorrect: false },
-                    { text: "D. with", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Bạn nên đặt chỗ ở trước trong suốt mùa cao điểm.<br><strong>Giải thích:</strong> Cụm từ cố định: 'in advance' (trước)."
-            },
-            {
-                id: 7, type: 'multiple_choice',
-                question: "7. I _____ of visiting Japan for years, and now I finally have the ticket.",
-                options: [
-                    { text: "A. am dreaming", isCorrect: false },
-                    { text: "B. dream", isCorrect: false },
-                    { text: "C. have been dreaming", isCorrect: true },
-                    { text: "D. dreams", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Tôi đã luôn mơ về việc thăm Nhật Bản nhiều năm nay, và bây giờ tôi cuối cùng đã có vé.<br><strong>Giải thích:</strong> 'for years' và nhấn mạnh quá trình liên tục cho tới hiện tại, dùng thì Hiện tại hoàn thành tiếp diễn (have been dreaming)."
-            },
-            {
-                id: 8, type: 'multiple_choice',
-                question: "8. The manager has _____ for a taxi to pick us up at the airport.",
-                options: [
-                    { text: "A. differed", isCorrect: false },
-                    { text: "B. arranged", isCorrect: true },
-                    { text: "C. regretted", isCorrect: false },
-                    { text: "D. continued", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Quản lý đã sắp xếp một chiếc taxi đến đón chúng tôi ở sân bay.<br><strong>Giải thích:</strong> 'arrange for' = sắp xếp cho việc gì. Các từ khác không đi với 'for' tạo nghĩa phù hợp."
-            },
-            {
-                id: 9, type: 'multiple_choice',
-                question: "9. The taxi driver _____ us off right outside the departure lounge.",
-                options: [
-                    { text: "A. dropped", isCorrect: true },
-                    { text: "B. picked", isCorrect: false },
-                    { text: "C. saw", isCorrect: false },
-                    { text: "D. made", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Tài xế taxi thả chúng tôi xuống ngay bên ngoài phòng chờ khởi hành.<br><strong>Giải thích:</strong> Cụm phrasal verb: 'drop sb off' = thả ai xuống (xe). 'pick up' = đón; 'see off' = tiễn."
-            },
-            {
-                id: 10, type: 'multiple_choice',
-                question: "10. This is the first time I _____ such a beautiful view of the ocean.",
-                options: [
-                    { text: "A. see", isCorrect: false },
-                    { text: "B. am seeing", isCorrect: false },
-                    { text: "C. have seen", isCorrect: true },
-                    { text: "D. saw", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Đây là lần đầu tiên tôi thấy một cảnh biển đẹp như vậy.<br><strong>Giải thích:</strong> Cấu trúc 'This is the first/second... time + S + have/has + V3/ed' (Hiện tại hoàn thành)."
-            },
-            {
-                id: 11, type: 'multiple_choice',
-                question: "11. He _____ out of the window when travelling by train.",
-                options: [
-                    { text: "A. is always looking", isCorrect: true },
-                    { text: "B. always look", isCorrect: false },
-                    { text: "C. look always", isCorrect: false },
-                    { text: "D. has always looked", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Anh ấy lúc nào cũng nhìn ra ngoài cửa sổ khi đi tàu.<br><strong>Giải thích:</strong> Diễn tả thói quen gây phàn nàn hoặc đặc biệt nổi bật, dùng 'always' với Hiện tại tiếp diễn (is always looking). B sai vì 'He' cần 'looks'."
-            },
-            {
-                id: 12, type: 'multiple_choice',
-                question: "12. Did you know that air travel _____ increasingly safe?",
-                options: [
-                    { text: "A. get", isCorrect: false },
-                    { text: "B. is getting", isCorrect: true },
-                    { text: "C. has got", isCorrect: false },
-                    { text: "D. gets", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Bạn có biết rằng du lịch hàng không đang ngày càng trở nên an toàn hơn không?<br><strong>Giải thích:</strong> 'increasingly' chỉ sự thay đổi đang diễn ra từ từ, dùng Hiện tại tiếp diễn (is getting)."
-            },
-            {
-                id: 13, type: 'multiple_choice',
-                question: "13. They _____ to be very keen on the new itinerary.",
-                options: [
-                    { text: "A. are appearing", isCorrect: false },
-                    { text: "B. appears", isCorrect: false },
-                    { text: "C. appear", isCorrect: true },
-                    { text: "D. has appeared", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Họ dường như rất hứng thú với lịch trình mới.<br><strong>Giải thích:</strong> 'appear' (dường như) là động từ trạng thái, không dùng ở tiếp diễn. Chủ ngữ 'They' số nhiều nên dùng 'appear'."
-            },
-            {
-                id: 14, type: 'multiple_choice',
-                question: "14. It's hard to _____ up with him because he walks so fast on these excursions.",
-                options: [
-                    { text: "A. make", isCorrect: false },
-                    { text: "B. keep", isCorrect: true },
-                    { text: "C. catch", isCorrect: false },
-                    { text: "D. pull", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Thật khó để theo kịp anh ấy vì anh ấy đi bộ rất nhanh trong các chuyến du ngoạn này.<br><strong>Giải thích:</strong> Cụm 'keep up with' = theo kịp."
-            },
-            {
-                id: 15, type: 'multiple_choice',
-                question: "15. If we don't hurry, we will _____ our flight!",
-                options: [
-                    { text: "A. lose", isCorrect: false },
-                    { text: "B. miss", isCorrect: true },
-                    { text: "C. drop", isCorrect: false },
-                    { text: "D. fail", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Nếu không nhanh lên, chúng ta sẽ lỡ chuyến bay!<br><strong>Giải thích:</strong> Lỡ chuyến xe/tàu/máy bay dùng động từ 'miss' (miss the flight)."
-            },
-            {
-                id: 16, type: 'multiple_choice',
-                question: "16. The _____ from London to Berlin is about 919 kilometres.",
-                options: [
-                    { text: "A. measure", isCorrect: false },
-                    { text: "B. length", isCorrect: false },
-                    { text: "C. distance", isCorrect: true },
-                    { text: "D. gap", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Khoảng cách từ London đến Berlin là khoảng 919 km.<br><strong>Giải thích:</strong> 'distance' = khoảng cách địa lý. Các từ còn lại không phù hợp: measure (số đo), length (chiều dài), gap (khe hở/khoảng trống)."
-            },
-            {
-                id: 17, type: 'multiple_choice',
-                question: "17. I _____ my way, could you tell me how to get to the station?",
-                options: [
-                    { text: "A. lose", isCorrect: false },
-                    { text: "B. am losing", isCorrect: false },
-                    { text: "C. have lost", isCorrect: true },
-                    { text: "D. have been losing", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Tôi vừa bị lạc đường, bạn có thể chỉ tôi cách đến nhà ga không?<br><strong>Giải thích:</strong> Hành động bị lạc đường đã xảy ra và kết quả hiện tại là đang không biết đường, dùng Hiện tại hoàn thành (have lost)."
-            },
-            {
-                id: 18, type: 'multiple_choice',
-                question: "18. Mary is _____ to tell us that the flight has been cancelled.",
-                options: [
-                    { text: "A. regretting", isCorrect: true },
-                    { text: "B. regret", isCorrect: false },
-                    { text: "C. regrets", isCorrect: false },
-                    { text: "D. to regret", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Mary đang rất tiếc khi phải báo với chúng ta rằng chuyến bay đã bị hủy.<br><strong>Giải thích:</strong> Sau 'is' đi với V-ing để tạo thì Hiện tại tiếp diễn, 'regretting' nhấn mạnh cảm giác tiếc nuối hiện tại."
-            },
-            {
-                id: 19, type: 'multiple_choice',
-                question: "19. What's the _____ limit on this highway?",
-                options: [
-                    { text: "A. speed", isCorrect: true },
-                    { text: "B. fast", isCorrect: false },
-                    { text: "C. pace", isCorrect: false },
-                    { text: "D. rate", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Giới hạn tốc độ trên đường cao tốc này là bao nhiêu?<br><strong>Giải thích:</strong> Cụm danh từ cố định: 'speed limit' (giới hạn tốc độ)."
-            },
-            {
-                id: 20, type: 'multiple_choice',
-                question: "20. They are _____ for the coast to spend the weekend.",
-                options: [
-                    { text: "A. making", isCorrect: true },
-                    { text: "B. catching", isCorrect: false },
-                    { text: "C. taking", isCorrect: false },
-                    { text: "D. setting", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Họ đang đi về phía bờ biển để nghỉ cuối tuần.<br><strong>Giải thích:</strong> 'make for' = đi về hướng nào đó. 'set' thường đi với 'out/off' chứ không đi thẳng với 'for' trong ngữ cảnh này."
-            },
-            {
-                id: 21, type: 'multiple_choice',
-                question: "21. The children _____ about the trip to Disneyland all morning!",
-                options: [
-                    { text: "A. are talking", isCorrect: false },
-                    { text: "B. talk", isCorrect: false },
-                    { text: "C. have talked", isCorrect: false },
-                    { text: "D. have been talking", isCorrect: true }
-                ],
-                explanation: "<strong>Dịch:</strong> Bọn trẻ đã nói về chuyến đi đến Disneyland suốt cả buổi sáng!<br><strong>Giải thích:</strong> 'all morning' nhấn mạnh tính liên tục của hành động kéo dài từ quá khứ tới hiện tại, dùng Hiện tại hoàn thành tiếp diễn (have been talking)."
-            },
-            {
-                id: 22, type: 'multiple_choice',
-                question: "22. Could you tell me off the _____ of your head what time the ferry leaves?",
-                options: [
-                    { text: "A. tip", isCorrect: false },
-                    { text: "B. top", isCorrect: true },
-                    { text: "C. back", isCorrect: false },
-                    { text: "D. mind", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Bạn có thể nhớ ngay lập tức (không cần tra cứu) mấy giờ phà chạy không?<br><strong>Giải thích:</strong> Thành ngữ: 'off the top of your head' = nói/nhớ ra ngay lập tức mà không cần suy nghĩ hay tra cứu."
-            },
-            {
-                id: 23, type: 'multiple_choice',
-                question: "23. I don't _____ with you that traveling by bus is relaxing.",
-                options: [
-                    { text: "A. am agreeing", isCorrect: false },
-                    { text: "B. agree", isCorrect: true },
-                    { text: "C. have agreed", isCorrect: false },
-                    { text: "D. agrees", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Tôi không đồng ý với bạn rằng đi lại bằng xe buýt là thư giãn.<br><strong>Giải thích:</strong> Sau trợ động từ 'don't' cần một động từ nguyên mẫu (agree)."
-            },
-            {
-                id: 24, type: 'multiple_choice',
-                question: "24. We decided to take the scenic _____ along the coast.",
-                options: [
-                    { text: "A. route", isCorrect: true },
-                    { text: "B. way", isCorrect: false },
-                    { text: "C. direction", isCorrect: false },
-                    { text: "D. line", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Chúng tôi quyết định đi tuyến đường ngắm cảnh dọc theo bờ biển.<br><strong>Giải thích:</strong> 'scenic route' = tuyến đường đẹp, tuyến đường ngắm cảnh (thường dài hơn bình thường)."
-            },
-            {
-                id: 25, type: 'multiple_choice',
-                question: "25. My parents always come to the station to _____ me off.",
-                options: [
-                    { text: "A. set", isCorrect: false },
-                    { text: "B. drop", isCorrect: false },
-                    { text: "C. see", isCorrect: true },
-                    { text: "D. check", isCorrect: false }
-                ],
-                explanation: "<strong>Dịch:</strong> Bố mẹ tôi luôn ra ga để tiễn tôi.<br><strong>Giải thích:</strong> Phrasal verb: 'see sb off' = tiễn ai đó."
-            },
-            
-            // Gap-fill
-            {
-                id: 26, type: 'gap_fill_text',
-                question: "<b>II. Fill in the blanks.</b><br>26. We {{blank:b1}} (wait) in the departure lounge for over an hour now.",
-                blanks: [{blankId: 'b1', correctAnswers: ["have been waiting"]}],
-                explanation: "<strong>Dịch:</strong> Chúng tôi đã chờ ở phòng chờ khởi hành hơn một tiếng rồi.<br><strong>Giải thích:</strong> Dấu hiệu 'for over an hour now' nhấn mạnh quá trình liên tục tới hiện tại -> Hiện tại hoàn thành tiếp diễn (have been waiting)."
-            },
-            {
-                id: 27, type: 'gap_fill_text',
-                question: "27. The customs officer {{blank:b1}} (look) at my passport at the moment.",
-                blanks: [{blankId: 'b1', correctAnswers: ["is looking"]}],
-                explanation: "<strong>Dịch:</strong> Nhân viên hải quan đang kiểm tra hộ chiếu của tôi ngay lúc này.<br><strong>Giải thích:</strong> Dấu hiệu 'at the moment' -> Hiện tại tiếp diễn (is looking)."
-            },
-            {
-                id: 28, type: 'gap_fill_text',
-                question: "28. My flight {{blank:b1}} (arrive) at 7:30 PM tomorrow.",
-                blanks: [{blankId: 'b1', correctAnswers: ["arrives", "is arriving", "will arrive"]}],
-                explanation: "<strong>Dịch:</strong> Chuyến bay của tôi đến lúc 7:30 tối mai.<br><strong>Giải thích:</strong> Lịch trình chuyến bay được lên lịch cố định, dùng Hiện tại đơn (arrives)."
-            },
-            {
-                id: 29, type: 'gap_fill_text',
-                question: "29. He is always {{blank:b1}} (complain) about the bad service in hotels!",
-                blanks: [{blankId: 'b1', correctAnswers: ["complaining"]}],
-                explanation: "<strong>Dịch:</strong> Anh ấy lúc nào cũng phàn nàn về dịch vụ tệ ở các khách sạn!<br><strong>Giải thích:</strong> Thói quen gây bực mình dùng 'always' + Hiện tại tiếp diễn -> 'complaining'."
-            },
-            {
-                id: 30, type: 'gap_fill_text',
-                question: "30. I {{blank:b1}} (never / be) on a cruise ship before.",
-                blanks: [{blankId: 'b1', correctAnswers: ["have never been"]}],
-                explanation: "<strong>Dịch:</strong> Tôi chưa bao giờ đi tàu du lịch trước đây.<br><strong>Giải thích:</strong> Trải nghiệm tính đến hiện tại có 'never ... before' -> Hiện tại hoàn thành (have never been)."
-            },
-            {
-                id: 31, type: 'gap_fill_text',
-                question: "31. The smell of local street food {{blank:b1}} (remind) me of my childhood.",
-                blanks: [{blankId: 'b1', correctAnswers: ["reminds"]}],
-                explanation: "<strong>Dịch:</strong> Mùi thức ăn đường phố địa phương gợi nhớ cho tôi về tuổi thơ.<br><strong>Giải thích:</strong> Sự thật hiển nhiên/trạng thái hiện tại -> Hiện tại đơn, chủ ngữ số ít -> 'reminds'."
-            },
-            {
-                id: 32, type: 'gap_fill_text',
-                question: "32. I'm quite afraid {{blank:b1}} flying, so I prefer taking the train.",
-                blanks: [{blankId: 'b1', correctAnswers: ["of"]}],
-                explanation: "<strong>Dịch:</strong> Tôi khá sợ bay, nên tôi thích đi tàu hơn.<br><strong>Giải thích:</strong> Cụm tính từ đi với giới từ: 'afraid of' (sợ cái gì)."
-            },
-            {
-                id: 33, type: 'gap_fill_text',
-                question: "33. Did you do that by {{blank:b1}} or was it intentional?",
-                blanks: [{blankId: 'b1', correctAnswers: ["accident", "mistake"]}],
-                explanation: "<strong>Dịch:</strong> Bạn làm điều đó vô tình hay là cố ý?<br><strong>Giải thích:</strong> 'by accident' hoặc 'by mistake' = vô tình, trái nghĩa với 'intentional' (cố ý)."
-            },
-            {
-                id: 34, type: 'gap_fill_text',
-                question: "34. We need to {{blank:b1}} in at the hotel before 2 PM.",
-                blanks: [{blankId: 'b1', correctAnswers: ["check"]}],
-                explanation: "<strong>Dịch:</strong> Chúng tôi cần nhận phòng khách sạn trước 2 giờ chiều.<br><strong>Giải thích:</strong> Phrasal verb: 'check in' = nhận phòng (khách sạn)."
-            },
-            {
-                id: 35, type: 'gap_fill_text',
-                question: "35. As soon as you {{blank:b1}} reach your destination, give me a call. [Answer: don't]",
-                blanks: [{blankId: 'b1', correctAnswers: ["don't"]}],
-                explanation: "<strong>Dịch:</strong> (Câu gốc có thể có nhầm lẫn trong đề/bài tập, đáp án được yêu cầu là 'don't').<br><strong>Giải thích:</strong> Điền theo yêu cầu đề bài: 'don't'."
-            },
-            {
-                id: 36, type: 'gap_fill_text',
-                question: "36. We are not used to this area; we like to go off the beaten {{blank:b1}}.",
-                blanks: [{blankId: 'b1', correctAnswers: ["track", "path"]}],
-                explanation: "<strong>Dịch:</strong> Chúng tôi không quen với khu vực này; chúng tôi thích đi đến những nơi hoang sơ/ít người biết.<br><strong>Giải thích:</strong> Idiom: 'off the beaten track' = nơi hẻo lánh, ít người tới."
-            },
-            {
-                id: 37, type: 'gap_fill_text',
-                question: "37. She {{blank:b1}} (have) this car for over ten years.",
-                blanks: [{blankId: 'b1', correctAnswers: ["has had"]}],
-                explanation: "<strong>Dịch:</strong> Cô ấy đã có chiếc xe này hơn 10 năm rồi.<br><strong>Giải thích:</strong> Dấu hiệu 'for over ten years' chỉ khoảng thời gian -> Hiện tại hoàn thành. Động từ 'have' chỉ sở hữu không dùng ở tiếp diễn -> 'has had'."
-            },
-            {
-                id: 38, type: 'gap_fill_text',
-                question: "38. They {{blank:b1}} (think) of going to Italy this summer.",
-                blanks: [{blankId: 'b1', correctAnswers: ["are thinking"]}],
-                explanation: "<strong>Dịch:</strong> Họ đang cân nhắc việc đi Ý vào mùa hè này.<br><strong>Giải thích:</strong> 'think of/about' mang nghĩa 'đang cân nhắc, suy tính' là động từ hành động, có thể dùng tiếp diễn -> 'are thinking'."
-            },
-            {
-                id: 39, type: 'gap_fill_text',
-                question: "39. The geography of this country differs greatly {{blank:b1}} its neighbor's.",
-                blanks: [{blankId: 'b1', correctAnswers: ["from"]}],
-                explanation: "<strong>Dịch:</strong> Địa lý của đất nước này khác biệt rất lớn so với nước láng giềng.<br><strong>Giải thích:</strong> Cấu trúc 'differ from' = khác với."
-            },
-            {
-                id: 40, type: 'gap_fill_text',
-                question: "40. Don't pull {{blank:b1}} here, it's illegal to stop on this side of the road.",
-                blanks: [{blankId: 'b1', correctAnswers: ["up", "over"]}],
-                explanation: "<strong>Dịch:</strong> Đừng tấp xe vào đây, dừng ở bên này đường là bất hợp pháp.<br><strong>Giải thích:</strong> Phrasal verb 'pull up/over' = tấp xe vào lề/dừng xe."
-            },
-            {
-                id: 41, type: 'gap_fill_text',
-                question: "41. Do you have your boarding pass {{blank:b1}} you?",
-                blanks: [{blankId: 'b1', correctAnswers: ["with", "on"]}],
-                explanation: "<strong>Dịch:</strong> Bạn có mang theo thẻ lên máy bay bên mình không?<br><strong>Giải thích:</strong> Cụm 'have sth with/on you' = mang theo cái gì bên mình."
-            },
-            {
-                id: 42, type: 'gap_fill_text',
-                question: "42. I can't remember the hotel's name; I'll have to look it {{blank:b1}} online.",
-                blanks: [{blankId: 'b1', correctAnswers: ["up"]}],
-                explanation: "<strong>Dịch:</strong> Tôi không nhớ tên khách sạn; tôi sẽ phải tra cứu nó trên mạng.<br><strong>Giải thích:</strong> Phrasal verb 'look up' = tra cứu thông tin (từ điển, danh bạ, mạng...)."
-            },
-            {
-                id: 43, type: 'gap_fill_text',
-                question: "43. The sunset over the mountains is a magnificent {{blank:b1}} (view/sight).",
-                blanks: [{blankId: 'b1', correctAnswers: ["sight"]}],
-                explanation: "<strong>Dịch:</strong> Hoàng hôn trên những ngọn núi là một cảnh tượng tráng lệ.<br><strong>Giải thích:</strong> 'a magnificent sight' mang nghĩa một cảnh tượng, khung cảnh đáng chiêm ngưỡng. 'view' thường chỉ tầm nhìn từ một vị trí cụ thể."
-            },
-            {
-                id: 44, type: 'gap_fill_text',
-                question: "44. The tour guide {{blank:b1}} (lead) a group of 20 tourists right now.",
-                blanks: [{blankId: 'b1', correctAnswers: ["is leading"]}],
-                explanation: "<strong>Dịch:</strong> Hướng dẫn viên đang dẫn dắt một nhóm 20 du khách ngay lúc này.<br><strong>Giải thích:</strong> Dấu hiệu 'right now' -> Hiện tại tiếp diễn (is leading)."
-            },
-            {
-                id: 45, type: 'gap_fill_text',
-                question: "45. My uncle works {{blank:b1}} a pilot for a commercial airline.",
-                blanks: [{blankId: 'b1', correctAnswers: ["as"]}],
-                explanation: "<strong>Dịch:</strong> Chú tôi làm việc với tư cách là một phi công cho một hãng hàng không thương mại.<br><strong>Giải thích:</strong> 'work as + nghề nghiệp' = làm nghề gì."
-            },
-            {
-                id: 46, type: 'gap_fill_text',
-                question: "46. She {{blank:b1}} (just / book) a five-star hotel for our trip.",
-                blanks: [{blankId: 'b1', correctAnswers: ["has just booked"]}],
-                explanation: "<strong>Dịch:</strong> Cô ấy vừa mới đặt một khách sạn 5 sao cho chuyến đi của chúng ta.<br><strong>Giải thích:</strong> Có 'just' chỉ hành động vừa mới xảy ra -> Hiện tại hoàn thành (has just booked)."
-            },
-            {
-                id: 47, type: 'gap_fill_text',
-                question: "47. We like to travel {{blank:b1}} so we only bring a small backpack each.",
-                blanks: [{blankId: 'b1', correctAnswers: ["light"]}],
-                explanation: "<strong>Dịch:</strong> Chúng tôi thích du lịch gọn nhẹ nên mỗi người chỉ mang một chiếc ba lô nhỏ.<br><strong>Giải thích:</strong> Cụm 'travel light' = đi du lịch gọn nhẹ, không mang nhiều đồ."
-            },
-            {
-                id: 48, type: 'gap_fill_text',
-                question: "48. They {{blank:b1}} (live) out of a suitcase for the past three months.",
-                blanks: [{blankId: 'b1', correctAnswers: ["have been living"]}],
-                explanation: "<strong>Dịch:</strong> Họ đã liên tục di chuyển và sống nhờ đồ trong vali suốt 3 tháng qua.<br><strong>Giải thích:</strong> 'for the past three months' nhấn mạnh tính liên tục của hành động kéo dài đến hiện tại -> Hiện tại hoàn thành tiếp diễn (have been living)."
-            },
-            {
-                id: 49, type: 'gap_fill_text',
-                question: "49. I {{blank:b1}} (not / understand) why people like crowded tourist spots.",
-                blanks: [{blankId: 'b1', correctAnswers: ["don't understand", "do not understand"]}],
-                explanation: "<strong>Dịch:</strong> Tôi không hiểu tại sao mọi người lại thích các điểm du lịch đông đúc.<br><strong>Giải thích:</strong> 'understand' là động từ chỉ nhận thức, trạng thái, không dùng tiếp diễn -> Hiện tại đơn (don't understand)."
-            },
-            {
-                id: 50, type: 'gap_fill_text',
-                question: "50. Have you taken a tour {{blank:b1}} the castle yet?",
-                blanks: [{blankId: 'b1', correctAnswers: ["of", "around"]}],
-                explanation: "<strong>Dịch:</strong> Bạn đã tham gia chuyến tham quan lâu đài chưa?<br><strong>Giải thích:</strong> Cụm 'a tour of/around' = chuyến tham quan một địa điểm nào đó."
-            }
-        ];
-        
-          let state = {};
-
-function normalize(str) {
-    return str ? str.replace(/\u00a0/g, ' ').replace(/[\s\n\r]+/g, ' ').trim() : '';
-}
-
-window.submitted = false;
-
-function init() {
-    const container = document.getElementById('questionsContainer');
-    if (!container) return;
-    container.innerHTML = '';
+    const __B64_QUIZ_DATA__ = 'W3siaWQiOjEsInR5cGUiOiJtdWx0aXBsZV9jaG9pY2UiLCJxdWVzdGlvbiI6IjxiPkkuIENob29zZSB0aGUgY29ycmVjdCBhbnN3ZXIuPC9iPjxicj4xLiBMb29rISBUaGUgdG91ciBndWlkZSBfX19fXyB0b3dhcmRzIHRoZSBtdXNldW0gcmlnaHQgbm93LiIsIm9wdGlvbnMiOlt7InRleHQiOiJoZWFkcyIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQSIsImh0bWwiOiJoZWFkcyJ9LHsidGV4dCI6ImlzIGhlYWRpbmciLCJpc0NvcnJlY3QiOnRydWUsImxhYmVsIjoiQiIsImh0bWwiOiJpcyBoZWFkaW5nIn0seyJ0ZXh0IjoiaGFzIGhlYWRlZCIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQyIsImh0bWwiOiJoYXMgaGVhZGVkIn0seyJ0ZXh0IjoiaGVhZCIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiRCIsImh0bWwiOiJoZWFkIn1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBOaFx1MDBlY24ga1x1MDBlY2EhIEhcdTAxYjBcdTFlZGJuZyBkXHUxZWFibiB2aVx1MDBlYW4gZHUgbFx1MWVjYmNoIFx1MDExMWFuZyBcdTAxMTFpIHZcdTFlYzEgcGhcdTAwZWRhIGJcdTFlYTNvIHRcdTAwZTBuZyBuZ2F5IGxcdTAwZmFjIG5cdTAwZTB5Ljxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBDXHUwMGYzIGRcdTFlYTV1IGhpXHUxZWM3dSAnTG9vayEnIChOaFx1MDBlY24ga1x1MDBlY2EpIHZcdTAwZTAgJ3JpZ2h0IG5vdycgKG5nYXkgbFx1MDBmYWMgblx1MDBlMHkpIGNoXHUxZWM5IGhcdTAwZTBuaCBcdTAxMTFcdTFlZDluZyBcdTAxMTFhbmcgZGlcdTFlYzVuIHJhIHRcdTFlYTFpIHRoXHUxZWRkaSBcdTAxMTFpXHUxZWMzbSBuXHUwMGYzaSwgblx1MDBlYW4gZFx1MDBmOW5nIHRoXHUwMGVjIEhpXHUxZWM3biB0XHUxZWExaSB0aVx1MWViZnAgZGlcdTFlYzVuIChpcyBoZWFkaW5nKS4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gTmhcdTAwZWNuIGtcdTAwZWNhISBIXHUwMWIwXHUxZWRibmcgZFx1MWVhYm4gdmlcdTAwZWFuIGR1IGxcdTFlY2JjaCBcdTAxMTFhbmcgXHUwMTExaSB2XHUxZWMxIHBoXHUwMGVkYSBiXHUxZWEzbyB0XHUwMGUwbmcgbmdheSBsXHUwMGZhYyBuXHUwMGUweS48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gQ1x1MDBmMyBkXHUxZWE1dSBoaVx1MWVjN3UgJ0xvb2shJyAoTmhcdTAwZWNuIGtcdTAwZWNhKSB2XHUwMGUwICdyaWdodCBub3cnIChuZ2F5IGxcdTAwZmFjIG5cdTAwZTB5KSBjaFx1MWVjOSBoXHUwMGUwbmggXHUwMTExXHUxZWQ5bmcgXHUwMTExYW5nIGRpXHUxZWM1biByYSB0XHUxZWExaSB0aFx1MWVkZGkgXHUwMTExaVx1MWVjM20gblx1MDBmM2ksIG5cdTAwZWFuIGRcdTAwZjluZyB0aFx1MDBlYyBIaVx1MWVjN24gdFx1MWVhMWkgdGlcdTFlYmZwIGRpXHUxZWM1biAoaXMgaGVhZGluZykuIn0seyJpZCI6MiwidHlwZSI6Im11bHRpcGxlX2Nob2ljZSIsInF1ZXN0aW9uIjoiMi4gSSBfX19fXyB0byBQYXJpcyB0aHJlZSB0aW1lcyB0aGlzIHllYXIsIGJ1dCB0aGlzIHRyaXAgaXMgdGhlIGJlc3QuIiwib3B0aW9ucyI6W3sidGV4dCI6InRyYXZlbCIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQSIsImh0bWwiOiJ0cmF2ZWwifSx7InRleHQiOiJhbSB0cmF2ZWxsaW5nIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJCIiwiaHRtbCI6ImFtIHRyYXZlbGxpbmcifSx7InRleHQiOiJoYXZlIHRyYXZlbGxlZCIsImlzQ29ycmVjdCI6dHJ1ZSwibGFiZWwiOiJDIiwiaHRtbCI6ImhhdmUgdHJhdmVsbGVkIn0seyJ0ZXh0IjoiaGF2ZSBiZWVuIHRyYXZlbGxpbmciLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkQiLCJodG1sIjoiaGF2ZSBiZWVuIHRyYXZlbGxpbmcifV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IFRcdTAwZjRpIFx1MDExMVx1MDBlMyBcdTAxMTFcdTFlYmZuIFBhcmlzIDMgbFx1MWVhN24gdHJvbmcgblx1MDEwM20gbmF5LCBuaFx1MDFiMG5nIGNodXlcdTFlYmZuIFx1MDExMWkgblx1MDBlMHkgbFx1MDBlMCB0dXlcdTFlYzd0IG5oXHUxZWE1dC48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gJ3RocmVlIHRpbWVzIHRoaXMgeWVhcicgY2hcdTFlYzkgc1x1MWVkMSBsXHUxZWE3biB0aFx1MWVmMWMgaGlcdTFlYzduIGhcdTAwZTBuaCBcdTAxMTFcdTFlZDluZyB0XHUwMGVkbmggXHUwMTExXHUxZWJmbiBoaVx1MWVjN24gdFx1MWVhMWksIHRhIGRcdTAwZjluZyB0aFx1MDBlYyBIaVx1MWVjN24gdFx1MWVhMWkgaG9cdTAwZTBuIHRoXHUwMGUwbmggKGhhdmUgdHJhdmVsbGVkKS4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gVFx1MDBmNGkgXHUwMTExXHUwMGUzIFx1MDExMVx1MWViZm4gUGFyaXMgMyBsXHUxZWE3biB0cm9uZyBuXHUwMTAzbSBuYXksIG5oXHUwMWIwbmcgY2h1eVx1MWViZm4gXHUwMTExaSBuXHUwMGUweSBsXHUwMGUwIHR1eVx1MWVjN3QgbmhcdTFlYTV0Ljxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiAndGhyZWUgdGltZXMgdGhpcyB5ZWFyJyBjaFx1MWVjOSBzXHUxZWQxIGxcdTFlYTduIHRoXHUxZWYxYyBoaVx1MWVjN24gaFx1MDBlMG5oIFx1MDExMVx1MWVkOW5nIHRcdTAwZWRuaCBcdTAxMTFcdTFlYmZuIGhpXHUxZWM3biB0XHUxZWExaSwgdGEgZFx1MDBmOW5nIHRoXHUwMGVjIEhpXHUxZWM3biB0XHUxZWExaSBob1x1MDBlMG4gdGhcdTAwZTBuaCAoaGF2ZSB0cmF2ZWxsZWQpLiJ9LHsiaWQiOjMsInR5cGUiOiJtdWx0aXBsZV9jaG9pY2UiLCJxdWVzdGlvbiI6IjMuIFRoZSB0cmFpbiB0byBNYW5jaGVzdGVyIF9fX19fIGF0IDg6MDAgQU0gZXZlcnkgZGF5LiIsIm9wdGlvbnMiOlt7InRleHQiOiJpcyBsZWF2aW5nIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJBIiwiaHRtbCI6ImlzIGxlYXZpbmcifSx7InRleHQiOiJsZWF2ZXMiLCJpc0NvcnJlY3QiOnRydWUsImxhYmVsIjoiQiIsImh0bWwiOiJsZWF2ZXMifSx7InRleHQiOiJoYXMgbGVmdCIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQyIsImh0bWwiOiJoYXMgbGVmdCJ9LHsidGV4dCI6ImhhcyBiZWVuIGxlYXZpbmciLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkQiLCJodG1sIjoiaGFzIGJlZW4gbGVhdmluZyJ9XSwiZXhwbGFuYXRpb24iOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gQ2h1eVx1MWViZm4gdFx1MDBlMHUgXHUwMTExXHUxZWJmbiBNYW5jaGVzdGVyIHJcdTFlZGRpIFx1MDExMWkgbFx1MDBmYWMgODowMCBzXHUwMGUxbmcgbVx1MWVkN2kgbmdcdTAwZTB5Ljxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBMXHUxZWNiY2ggdHJcdTAwZWNuaCB0XHUwMGUwdSB4ZSBjXHUxZWQxIFx1MDExMVx1MWVjYm5oIG1hbmcgdFx1MDBlZG5oIGxcdTFlYjdwIGxcdTFlYTFpICgnZXZlcnkgZGF5JyksIGRcdTAwZjluZyB0aFx1MDBlYyBIaVx1MWVjN24gdFx1MWVhMWkgXHUwMTExXHUwMWExbiAobGVhdmVzKS4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gQ2h1eVx1MWViZm4gdFx1MDBlMHUgXHUwMTExXHUxZWJmbiBNYW5jaGVzdGVyIHJcdTFlZGRpIFx1MDExMWkgbFx1MDBmYWMgODowMCBzXHUwMGUxbmcgbVx1MWVkN2kgbmdcdTAwZTB5Ljxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBMXHUxZWNiY2ggdHJcdTAwZWNuaCB0XHUwMGUwdSB4ZSBjXHUxZWQxIFx1MDExMVx1MWVjYm5oIG1hbmcgdFx1MDBlZG5oIGxcdTFlYjdwIGxcdTFlYTFpICgnZXZlcnkgZGF5JyksIGRcdTAwZjluZyB0aFx1MDBlYyBIaVx1MWVjN24gdFx1MWVhMWkgXHUwMTExXHUwMWExbiAobGVhdmVzKS4ifSx7ImlkIjo0LCJ0eXBlIjoibXVsdGlwbGVfY2hvaWNlIiwicXVlc3Rpb24iOiI0LiBXZSBuZWVkIHRvIF9fX19fIGVhcmx5IHRvbW9ycm93IHRvIGF2b2lkIHRoZSBoZWF2eSB0cmFmZmljLiIsIm9wdGlvbnMiOlt7InRleHQiOiJzZXQgb3V0IiwiaXNDb3JyZWN0Ijp0cnVlLCJsYWJlbCI6IkEiLCJodG1sIjoic2V0IG91dCJ9LHsidGV4dCI6InB1bGwgaW4iLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkIiLCJodG1sIjoicHVsbCBpbiJ9LHsidGV4dCI6ImRyb3Agb2ZmIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJDIiwiaHRtbCI6ImRyb3Agb2ZmIn0seyJ0ZXh0Ijoic2VlIG9mZiIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiRCIsImh0bWwiOiJzZWUgb2ZmIn1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBDaFx1MDBmYW5nIHRhIGNcdTFlYTduIGtoXHUxZWRmaSBoXHUwMGUwbmggc1x1MWVkYm0gdlx1MDBlMG8gbmdcdTAwZTB5IG1haSBcdTAxMTFcdTFlYzMgdHJcdTAwZTFuaCB0XHUxZWFmYyBcdTAxMTFcdTAxYjBcdTFlZGRuZy48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gJ3NldCBvdXQnID0ga2hcdTFlZGZpIGhcdTAwZTBuaDsgJ3B1bGwgaW4nID0gdFx1MWVhNXAgdlx1MDBlMG87ICdkcm9wIG9mZicgPSB0aFx1MWVhMyBhaSB4dVx1MWVkMW5nIHhlOyAnc2VlIG9mZicgPSB0aVx1MWVjNW4uIEhcdTFlZTNwIG5naFx1MDEyOWEgbmhcdTFlYTV0IGxcdTAwZTAgQS4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gQ2hcdTAwZmFuZyB0YSBjXHUxZWE3biBraFx1MWVkZmkgaFx1MDBlMG5oIHNcdTFlZGJtIHZcdTAwZTBvIG5nXHUwMGUweSBtYWkgXHUwMTExXHUxZWMzIHRyXHUwMGUxbmggdFx1MWVhZmMgXHUwMTExXHUwMWIwXHUxZWRkbmcuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+ICdzZXQgb3V0JyA9IGtoXHUxZWRmaSBoXHUwMGUwbmg7ICdwdWxsIGluJyA9IHRcdTFlYTVwIHZcdTAwZTBvOyAnZHJvcCBvZmYnID0gdGhcdTFlYTMgYWkgeHVcdTFlZDFuZyB4ZTsgJ3NlZSBvZmYnID0gdGlcdTFlYzVuLiBIXHUxZWUzcCBuZ2hcdTAxMjlhIG5oXHUxZWE1dCBsXHUwMGUwIEEuIn0seyJpZCI6NSwidHlwZSI6Im11bHRpcGxlX2Nob2ljZSIsInF1ZXN0aW9uIjoiNS4gV2h5IGFyZSB5b3UgX19fX18gdGhlIHNvdXA/IERvIHlvdSB0aGluayBpdCBoYXMgZ29uZSBiYWQ/Iiwib3B0aW9ucyI6W3sidGV4dCI6InRhc3RlIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJBIiwiaHRtbCI6InRhc3RlIn0seyJ0ZXh0IjoidGFzdGluZyIsImlzQ29ycmVjdCI6dHJ1ZSwibGFiZWwiOiJCIiwiaHRtbCI6InRhc3RpbmcifSx7InRleHQiOiJ0YXN0ZXMiLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkMiLCJodG1sIjoidGFzdGVzIn0seyJ0ZXh0IjoidGFzdGVkIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJEIiwiaHRtbCI6InRhc3RlZCJ9XSwiZXhwbGFuYXRpb24iOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gVFx1MWVhMWkgc2FvIGJcdTFlYTFuIGxcdTFlYTFpIFx1MDExMWFuZyBuXHUxZWJmbSBtXHUwMGYzbiBzXHUwMGZhcD8gQlx1MWVhMW4gbmdoXHUwMTI5IG5cdTAwZjMgYlx1MWVjYiB0aGl1IHJcdTFlZDNpIFx1MDBlMD88YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gXHUwMTEwXHUxZWQ5bmcgdFx1MWVlYiAndGFzdGUnIGtoaSBtYW5nIG5naFx1MDEyOWEgaFx1MDBlMG5oIFx1MDExMVx1MWVkOW5nIGNoXHUxZWU3IFx1MDExMVx1MWVkOW5nIChuXHUxZWJmbSkgdGhcdTAwZWMgY1x1MDBmMyB0aFx1MWVjMyBkXHUwMGY5bmcgXHUxZWRmIHRpXHUxZWJmcCBkaVx1MWVjNW4gKGFyZSB0YXN0aW5nKS4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gVFx1MWVhMWkgc2FvIGJcdTFlYTFuIGxcdTFlYTFpIFx1MDExMWFuZyBuXHUxZWJmbSBtXHUwMGYzbiBzXHUwMGZhcD8gQlx1MWVhMW4gbmdoXHUwMTI5IG5cdTAwZjMgYlx1MWVjYiB0aGl1IHJcdTFlZDNpIFx1MDBlMD88YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gXHUwMTEwXHUxZWQ5bmcgdFx1MWVlYiAndGFzdGUnIGtoaSBtYW5nIG5naFx1MDEyOWEgaFx1MDBlMG5oIFx1MDExMVx1MWVkOW5nIGNoXHUxZWU3IFx1MDExMVx1MWVkOW5nIChuXHUxZWJmbSkgdGhcdTAwZWMgY1x1MDBmMyB0aFx1MWVjMyBkXHUwMGY5bmcgXHUxZWRmIHRpXHUxZWJmcCBkaVx1MWVjNW4gKGFyZSB0YXN0aW5nKS4ifSx7ImlkIjo2LCJ0eXBlIjoibXVsdGlwbGVfY2hvaWNlIiwicXVlc3Rpb24iOiI2LiBZb3Ugc2hvdWxkIGJvb2sgeW91ciBhY2NvbW1vZGF0aW9uIF9fX19fIGFkdmFuY2UgZHVyaW5nIHRoZSBwZWFrIHNlYXNvbi4iLCJvcHRpb25zIjpbeyJ0ZXh0IjoiaW4iLCJpc0NvcnJlY3QiOnRydWUsImxhYmVsIjoiQSIsImh0bWwiOiJpbiJ9LHsidGV4dCI6Im9uIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJCIiwiaHRtbCI6Im9uIn0seyJ0ZXh0IjoiYXQiLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkMiLCJodG1sIjoiYXQifSx7InRleHQiOiJ3aXRoIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJEIiwiaHRtbCI6IndpdGgifV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEJcdTFlYTFuIG5cdTAwZWFuIFx1MDExMVx1MWViN3QgY2hcdTFlZDcgXHUxZWRmIHRyXHUwMWIwXHUxZWRiYyB0cm9uZyBzdVx1MWVkMXQgbVx1MDBmOWEgY2FvIFx1MDExMWlcdTFlYzNtLjxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBDXHUxZWU1bSB0XHUxZWViIGNcdTFlZDEgXHUwMTExXHUxZWNibmg6ICdpbiBhZHZhbmNlJyAodHJcdTAxYjBcdTFlZGJjKS4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gQlx1MWVhMW4gblx1MDBlYW4gXHUwMTExXHUxZWI3dCBjaFx1MWVkNyBcdTFlZGYgdHJcdTAxYjBcdTFlZGJjIHRyb25nIHN1XHUxZWQxdCBtXHUwMGY5YSBjYW8gXHUwMTExaVx1MWVjM20uPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IENcdTFlZTVtIHRcdTFlZWIgY1x1MWVkMSBcdTAxMTFcdTFlY2JuaDogJ2luIGFkdmFuY2UnICh0clx1MDFiMFx1MWVkYmMpLiJ9LHsiaWQiOjcsInR5cGUiOiJtdWx0aXBsZV9jaG9pY2UiLCJxdWVzdGlvbiI6IjcuIEkgX19fX18gb2YgdmlzaXRpbmcgSmFwYW4gZm9yIHllYXJzLCBhbmQgbm93IEkgZmluYWxseSBoYXZlIHRoZSB0aWNrZXQuIiwib3B0aW9ucyI6W3sidGV4dCI6ImFtIGRyZWFtaW5nIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJBIiwiaHRtbCI6ImFtIGRyZWFtaW5nIn0seyJ0ZXh0IjoiZHJlYW0iLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkIiLCJodG1sIjoiZHJlYW0ifSx7InRleHQiOiJoYXZlIGJlZW4gZHJlYW1pbmciLCJpc0NvcnJlY3QiOnRydWUsImxhYmVsIjoiQyIsImh0bWwiOiJoYXZlIGJlZW4gZHJlYW1pbmcifSx7InRleHQiOiJkcmVhbXMiLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkQiLCJodG1sIjoiZHJlYW1zIn1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBUXHUwMGY0aSBcdTAxMTFcdTAwZTMgbHVcdTAwZjRuIG1cdTAxYTEgdlx1MWVjMSB2aVx1MWVjN2MgdGhcdTAxMDNtIE5oXHUxZWFkdCBCXHUxZWEzbiBuaGlcdTFlYzF1IG5cdTAxMDNtIG5heSwgdlx1MDBlMCBiXHUwMGUyeSBnaVx1MWVkZCB0XHUwMGY0aSBjdVx1MWVkMWkgY1x1MDBmOW5nIFx1MDExMVx1MDBlMyBjXHUwMGYzIHZcdTAwZTkuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+ICdmb3IgeWVhcnMnIHZcdTAwZTAgbmhcdTFlYTVuIG1cdTFlYTFuaCBxdVx1MDBlMSB0clx1MDBlY25oIGxpXHUwMGVhbiB0XHUxZWU1YyBjaG8gdFx1MWVkYmkgaGlcdTFlYzduIHRcdTFlYTFpLCBkXHUwMGY5bmcgdGhcdTAwZWMgSGlcdTFlYzduIHRcdTFlYTFpIGhvXHUwMGUwbiB0aFx1MDBlMG5oIHRpXHUxZWJmcCBkaVx1MWVjNW4gKGhhdmUgYmVlbiBkcmVhbWluZykuIiwiZXhwbGFuYXRpb25IVE1MIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IFRcdTAwZjRpIFx1MDExMVx1MDBlMyBsdVx1MDBmNG4gbVx1MDFhMSB2XHUxZWMxIHZpXHUxZWM3YyB0aFx1MDEwM20gTmhcdTFlYWR0IEJcdTFlYTNuIG5oaVx1MWVjMXUgblx1MDEwM20gbmF5LCB2XHUwMGUwIGJcdTAwZTJ5IGdpXHUxZWRkIHRcdTAwZjRpIGN1XHUxZWQxaSBjXHUwMGY5bmcgXHUwMTExXHUwMGUzIGNcdTAwZjMgdlx1MDBlOS48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gJ2ZvciB5ZWFycycgdlx1MDBlMCBuaFx1MWVhNW4gbVx1MWVhMW5oIHF1XHUwMGUxIHRyXHUwMGVjbmggbGlcdTAwZWFuIHRcdTFlZTVjIGNobyB0XHUxZWRiaSBoaVx1MWVjN24gdFx1MWVhMWksIGRcdTAwZjluZyB0aFx1MDBlYyBIaVx1MWVjN24gdFx1MWVhMWkgaG9cdTAwZTBuIHRoXHUwMGUwbmggdGlcdTFlYmZwIGRpXHUxZWM1biAoaGF2ZSBiZWVuIGRyZWFtaW5nKS4ifSx7ImlkIjo4LCJ0eXBlIjoibXVsdGlwbGVfY2hvaWNlIiwicXVlc3Rpb24iOiI4LiBUaGUgbWFuYWdlciBoYXMgX19fX18gZm9yIGEgdGF4aSB0byBwaWNrIHVzIHVwIGF0IHRoZSBhaXJwb3J0LiIsIm9wdGlvbnMiOlt7InRleHQiOiJkaWZmZXJlZCIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQSIsImh0bWwiOiJkaWZmZXJlZCJ9LHsidGV4dCI6ImFycmFuZ2VkIiwiaXNDb3JyZWN0Ijp0cnVlLCJsYWJlbCI6IkIiLCJodG1sIjoiYXJyYW5nZWQifSx7InRleHQiOiJyZWdyZXR0ZWQiLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkMiLCJodG1sIjoicmVncmV0dGVkIn0seyJ0ZXh0IjoiY29udGludWVkIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJEIiwiaHRtbCI6ImNvbnRpbnVlZCJ9XSwiZXhwbGFuYXRpb24iOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gUXVcdTFlYTNuIGxcdTAwZmQgXHUwMTExXHUwMGUzIHNcdTFlYWZwIHhcdTFlYmZwIG1cdTFlZDl0IGNoaVx1MWViZmMgdGF4aSBcdTAxMTFcdTFlYmZuIFx1MDExMVx1MDBmM24gY2hcdTAwZmFuZyB0XHUwMGY0aSBcdTFlZGYgc1x1MDBlMm4gYmF5Ljxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiAnYXJyYW5nZSBmb3InID0gc1x1MWVhZnAgeFx1MWViZnAgY2hvIHZpXHUxZWM3YyBnXHUwMGVjLiBDXHUwMGUxYyB0XHUxZWViIGtoXHUwMGUxYyBraFx1MDBmNG5nIFx1MDExMWkgdlx1MWVkYmkgJ2ZvcicgdFx1MWVhMW8gbmdoXHUwMTI5YSBwaFx1MDBmOSBoXHUxZWUzcC4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gUXVcdTFlYTNuIGxcdTAwZmQgXHUwMTExXHUwMGUzIHNcdTFlYWZwIHhcdTFlYmZwIG1cdTFlZDl0IGNoaVx1MWViZmMgdGF4aSBcdTAxMTFcdTFlYmZuIFx1MDExMVx1MDBmM24gY2hcdTAwZmFuZyB0XHUwMGY0aSBcdTFlZGYgc1x1MDBlMm4gYmF5Ljxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiAnYXJyYW5nZSBmb3InID0gc1x1MWVhZnAgeFx1MWViZnAgY2hvIHZpXHUxZWM3YyBnXHUwMGVjLiBDXHUwMGUxYyB0XHUxZWViIGtoXHUwMGUxYyBraFx1MDBmNG5nIFx1MDExMWkgdlx1MWVkYmkgJ2ZvcicgdFx1MWVhMW8gbmdoXHUwMTI5YSBwaFx1MDBmOSBoXHUxZWUzcC4ifSx7ImlkIjo5LCJ0eXBlIjoibXVsdGlwbGVfY2hvaWNlIiwicXVlc3Rpb24iOiI5LiBUaGUgdGF4aSBkcml2ZXIgX19fX18gdXMgb2ZmIHJpZ2h0IG91dHNpZGUgdGhlIGRlcGFydHVyZSBsb3VuZ2UuIiwib3B0aW9ucyI6W3sidGV4dCI6ImRyb3BwZWQiLCJpc0NvcnJlY3QiOnRydWUsImxhYmVsIjoiQSIsImh0bWwiOiJkcm9wcGVkIn0seyJ0ZXh0IjoicGlja2VkIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJCIiwiaHRtbCI6InBpY2tlZCJ9LHsidGV4dCI6InNhdyIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQyIsImh0bWwiOiJzYXcifSx7InRleHQiOiJtYWRlIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJEIiwiaHRtbCI6Im1hZGUifV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IFRcdTAwZTBpIHhcdTFlYmYgdGF4aSB0aFx1MWVhMyBjaFx1MDBmYW5nIHRcdTAwZjRpIHh1XHUxZWQxbmcgbmdheSBiXHUwMGVhbiBuZ29cdTAwZTBpIHBoXHUwMGYybmcgY2hcdTFlZGQga2hcdTFlZGZpIGhcdTAwZTBuaC48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gQ1x1MWVlNW0gcGhyYXNhbCB2ZXJiOiAnZHJvcCBzYiBvZmYnID0gdGhcdTFlYTMgYWkgeHVcdTFlZDFuZyAoeGUpLiAncGljayB1cCcgPSBcdTAxMTFcdTAwZjNuOyAnc2VlIG9mZicgPSB0aVx1MWVjNW4uIiwiZXhwbGFuYXRpb25IVE1MIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IFRcdTAwZTBpIHhcdTFlYmYgdGF4aSB0aFx1MWVhMyBjaFx1MDBmYW5nIHRcdTAwZjRpIHh1XHUxZWQxbmcgbmdheSBiXHUwMGVhbiBuZ29cdTAwZTBpIHBoXHUwMGYybmcgY2hcdTFlZGQga2hcdTFlZGZpIGhcdTAwZTBuaC48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gQ1x1MWVlNW0gcGhyYXNhbCB2ZXJiOiAnZHJvcCBzYiBvZmYnID0gdGhcdTFlYTMgYWkgeHVcdTFlZDFuZyAoeGUpLiAncGljayB1cCcgPSBcdTAxMTFcdTAwZjNuOyAnc2VlIG9mZicgPSB0aVx1MWVjNW4uIn0seyJpZCI6MTAsInR5cGUiOiJtdWx0aXBsZV9jaG9pY2UiLCJxdWVzdGlvbiI6IjEwLiBUaGlzIGlzIHRoZSBmaXJzdCB0aW1lIEkgX19fX18gc3VjaCBhIGJlYXV0aWZ1bCB2aWV3IG9mIHRoZSBvY2Vhbi4iLCJvcHRpb25zIjpbeyJ0ZXh0Ijoic2VlIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJBIiwiaHRtbCI6InNlZSJ9LHsidGV4dCI6ImFtIHNlZWluZyIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQiIsImh0bWwiOiJhbSBzZWVpbmcifSx7InRleHQiOiJoYXZlIHNlZW4iLCJpc0NvcnJlY3QiOnRydWUsImxhYmVsIjoiQyIsImh0bWwiOiJoYXZlIHNlZW4ifSx7InRleHQiOiJzYXciLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkQiLCJodG1sIjoic2F3In1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBcdTAxMTBcdTAwZTJ5IGxcdTAwZTAgbFx1MWVhN24gXHUwMTExXHUxZWE3dSB0aVx1MDBlYW4gdFx1MDBmNGkgdGhcdTFlYTV5IG1cdTFlZDl0IGNcdTFlYTNuaCBiaVx1MWVjM24gXHUwMTExXHUxZWI5cCBuaFx1MDFiMCB2XHUxZWFkeS48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gQ1x1MWVhNXUgdHJcdTAwZmFjICdUaGlzIGlzIHRoZSBmaXJzdC9zZWNvbmQuLi4gdGltZSArIFMgKyBoYXZlL2hhcyArIFYzL2VkJyAoSGlcdTFlYzduIHRcdTFlYTFpIGhvXHUwMGUwbiB0aFx1MDBlMG5oKS4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gXHUwMTEwXHUwMGUyeSBsXHUwMGUwIGxcdTFlYTduIFx1MDExMVx1MWVhN3UgdGlcdTAwZWFuIHRcdTAwZjRpIHRoXHUxZWE1eSBtXHUxZWQ5dCBjXHUxZWEzbmggYmlcdTFlYzNuIFx1MDExMVx1MWViOXAgbmhcdTAxYjAgdlx1MWVhZHkuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IENcdTFlYTV1IHRyXHUwMGZhYyAnVGhpcyBpcyB0aGUgZmlyc3Qvc2Vjb25kLi4uIHRpbWUgKyBTICsgaGF2ZS9oYXMgKyBWMy9lZCcgKEhpXHUxZWM3biB0XHUxZWExaSBob1x1MDBlMG4gdGhcdTAwZTBuaCkuIn0seyJpZCI6MTEsInR5cGUiOiJtdWx0aXBsZV9jaG9pY2UiLCJxdWVzdGlvbiI6IjExLiBIZSBfX19fXyBvdXQgb2YgdGhlIHdpbmRvdyB3aGVuIHRyYXZlbGxpbmcgYnkgdHJhaW4uIiwib3B0aW9ucyI6W3sidGV4dCI6ImlzIGFsd2F5cyBsb29raW5nIiwiaXNDb3JyZWN0Ijp0cnVlLCJsYWJlbCI6IkEiLCJodG1sIjoiaXMgYWx3YXlzIGxvb2tpbmcifSx7InRleHQiOiJhbHdheXMgbG9vayIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQiIsImh0bWwiOiJhbHdheXMgbG9vayJ9LHsidGV4dCI6Imxvb2sgYWx3YXlzIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJDIiwiaHRtbCI6Imxvb2sgYWx3YXlzIn0seyJ0ZXh0IjoiaGFzIGFsd2F5cyBsb29rZWQiLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkQiLCJodG1sIjoiaGFzIGFsd2F5cyBsb29rZWQifV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEFuaCBcdTFlYTV5IGxcdTAwZmFjIG5cdTAwZTBvIGNcdTAxNjluZyBuaFx1MDBlY24gcmEgbmdvXHUwMGUwaSBjXHUxZWVkYSBzXHUxZWQ1IGtoaSBcdTAxMTFpIHRcdTAwZTB1Ljxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBEaVx1MWVjNW4gdFx1MWVhMyB0aFx1MDBmM2kgcXVlbiBnXHUwMGUyeSBwaFx1MDBlMG4gblx1MDBlMG4gaG9cdTFlYjdjIFx1MDExMVx1MWViN2MgYmlcdTFlYzd0IG5cdTFlZDVpIGJcdTFlYWR0LCBkXHUwMGY5bmcgJ2Fsd2F5cycgdlx1MWVkYmkgSGlcdTFlYzduIHRcdTFlYTFpIHRpXHUxZWJmcCBkaVx1MWVjNW4gKGlzIGFsd2F5cyBsb29raW5nKS4gQiBzYWkgdlx1MDBlYyAnSGUnIGNcdTFlYTduICdsb29rcycuIiwiZXhwbGFuYXRpb25IVE1MIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEFuaCBcdTFlYTV5IGxcdTAwZmFjIG5cdTAwZTBvIGNcdTAxNjluZyBuaFx1MDBlY24gcmEgbmdvXHUwMGUwaSBjXHUxZWVkYSBzXHUxZWQ1IGtoaSBcdTAxMTFpIHRcdTAwZTB1Ljxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBEaVx1MWVjNW4gdFx1MWVhMyB0aFx1MDBmM2kgcXVlbiBnXHUwMGUyeSBwaFx1MDBlMG4gblx1MDBlMG4gaG9cdTFlYjdjIFx1MDExMVx1MWViN2MgYmlcdTFlYzd0IG5cdTFlZDVpIGJcdTFlYWR0LCBkXHUwMGY5bmcgJ2Fsd2F5cycgdlx1MWVkYmkgSGlcdTFlYzduIHRcdTFlYTFpIHRpXHUxZWJmcCBkaVx1MWVjNW4gKGlzIGFsd2F5cyBsb29raW5nKS4gQiBzYWkgdlx1MDBlYyAnSGUnIGNcdTFlYTduICdsb29rcycuIn0seyJpZCI6MTIsInR5cGUiOiJtdWx0aXBsZV9jaG9pY2UiLCJxdWVzdGlvbiI6IjEyLiBEaWQgeW91IGtub3cgdGhhdCBhaXIgdHJhdmVsIF9fX19fIGluY3JlYXNpbmdseSBzYWZlPyIsIm9wdGlvbnMiOlt7InRleHQiOiJnZXQiLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkEiLCJodG1sIjoiZ2V0In0seyJ0ZXh0IjoiaXMgZ2V0dGluZyIsImlzQ29ycmVjdCI6dHJ1ZSwibGFiZWwiOiJCIiwiaHRtbCI6ImlzIGdldHRpbmcifSx7InRleHQiOiJoYXMgZ290IiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJDIiwiaHRtbCI6ImhhcyBnb3QifSx7InRleHQiOiJnZXRzIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJEIiwiaHRtbCI6ImdldHMifV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEJcdTFlYTFuIGNcdTAwZjMgYmlcdTFlYmZ0IHJcdTFlYjFuZyBkdSBsXHUxZWNiY2ggaFx1MDBlMG5nIGtoXHUwMGY0bmcgXHUwMTExYW5nIG5nXHUwMGUweSBjXHUwMGUwbmcgdHJcdTFlZGYgblx1MDBlYW4gYW4gdG9cdTAwZTBuIGhcdTAxYTFuIGtoXHUwMGY0bmc/PGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+ICdpbmNyZWFzaW5nbHknIGNoXHUxZWM5IHNcdTFlZjEgdGhheSBcdTAxMTFcdTFlZDVpIFx1MDExMWFuZyBkaVx1MWVjNW4gcmEgdFx1MWVlYiB0XHUxZWViLCBkXHUwMGY5bmcgSGlcdTFlYzduIHRcdTFlYTFpIHRpXHUxZWJmcCBkaVx1MWVjNW4gKGlzIGdldHRpbmcpLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBCXHUxZWExbiBjXHUwMGYzIGJpXHUxZWJmdCByXHUxZWIxbmcgZHUgbFx1MWVjYmNoIGhcdTAwZTBuZyBraFx1MDBmNG5nIFx1MDExMWFuZyBuZ1x1MDBlMHkgY1x1MDBlMG5nIHRyXHUxZWRmIG5cdTAwZWFuIGFuIHRvXHUwMGUwbiBoXHUwMWExbiBraFx1MDBmNG5nPzxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiAnaW5jcmVhc2luZ2x5JyBjaFx1MWVjOSBzXHUxZWYxIHRoYXkgXHUwMTExXHUxZWQ1aSBcdTAxMTFhbmcgZGlcdTFlYzVuIHJhIHRcdTFlZWIgdFx1MWVlYiwgZFx1MDBmOW5nIEhpXHUxZWM3biB0XHUxZWExaSB0aVx1MWViZnAgZGlcdTFlYzVuIChpcyBnZXR0aW5nKS4ifSx7ImlkIjoxMywidHlwZSI6Im11bHRpcGxlX2Nob2ljZSIsInF1ZXN0aW9uIjoiMTMuIFRoZXkgX19fX18gdG8gYmUgdmVyeSBrZWVuIG9uIHRoZSBuZXcgaXRpbmVyYXJ5LiIsIm9wdGlvbnMiOlt7InRleHQiOiJhcmUgYXBwZWFyaW5nIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJBIiwiaHRtbCI6ImFyZSBhcHBlYXJpbmcifSx7InRleHQiOiJhcHBlYXJzIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJCIiwiaHRtbCI6ImFwcGVhcnMifSx7InRleHQiOiJhcHBlYXIiLCJpc0NvcnJlY3QiOnRydWUsImxhYmVsIjoiQyIsImh0bWwiOiJhcHBlYXIifSx7InRleHQiOiJoYXMgYXBwZWFyZWQiLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkQiLCJodG1sIjoiaGFzIGFwcGVhcmVkIn1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBIXHUxZWNkIGRcdTAxYjBcdTFlZGRuZyBuaFx1MDFiMCByXHUxZWE1dCBoXHUxZWU5bmcgdGhcdTAwZmEgdlx1MWVkYmkgbFx1MWVjYmNoIHRyXHUwMGVjbmggbVx1MWVkYmkuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+ICdhcHBlYXInIChkXHUwMWIwXHUxZWRkbmcgbmhcdTAxYjApIGxcdTAwZTAgXHUwMTExXHUxZWQ5bmcgdFx1MWVlYiB0clx1MWVhMW5nIHRoXHUwMGUxaSwga2hcdTAwZjRuZyBkXHUwMGY5bmcgXHUxZWRmIHRpXHUxZWJmcCBkaVx1MWVjNW4uIENoXHUxZWU3IG5nXHUxZWVmICdUaGV5JyBzXHUxZWQxIG5oaVx1MWVjMXUgblx1MDBlYW4gZFx1MDBmOW5nICdhcHBlYXInLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBIXHUxZWNkIGRcdTAxYjBcdTFlZGRuZyBuaFx1MDFiMCByXHUxZWE1dCBoXHUxZWU5bmcgdGhcdTAwZmEgdlx1MWVkYmkgbFx1MWVjYmNoIHRyXHUwMGVjbmggbVx1MWVkYmkuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+ICdhcHBlYXInIChkXHUwMWIwXHUxZWRkbmcgbmhcdTAxYjApIGxcdTAwZTAgXHUwMTExXHUxZWQ5bmcgdFx1MWVlYiB0clx1MWVhMW5nIHRoXHUwMGUxaSwga2hcdTAwZjRuZyBkXHUwMGY5bmcgXHUxZWRmIHRpXHUxZWJmcCBkaVx1MWVjNW4uIENoXHUxZWU3IG5nXHUxZWVmICdUaGV5JyBzXHUxZWQxIG5oaVx1MWVjMXUgblx1MDBlYW4gZFx1MDBmOW5nICdhcHBlYXInLiJ9LHsiaWQiOjE0LCJ0eXBlIjoibXVsdGlwbGVfY2hvaWNlIiwicXVlc3Rpb24iOiIxNC4gSXQncyBoYXJkIHRvIF9fX19fIHVwIHdpdGggaGltIGJlY2F1c2UgaGUgd2Fsa3Mgc28gZmFzdCBvbiB0aGVzZSBleGN1cnNpb25zLiIsIm9wdGlvbnMiOlt7InRleHQiOiJtYWtlIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJBIiwiaHRtbCI6Im1ha2UifSx7InRleHQiOiJrZWVwIiwiaXNDb3JyZWN0Ijp0cnVlLCJsYWJlbCI6IkIiLCJodG1sIjoia2VlcCJ9LHsidGV4dCI6ImNhdGNoIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJDIiwiaHRtbCI6ImNhdGNoIn0seyJ0ZXh0IjoicHVsbCIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiRCIsImh0bWwiOiJwdWxsIn1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBUaFx1MWVhZHQga2hcdTAwZjMgXHUwMTExXHUxZWMzIHRoZW8ga1x1MWVjYnAgYW5oIFx1MWVhNXkgdlx1MDBlYyBhbmggXHUxZWE1eSBcdTAxMTFpIGJcdTFlZDkgclx1MWVhNXQgbmhhbmggdHJvbmcgY1x1MDBlMWMgY2h1eVx1MWViZm4gZHUgbmdvXHUxZWExbiBuXHUwMGUweS48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gQ1x1MWVlNW0gJ2tlZXAgdXAgd2l0aCcgPSB0aGVvIGtcdTFlY2JwLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBUaFx1MWVhZHQga2hcdTAwZjMgXHUwMTExXHUxZWMzIHRoZW8ga1x1MWVjYnAgYW5oIFx1MWVhNXkgdlx1MDBlYyBhbmggXHUxZWE1eSBcdTAxMTFpIGJcdTFlZDkgclx1MWVhNXQgbmhhbmggdHJvbmcgY1x1MDBlMWMgY2h1eVx1MWViZm4gZHUgbmdvXHUxZWExbiBuXHUwMGUweS48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gQ1x1MWVlNW0gJ2tlZXAgdXAgd2l0aCcgPSB0aGVvIGtcdTFlY2JwLiJ9LHsiaWQiOjE1LCJ0eXBlIjoibXVsdGlwbGVfY2hvaWNlIiwicXVlc3Rpb24iOiIxNS4gSWYgd2UgZG9uJ3QgaHVycnksIHdlIHdpbGwgX19fX18gb3VyIGZsaWdodCEiLCJvcHRpb25zIjpbeyJ0ZXh0IjoibG9zZSIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQSIsImh0bWwiOiJsb3NlIn0seyJ0ZXh0IjoibWlzcyIsImlzQ29ycmVjdCI6dHJ1ZSwibGFiZWwiOiJCIiwiaHRtbCI6Im1pc3MifSx7InRleHQiOiJkcm9wIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJDIiwiaHRtbCI6ImRyb3AifSx7InRleHQiOiJmYWlsIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJEIiwiaHRtbCI6ImZhaWwifV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IE5cdTFlYmZ1IGtoXHUwMGY0bmcgbmhhbmggbFx1MDBlYW4sIGNoXHUwMGZhbmcgdGEgc1x1MWViZCBsXHUxZWUxIGNodXlcdTFlYmZuIGJheSE8YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gTFx1MWVlMSBjaHV5XHUxZWJmbiB4ZS90XHUwMGUwdS9tXHUwMGUxeSBiYXkgZFx1MDBmOW5nIFx1MDExMVx1MWVkOW5nIHRcdTFlZWIgJ21pc3MnIChtaXNzIHRoZSBmbGlnaHQpLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBOXHUxZWJmdSBraFx1MDBmNG5nIG5oYW5oIGxcdTAwZWFuLCBjaFx1MDBmYW5nIHRhIHNcdTFlYmQgbFx1MWVlMSBjaHV5XHUxZWJmbiBiYXkhPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IExcdTFlZTEgY2h1eVx1MWViZm4geGUvdFx1MDBlMHUvbVx1MDBlMXkgYmF5IGRcdTAwZjluZyBcdTAxMTFcdTFlZDluZyB0XHUxZWViICdtaXNzJyAobWlzcyB0aGUgZmxpZ2h0KS4ifSx7ImlkIjoxNiwidHlwZSI6Im11bHRpcGxlX2Nob2ljZSIsInF1ZXN0aW9uIjoiMTYuIFRoZSBfX19fXyBmcm9tIExvbmRvbiB0byBCZXJsaW4gaXMgYWJvdXQgOTE5IGtpbG9tZXRyZXMuIiwib3B0aW9ucyI6W3sidGV4dCI6Im1lYXN1cmUiLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkEiLCJodG1sIjoibWVhc3VyZSJ9LHsidGV4dCI6Imxlbmd0aCIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQiIsImh0bWwiOiJsZW5ndGgifSx7InRleHQiOiJkaXN0YW5jZSIsImlzQ29ycmVjdCI6dHJ1ZSwibGFiZWwiOiJDIiwiaHRtbCI6ImRpc3RhbmNlIn0seyJ0ZXh0IjoiZ2FwIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJEIiwiaHRtbCI6ImdhcCJ9XSwiZXhwbGFuYXRpb24iOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gS2hvXHUxZWEzbmcgY1x1MDBlMWNoIHRcdTFlZWIgTG9uZG9uIFx1MDExMVx1MWViZm4gQmVybGluIGxcdTAwZTAga2hvXHUxZWEzbmcgOTE5IGttLjxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiAnZGlzdGFuY2UnID0ga2hvXHUxZWEzbmcgY1x1MDBlMWNoIFx1MDExMVx1MWVjYmEgbFx1MDBmZC4gQ1x1MDBlMWMgdFx1MWVlYiBjXHUwMGYybiBsXHUxZWExaSBraFx1MDBmNG5nIHBoXHUwMGY5IGhcdTFlZTNwOiBtZWFzdXJlIChzXHUxZWQxIFx1MDExMW8pLCBsZW5ndGggKGNoaVx1MWVjMXUgZFx1MDBlMGkpLCBnYXAgKGtoZSBoXHUxZWRmL2tob1x1MWVhM25nIHRyXHUxZWQxbmcpLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBLaG9cdTFlYTNuZyBjXHUwMGUxY2ggdFx1MWVlYiBMb25kb24gXHUwMTExXHUxZWJmbiBCZXJsaW4gbFx1MDBlMCBraG9cdTFlYTNuZyA5MTkga20uPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+ICdkaXN0YW5jZScgPSBraG9cdTFlYTNuZyBjXHUwMGUxY2ggXHUwMTExXHUxZWNiYSBsXHUwMGZkLiBDXHUwMGUxYyB0XHUxZWViIGNcdTAwZjJuIGxcdTFlYTFpIGtoXHUwMGY0bmcgcGhcdTAwZjkgaFx1MWVlM3A6IG1lYXN1cmUgKHNcdTFlZDEgXHUwMTExbyksIGxlbmd0aCAoY2hpXHUxZWMxdSBkXHUwMGUwaSksIGdhcCAoa2hlIGhcdTFlZGYva2hvXHUxZWEzbmcgdHJcdTFlZDFuZykuIn0seyJpZCI6MTcsInR5cGUiOiJtdWx0aXBsZV9jaG9pY2UiLCJxdWVzdGlvbiI6IjE3LiBJIF9fX19fIG15IHdheSwgY291bGQgeW91IHRlbGwgbWUgaG93IHRvIGdldCB0byB0aGUgc3RhdGlvbj8iLCJvcHRpb25zIjpbeyJ0ZXh0IjoibG9zZSIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQSIsImh0bWwiOiJsb3NlIn0seyJ0ZXh0IjoiYW0gbG9zaW5nIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJCIiwiaHRtbCI6ImFtIGxvc2luZyJ9LHsidGV4dCI6ImhhdmUgbG9zdCIsImlzQ29ycmVjdCI6dHJ1ZSwibGFiZWwiOiJDIiwiaHRtbCI6ImhhdmUgbG9zdCJ9LHsidGV4dCI6ImhhdmUgYmVlbiBsb3NpbmciLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkQiLCJodG1sIjoiaGF2ZSBiZWVuIGxvc2luZyJ9XSwiZXhwbGFuYXRpb24iOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gVFx1MDBmNGkgdlx1MWVlYmEgYlx1MWVjYiBsXHUxZWExYyBcdTAxMTFcdTAxYjBcdTFlZGRuZywgYlx1MWVhMW4gY1x1MDBmMyB0aFx1MWVjMyBjaFx1MWVjOSB0XHUwMGY0aSBjXHUwMGUxY2ggXHUwMTExXHUxZWJmbiBuaFx1MDBlMCBnYSBraFx1MDBmNG5nPzxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBIXHUwMGUwbmggXHUwMTExXHUxZWQ5bmcgYlx1MWVjYiBsXHUxZWExYyBcdTAxMTFcdTAxYjBcdTFlZGRuZyBcdTAxMTFcdTAwZTMgeFx1MWVhM3kgcmEgdlx1MDBlMCBrXHUxZWJmdCBxdVx1MWVhMyBoaVx1MWVjN24gdFx1MWVhMWkgbFx1MDBlMCBcdTAxMTFhbmcga2hcdTAwZjRuZyBiaVx1MWViZnQgXHUwMTExXHUwMWIwXHUxZWRkbmcsIGRcdTAwZjluZyBIaVx1MWVjN24gdFx1MWVhMWkgaG9cdTAwZTBuIHRoXHUwMGUwbmggKGhhdmUgbG9zdCkuIiwiZXhwbGFuYXRpb25IVE1MIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IFRcdTAwZjRpIHZcdTFlZWJhIGJcdTFlY2IgbFx1MWVhMWMgXHUwMTExXHUwMWIwXHUxZWRkbmcsIGJcdTFlYTFuIGNcdTAwZjMgdGhcdTFlYzMgY2hcdTFlYzkgdFx1MDBmNGkgY1x1MDBlMWNoIFx1MDExMVx1MWViZm4gbmhcdTAwZTAgZ2Ega2hcdTAwZjRuZz88YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gSFx1MDBlMG5oIFx1MDExMVx1MWVkOW5nIGJcdTFlY2IgbFx1MWVhMWMgXHUwMTExXHUwMWIwXHUxZWRkbmcgXHUwMTExXHUwMGUzIHhcdTFlYTN5IHJhIHZcdTAwZTAga1x1MWViZnQgcXVcdTFlYTMgaGlcdTFlYzduIHRcdTFlYTFpIGxcdTAwZTAgXHUwMTExYW5nIGtoXHUwMGY0bmcgYmlcdTFlYmZ0IFx1MDExMVx1MDFiMFx1MWVkZG5nLCBkXHUwMGY5bmcgSGlcdTFlYzduIHRcdTFlYTFpIGhvXHUwMGUwbiB0aFx1MDBlMG5oIChoYXZlIGxvc3QpLiJ9LHsiaWQiOjE4LCJ0eXBlIjoibXVsdGlwbGVfY2hvaWNlIiwicXVlc3Rpb24iOiIxOC4gTWFyeSBpcyBfX19fXyB0byB0ZWxsIHVzIHRoYXQgdGhlIGZsaWdodCBoYXMgYmVlbiBjYW5jZWxsZWQuIiwib3B0aW9ucyI6W3sidGV4dCI6InJlZ3JldHRpbmciLCJpc0NvcnJlY3QiOnRydWUsImxhYmVsIjoiQSIsImh0bWwiOiJyZWdyZXR0aW5nIn0seyJ0ZXh0IjoicmVncmV0IiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJCIiwiaHRtbCI6InJlZ3JldCJ9LHsidGV4dCI6InJlZ3JldHMiLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkMiLCJodG1sIjoicmVncmV0cyJ9LHsidGV4dCI6InRvIHJlZ3JldCIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiRCIsImh0bWwiOiJ0byByZWdyZXQifV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IE1hcnkgXHUwMTExYW5nIHJcdTFlYTV0IHRpXHUxZWJmYyBraGkgcGhcdTFlYTNpIGJcdTAwZTFvIHZcdTFlZGJpIGNoXHUwMGZhbmcgdGEgclx1MWViMW5nIGNodXlcdTFlYmZuIGJheSBcdTAxMTFcdTAwZTMgYlx1MWVjYiBoXHUxZWU3eS48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gU2F1ICdpcycgXHUwMTExaSB2XHUxZWRiaSBWLWluZyBcdTAxMTFcdTFlYzMgdFx1MWVhMW8gdGhcdTAwZWMgSGlcdTFlYzduIHRcdTFlYTFpIHRpXHUxZWJmcCBkaVx1MWVjNW4sICdyZWdyZXR0aW5nJyBuaFx1MWVhNW4gbVx1MWVhMW5oIGNcdTFlYTNtIGdpXHUwMGUxYyB0aVx1MWViZmMgbnVcdTFlZDFpIGhpXHUxZWM3biB0XHUxZWExaS4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gTWFyeSBcdTAxMTFhbmcgclx1MWVhNXQgdGlcdTFlYmZjIGtoaSBwaFx1MWVhM2kgYlx1MDBlMW8gdlx1MWVkYmkgY2hcdTAwZmFuZyB0YSByXHUxZWIxbmcgY2h1eVx1MWViZm4gYmF5IFx1MDExMVx1MDBlMyBiXHUxZWNiIGhcdTFlZTd5Ljxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBTYXUgJ2lzJyBcdTAxMTFpIHZcdTFlZGJpIFYtaW5nIFx1MDExMVx1MWVjMyB0XHUxZWExbyB0aFx1MDBlYyBIaVx1MWVjN24gdFx1MWVhMWkgdGlcdTFlYmZwIGRpXHUxZWM1biwgJ3JlZ3JldHRpbmcnIG5oXHUxZWE1biBtXHUxZWExbmggY1x1MWVhM20gZ2lcdTAwZTFjIHRpXHUxZWJmYyBudVx1MWVkMWkgaGlcdTFlYzduIHRcdTFlYTFpLiJ9LHsiaWQiOjE5LCJ0eXBlIjoibXVsdGlwbGVfY2hvaWNlIiwicXVlc3Rpb24iOiIxOS4gV2hhdCdzIHRoZSBfX19fXyBsaW1pdCBvbiB0aGlzIGhpZ2h3YXk/Iiwib3B0aW9ucyI6W3sidGV4dCI6InNwZWVkIiwiaXNDb3JyZWN0Ijp0cnVlLCJsYWJlbCI6IkEiLCJodG1sIjoic3BlZWQifSx7InRleHQiOiJmYXN0IiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJCIiwiaHRtbCI6ImZhc3QifSx7InRleHQiOiJwYWNlIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJDIiwiaHRtbCI6InBhY2UifSx7InRleHQiOiJyYXRlIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJEIiwiaHRtbCI6InJhdGUifV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEdpXHUxZWRiaSBoXHUxZWExbiB0XHUxZWQxYyBcdTAxMTFcdTFlZDkgdHJcdTAwZWFuIFx1MDExMVx1MDFiMFx1MWVkZG5nIGNhbyB0XHUxZWQxYyBuXHUwMGUweSBsXHUwMGUwIGJhbyBuaGlcdTAwZWF1Pzxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBDXHUxZWU1bSBkYW5oIHRcdTFlZWIgY1x1MWVkMSBcdTAxMTFcdTFlY2JuaDogJ3NwZWVkIGxpbWl0JyAoZ2lcdTFlZGJpIGhcdTFlYTFuIHRcdTFlZDFjIFx1MDExMVx1MWVkOSkuIiwiZXhwbGFuYXRpb25IVE1MIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEdpXHUxZWRiaSBoXHUxZWExbiB0XHUxZWQxYyBcdTAxMTFcdTFlZDkgdHJcdTAwZWFuIFx1MDExMVx1MDFiMFx1MWVkZG5nIGNhbyB0XHUxZWQxYyBuXHUwMGUweSBsXHUwMGUwIGJhbyBuaGlcdTAwZWF1Pzxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBDXHUxZWU1bSBkYW5oIHRcdTFlZWIgY1x1MWVkMSBcdTAxMTFcdTFlY2JuaDogJ3NwZWVkIGxpbWl0JyAoZ2lcdTFlZGJpIGhcdTFlYTFuIHRcdTFlZDFjIFx1MDExMVx1MWVkOSkuIn0seyJpZCI6MjAsInR5cGUiOiJtdWx0aXBsZV9jaG9pY2UiLCJxdWVzdGlvbiI6IjIwLiBUaGV5IGFyZSBfX19fXyBmb3IgdGhlIGNvYXN0IHRvIHNwZW5kIHRoZSB3ZWVrZW5kLiIsIm9wdGlvbnMiOlt7InRleHQiOiJtYWtpbmciLCJpc0NvcnJlY3QiOnRydWUsImxhYmVsIjoiQSIsImh0bWwiOiJtYWtpbmcifSx7InRleHQiOiJjYXRjaGluZyIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQiIsImh0bWwiOiJjYXRjaGluZyJ9LHsidGV4dCI6InRha2luZyIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQyIsImh0bWwiOiJ0YWtpbmcifSx7InRleHQiOiJzZXR0aW5nIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJEIiwiaHRtbCI6InNldHRpbmcifV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEhcdTFlY2QgXHUwMTExYW5nIFx1MDExMWkgdlx1MWVjMSBwaFx1MDBlZGEgYlx1MWVkZCBiaVx1MWVjM24gXHUwMTExXHUxZWMzIG5naFx1MWVjOSBjdVx1MWVkMWkgdHVcdTFlYTduLjxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiAnbWFrZSBmb3InID0gXHUwMTExaSB2XHUxZWMxIGhcdTAxYjBcdTFlZGJuZyBuXHUwMGUwbyBcdTAxMTFcdTAwZjMuICdzZXQnIHRoXHUwMWIwXHUxZWRkbmcgXHUwMTExaSB2XHUxZWRiaSAnb3V0L29mZicgY2hcdTFlZTkga2hcdTAwZjRuZyBcdTAxMTFpIHRoXHUxZWIzbmcgdlx1MWVkYmkgJ2ZvcicgdHJvbmcgbmdcdTFlZWYgY1x1MWVhM25oIG5cdTAwZTB5LiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBIXHUxZWNkIFx1MDExMWFuZyBcdTAxMTFpIHZcdTFlYzEgcGhcdTAwZWRhIGJcdTFlZGQgYmlcdTFlYzNuIFx1MDExMVx1MWVjMyBuZ2hcdTFlYzkgY3VcdTFlZDFpIHR1XHUxZWE3bi48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gJ21ha2UgZm9yJyA9IFx1MDExMWkgdlx1MWVjMSBoXHUwMWIwXHUxZWRibmcgblx1MDBlMG8gXHUwMTExXHUwMGYzLiAnc2V0JyB0aFx1MDFiMFx1MWVkZG5nIFx1MDExMWkgdlx1MWVkYmkgJ291dC9vZmYnIGNoXHUxZWU5IGtoXHUwMGY0bmcgXHUwMTExaSB0aFx1MWViM25nIHZcdTFlZGJpICdmb3InIHRyb25nIG5nXHUxZWVmIGNcdTFlYTNuaCBuXHUwMGUweS4ifSx7ImlkIjoyMSwidHlwZSI6Im11bHRpcGxlX2Nob2ljZSIsInF1ZXN0aW9uIjoiMjEuIFRoZSBjaGlsZHJlbiBfX19fXyBhYm91dCB0aGUgdHJpcCB0byBEaXNuZXlsYW5kIGFsbCBtb3JuaW5nISIsIm9wdGlvbnMiOlt7InRleHQiOiJhcmUgdGFsa2luZyIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQSIsImh0bWwiOiJhcmUgdGFsa2luZyJ9LHsidGV4dCI6InRhbGsiLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkIiLCJodG1sIjoidGFsayJ9LHsidGV4dCI6ImhhdmUgdGFsa2VkIiwiaXNDb3JyZWN0IjpmYWxzZSwibGFiZWwiOiJDIiwiaHRtbCI6ImhhdmUgdGFsa2VkIn0seyJ0ZXh0IjoiaGF2ZSBiZWVuIHRhbGtpbmciLCJpc0NvcnJlY3QiOnRydWUsImxhYmVsIjoiRCIsImh0bWwiOiJoYXZlIGJlZW4gdGFsa2luZyJ9XSwiZXhwbGFuYXRpb24iOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gQlx1MWVjZG4gdHJcdTFlYmIgXHUwMTExXHUwMGUzIG5cdTAwZjNpIHZcdTFlYzEgY2h1eVx1MWViZm4gXHUwMTExaSBcdTAxMTFcdTFlYmZuIERpc25leWxhbmQgc3VcdTFlZDF0IGNcdTFlYTMgYnVcdTFlZDVpIHNcdTAwZTFuZyE8YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gJ2FsbCBtb3JuaW5nJyBuaFx1MWVhNW4gbVx1MWVhMW5oIHRcdTAwZWRuaCBsaVx1MDBlYW4gdFx1MWVlNWMgY1x1MWVlN2EgaFx1MDBlMG5oIFx1MDExMVx1MWVkOW5nIGtcdTAwZTlvIGRcdTAwZTBpIHRcdTFlZWIgcXVcdTAwZTEga2hcdTFlZTkgdFx1MWVkYmkgaGlcdTFlYzduIHRcdTFlYTFpLCBkXHUwMGY5bmcgSGlcdTFlYzduIHRcdTFlYTFpIGhvXHUwMGUwbiB0aFx1MDBlMG5oIHRpXHUxZWJmcCBkaVx1MWVjNW4gKGhhdmUgYmVlbiB0YWxraW5nKS4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gQlx1MWVjZG4gdHJcdTFlYmIgXHUwMTExXHUwMGUzIG5cdTAwZjNpIHZcdTFlYzEgY2h1eVx1MWViZm4gXHUwMTExaSBcdTAxMTFcdTFlYmZuIERpc25leWxhbmQgc3VcdTFlZDF0IGNcdTFlYTMgYnVcdTFlZDVpIHNcdTAwZTFuZyE8YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gJ2FsbCBtb3JuaW5nJyBuaFx1MWVhNW4gbVx1MWVhMW5oIHRcdTAwZWRuaCBsaVx1MDBlYW4gdFx1MWVlNWMgY1x1MWVlN2EgaFx1MDBlMG5oIFx1MDExMVx1MWVkOW5nIGtcdTAwZTlvIGRcdTAwZTBpIHRcdTFlZWIgcXVcdTAwZTEga2hcdTFlZTkgdFx1MWVkYmkgaGlcdTFlYzduIHRcdTFlYTFpLCBkXHUwMGY5bmcgSGlcdTFlYzduIHRcdTFlYTFpIGhvXHUwMGUwbiB0aFx1MDBlMG5oIHRpXHUxZWJmcCBkaVx1MWVjNW4gKGhhdmUgYmVlbiB0YWxraW5nKS4ifSx7ImlkIjoyMiwidHlwZSI6Im11bHRpcGxlX2Nob2ljZSIsInF1ZXN0aW9uIjoiMjIuIENvdWxkIHlvdSB0ZWxsIG1lIG9mZiB0aGUgX19fX18gb2YgeW91ciBoZWFkIHdoYXQgdGltZSB0aGUgZmVycnkgbGVhdmVzPyIsIm9wdGlvbnMiOlt7InRleHQiOiJ0aXAiLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkEiLCJodG1sIjoidGlwIn0seyJ0ZXh0IjoidG9wIiwiaXNDb3JyZWN0Ijp0cnVlLCJsYWJlbCI6IkIiLCJodG1sIjoidG9wIn0seyJ0ZXh0IjoiYmFjayIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQyIsImh0bWwiOiJiYWNrIn0seyJ0ZXh0IjoibWluZCIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiRCIsImh0bWwiOiJtaW5kIn1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBCXHUxZWExbiBjXHUwMGYzIHRoXHUxZWMzIG5oXHUxZWRiIG5nYXkgbFx1MWVhZHAgdFx1MWVlOWMgKGtoXHUwMGY0bmcgY1x1MWVhN24gdHJhIGNcdTFlZTl1KSBtXHUxZWE1eSBnaVx1MWVkZCBwaFx1MDBlMCBjaFx1MWVhMXkga2hcdTAwZjRuZz88YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gVGhcdTAwZTBuaCBuZ1x1MWVlZjogJ29mZiB0aGUgdG9wIG9mIHlvdXIgaGVhZCcgPSBuXHUwMGYzaS9uaFx1MWVkYiByYSBuZ2F5IGxcdTFlYWRwIHRcdTFlZTljIG1cdTAwZTAga2hcdTAwZjRuZyBjXHUxZWE3biBzdXkgbmdoXHUwMTI5IGhheSB0cmEgY1x1MWVlOXUuIiwiZXhwbGFuYXRpb25IVE1MIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEJcdTFlYTFuIGNcdTAwZjMgdGhcdTFlYzMgbmhcdTFlZGIgbmdheSBsXHUxZWFkcCB0XHUxZWU5YyAoa2hcdTAwZjRuZyBjXHUxZWE3biB0cmEgY1x1MWVlOXUpIG1cdTFlYTV5IGdpXHUxZWRkIHBoXHUwMGUwIGNoXHUxZWExeSBraFx1MDBmNG5nPzxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBUaFx1MDBlMG5oIG5nXHUxZWVmOiAnb2ZmIHRoZSB0b3Agb2YgeW91ciBoZWFkJyA9IG5cdTAwZjNpL25oXHUxZWRiIHJhIG5nYXkgbFx1MWVhZHAgdFx1MWVlOWMgbVx1MDBlMCBraFx1MDBmNG5nIGNcdTFlYTduIHN1eSBuZ2hcdTAxMjkgaGF5IHRyYSBjXHUxZWU5dS4ifSx7ImlkIjoyMywidHlwZSI6Im11bHRpcGxlX2Nob2ljZSIsInF1ZXN0aW9uIjoiMjMuIEkgZG9uJ3QgX19fX18gd2l0aCB5b3UgdGhhdCB0cmF2ZWxpbmcgYnkgYnVzIGlzIHJlbGF4aW5nLiIsIm9wdGlvbnMiOlt7InRleHQiOiJhbSBhZ3JlZWluZyIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQSIsImh0bWwiOiJhbSBhZ3JlZWluZyJ9LHsidGV4dCI6ImFncmVlIiwiaXNDb3JyZWN0Ijp0cnVlLCJsYWJlbCI6IkIiLCJodG1sIjoiYWdyZWUifSx7InRleHQiOiJoYXZlIGFncmVlZCIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQyIsImh0bWwiOiJoYXZlIGFncmVlZCJ9LHsidGV4dCI6ImFncmVlcyIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiRCIsImh0bWwiOiJhZ3JlZXMifV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IFRcdTAwZjRpIGtoXHUwMGY0bmcgXHUwMTExXHUxZWQzbmcgXHUwMGZkIHZcdTFlZGJpIGJcdTFlYTFuIHJcdTFlYjFuZyBcdTAxMTFpIGxcdTFlYTFpIGJcdTFlYjFuZyB4ZSBidVx1MDBmZHQgbFx1MDBlMCB0aFx1MDFiMCBnaVx1MDBlM24uPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IFNhdSB0clx1MWVlMyBcdTAxMTFcdTFlZDluZyB0XHUxZWViICdkb24ndCcgY1x1MWVhN24gbVx1MWVkOXQgXHUwMTExXHUxZWQ5bmcgdFx1MWVlYiBuZ3V5XHUwMGVhbiBtXHUxZWFidSAoYWdyZWUpLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBUXHUwMGY0aSBraFx1MDBmNG5nIFx1MDExMVx1MWVkM25nIFx1MDBmZCB2XHUxZWRiaSBiXHUxZWExbiByXHUxZWIxbmcgXHUwMTExaSBsXHUxZWExaSBiXHUxZWIxbmcgeGUgYnVcdTAwZmR0IGxcdTAwZTAgdGhcdTAxYjAgZ2lcdTAwZTNuLjxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBTYXUgdHJcdTFlZTMgXHUwMTExXHUxZWQ5bmcgdFx1MWVlYiAnZG9uJ3QnIGNcdTFlYTduIG1cdTFlZDl0IFx1MDExMVx1MWVkOW5nIHRcdTFlZWIgbmd1eVx1MDBlYW4gbVx1MWVhYnUgKGFncmVlKS4ifSx7ImlkIjoyNCwidHlwZSI6Im11bHRpcGxlX2Nob2ljZSIsInF1ZXN0aW9uIjoiMjQuIFdlIGRlY2lkZWQgdG8gdGFrZSB0aGUgc2NlbmljIF9fX19fIGFsb25nIHRoZSBjb2FzdC4iLCJvcHRpb25zIjpbeyJ0ZXh0Ijoicm91dGUiLCJpc0NvcnJlY3QiOnRydWUsImxhYmVsIjoiQSIsImh0bWwiOiJyb3V0ZSJ9LHsidGV4dCI6IndheSIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQiIsImh0bWwiOiJ3YXkifSx7InRleHQiOiJkaXJlY3Rpb24iLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkMiLCJodG1sIjoiZGlyZWN0aW9uIn0seyJ0ZXh0IjoibGluZSIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiRCIsImh0bWwiOiJsaW5lIn1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBDaFx1MDBmYW5nIHRcdTAwZjRpIHF1eVx1MWViZnQgXHUwMTExXHUxZWNibmggXHUwMTExaSB0dXlcdTFlYmZuIFx1MDExMVx1MDFiMFx1MWVkZG5nIG5nXHUxZWFmbSBjXHUxZWEzbmggZFx1MWVjZGMgdGhlbyBiXHUxZWRkIGJpXHUxZWMzbi48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gJ3NjZW5pYyByb3V0ZScgPSB0dXlcdTFlYmZuIFx1MDExMVx1MDFiMFx1MWVkZG5nIFx1MDExMVx1MWViOXAsIHR1eVx1MWViZm4gXHUwMTExXHUwMWIwXHUxZWRkbmcgbmdcdTFlYWZtIGNcdTFlYTNuaCAodGhcdTAxYjBcdTFlZGRuZyBkXHUwMGUwaSBoXHUwMWExbiBiXHUwMGVjbmggdGhcdTAxYjBcdTFlZGRuZykuIiwiZXhwbGFuYXRpb25IVE1MIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IENoXHUwMGZhbmcgdFx1MDBmNGkgcXV5XHUxZWJmdCBcdTAxMTFcdTFlY2JuaCBcdTAxMTFpIHR1eVx1MWViZm4gXHUwMTExXHUwMWIwXHUxZWRkbmcgbmdcdTFlYWZtIGNcdTFlYTNuaCBkXHUxZWNkYyB0aGVvIGJcdTFlZGQgYmlcdTFlYzNuLjxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiAnc2NlbmljIHJvdXRlJyA9IHR1eVx1MWViZm4gXHUwMTExXHUwMWIwXHUxZWRkbmcgXHUwMTExXHUxZWI5cCwgdHV5XHUxZWJmbiBcdTAxMTFcdTAxYjBcdTFlZGRuZyBuZ1x1MWVhZm0gY1x1MWVhM25oICh0aFx1MDFiMFx1MWVkZG5nIGRcdTAwZTBpIGhcdTAxYTFuIGJcdTAwZWNuaCB0aFx1MDFiMFx1MWVkZG5nKS4ifSx7ImlkIjoyNSwidHlwZSI6Im11bHRpcGxlX2Nob2ljZSIsInF1ZXN0aW9uIjoiMjUuIE15IHBhcmVudHMgYWx3YXlzIGNvbWUgdG8gdGhlIHN0YXRpb24gdG8gX19fX18gbWUgb2ZmLiIsIm9wdGlvbnMiOlt7InRleHQiOiJzZXQiLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkEiLCJodG1sIjoic2V0In0seyJ0ZXh0IjoiZHJvcCIsImlzQ29ycmVjdCI6ZmFsc2UsImxhYmVsIjoiQiIsImh0bWwiOiJkcm9wIn0seyJ0ZXh0Ijoic2VlIiwiaXNDb3JyZWN0Ijp0cnVlLCJsYWJlbCI6IkMiLCJodG1sIjoic2VlIn0seyJ0ZXh0IjoiY2hlY2siLCJpc0NvcnJlY3QiOmZhbHNlLCJsYWJlbCI6IkQiLCJodG1sIjoiY2hlY2sifV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEJcdTFlZDEgbVx1MWViOSB0XHUwMGY0aSBsdVx1MDBmNG4gcmEgZ2EgXHUwMTExXHUxZWMzIHRpXHUxZWM1biB0XHUwMGY0aS48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gUGhyYXNhbCB2ZXJiOiAnc2VlIHNiIG9mZicgPSB0aVx1MWVjNW4gYWkgXHUwMTExXHUwMGYzLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBCXHUxZWQxIG1cdTFlYjkgdFx1MDBmNGkgbHVcdTAwZjRuIHJhIGdhIFx1MDExMVx1MWVjMyB0aVx1MWVjNW4gdFx1MDBmNGkuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IFBocmFzYWwgdmVyYjogJ3NlZSBzYiBvZmYnID0gdGlcdTFlYzVuIGFpIFx1MDExMVx1MDBmMy4ifSx7ImlkIjoyNiwidHlwZSI6ImdhcF9maWxsX3RleHQiLCJxdWVzdGlvbiI6IjxiPklJLiBGaWxsIGluIHRoZSBibGFua3MuPC9iPjxicj4yNi4gV2Uge3tibGFuazpiMX19ICh3YWl0KSBpbiB0aGUgZGVwYXJ0dXJlIGxvdW5nZSBmb3Igb3ZlciBhbiBob3VyIG5vdy4iLCJibGFua3MiOlt7ImJsYW5rSWQiOiJiMSIsImNvcnJlY3RBbnN3ZXJzIjpbImhhdmUgYmVlbiB3YWl0aW5nIl19XSwiZXhwbGFuYXRpb24iOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gQ2hcdTAwZmFuZyB0XHUwMGY0aSBcdTAxMTFcdTAwZTMgY2hcdTFlZGQgXHUxZWRmIHBoXHUwMGYybmcgY2hcdTFlZGQga2hcdTFlZGZpIGhcdTAwZTBuaCBoXHUwMWExbiBtXHUxZWQ5dCB0aVx1MWViZm5nIHJcdTFlZDNpLjxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBEXHUxZWE1dSBoaVx1MWVjN3UgJ2ZvciBvdmVyIGFuIGhvdXIgbm93JyBuaFx1MWVhNW4gbVx1MWVhMW5oIHF1XHUwMGUxIHRyXHUwMGVjbmggbGlcdTAwZWFuIHRcdTFlZTVjIHRcdTFlZGJpIGhpXHUxZWM3biB0XHUxZWExaSAtPiBIaVx1MWVjN24gdFx1MWVhMWkgaG9cdTAwZTBuIHRoXHUwMGUwbmggdGlcdTFlYmZwIGRpXHUxZWM1biAoaGF2ZSBiZWVuIHdhaXRpbmcpLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBDaFx1MDBmYW5nIHRcdTAwZjRpIFx1MDExMVx1MDBlMyBjaFx1MWVkZCBcdTFlZGYgcGhcdTAwZjJuZyBjaFx1MWVkZCBraFx1MWVkZmkgaFx1MDBlMG5oIGhcdTAxYTFuIG1cdTFlZDl0IHRpXHUxZWJmbmcgclx1MWVkM2kuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IERcdTFlYTV1IGhpXHUxZWM3dSAnZm9yIG92ZXIgYW4gaG91ciBub3cnIG5oXHUxZWE1biBtXHUxZWExbmggcXVcdTAwZTEgdHJcdTAwZWNuaCBsaVx1MDBlYW4gdFx1MWVlNWMgdFx1MWVkYmkgaGlcdTFlYzduIHRcdTFlYTFpIC0+IEhpXHUxZWM3biB0XHUxZWExaSBob1x1MDBlMG4gdGhcdTAwZTBuaCB0aVx1MWViZnAgZGlcdTFlYzVuIChoYXZlIGJlZW4gd2FpdGluZykuIn0seyJpZCI6MjcsInR5cGUiOiJnYXBfZmlsbF90ZXh0IiwicXVlc3Rpb24iOiIyNy4gVGhlIGN1c3RvbXMgb2ZmaWNlciB7e2JsYW5rOmIxfX0gKGxvb2spIGF0IG15IHBhc3Nwb3J0IGF0IHRoZSBtb21lbnQuIiwiYmxhbmtzIjpbeyJibGFua0lkIjoiYjEiLCJjb3JyZWN0QW5zd2VycyI6WyJpcyBsb29raW5nIl19XSwiZXhwbGFuYXRpb24iOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gTmhcdTAwZTJuIHZpXHUwMGVhbiBoXHUxZWEzaSBxdWFuIFx1MDExMWFuZyBraVx1MWVjM20gdHJhIGhcdTFlZDkgY2hpXHUxZWJmdSBjXHUxZWU3YSB0XHUwMGY0aSBuZ2F5IGxcdTAwZmFjIG5cdTAwZTB5Ljxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBEXHUxZWE1dSBoaVx1MWVjN3UgJ2F0IHRoZSBtb21lbnQnIC0+IEhpXHUxZWM3biB0XHUxZWExaSB0aVx1MWViZnAgZGlcdTFlYzVuIChpcyBsb29raW5nKS4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gTmhcdTAwZTJuIHZpXHUwMGVhbiBoXHUxZWEzaSBxdWFuIFx1MDExMWFuZyBraVx1MWVjM20gdHJhIGhcdTFlZDkgY2hpXHUxZWJmdSBjXHUxZWU3YSB0XHUwMGY0aSBuZ2F5IGxcdTAwZmFjIG5cdTAwZTB5Ljxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBEXHUxZWE1dSBoaVx1MWVjN3UgJ2F0IHRoZSBtb21lbnQnIC0+IEhpXHUxZWM3biB0XHUxZWExaSB0aVx1MWViZnAgZGlcdTFlYzVuIChpcyBsb29raW5nKS4ifSx7ImlkIjoyOCwidHlwZSI6ImdhcF9maWxsX3RleHQiLCJxdWVzdGlvbiI6IjI4LiBNeSBmbGlnaHQge3tibGFuazpiMX19IChhcnJpdmUpIGF0IDc6MzAgUE0gdG9tb3Jyb3cuIiwiYmxhbmtzIjpbeyJibGFua0lkIjoiYjEiLCJjb3JyZWN0QW5zd2VycyI6WyJhcnJpdmVzIiwiaXMgYXJyaXZpbmciLCJ3aWxsIGFycml2ZSJdfV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IENodXlcdTFlYmZuIGJheSBjXHUxZWU3YSB0XHUwMGY0aSBcdTAxMTFcdTFlYmZuIGxcdTAwZmFjIDc6MzAgdFx1MWVkMWkgbWFpLjxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBMXHUxZWNiY2ggdHJcdTAwZWNuaCBjaHV5XHUxZWJmbiBiYXkgXHUwMTExXHUwMWIwXHUxZWUzYyBsXHUwMGVhbiBsXHUxZWNiY2ggY1x1MWVkMSBcdTAxMTFcdTFlY2JuaCwgZFx1MDBmOW5nIEhpXHUxZWM3biB0XHUxZWExaSBcdTAxMTFcdTAxYTFuIChhcnJpdmVzKS4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gQ2h1eVx1MWViZm4gYmF5IGNcdTFlZTdhIHRcdTAwZjRpIFx1MDExMVx1MWViZm4gbFx1MDBmYWMgNzozMCB0XHUxZWQxaSBtYWkuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IExcdTFlY2JjaCB0clx1MDBlY25oIGNodXlcdTFlYmZuIGJheSBcdTAxMTFcdTAxYjBcdTFlZTNjIGxcdTAwZWFuIGxcdTFlY2JjaCBjXHUxZWQxIFx1MDExMVx1MWVjYm5oLCBkXHUwMGY5bmcgSGlcdTFlYzduIHRcdTFlYTFpIFx1MDExMVx1MDFhMW4gKGFycml2ZXMpLiJ9LHsiaWQiOjI5LCJ0eXBlIjoiZ2FwX2ZpbGxfdGV4dCIsInF1ZXN0aW9uIjoiMjkuIEhlIGlzIGFsd2F5cyB7e2JsYW5rOmIxfX0gKGNvbXBsYWluKSBhYm91dCB0aGUgYmFkIHNlcnZpY2UgaW4gaG90ZWxzISIsImJsYW5rcyI6W3siYmxhbmtJZCI6ImIxIiwiY29ycmVjdEFuc3dlcnMiOlsiY29tcGxhaW5pbmciXX1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBBbmggXHUxZWE1eSBsXHUwMGZhYyBuXHUwMGUwbyBjXHUwMTY5bmcgcGhcdTAwZTBuIG5cdTAwZTBuIHZcdTFlYzEgZFx1MWVjYmNoIHZcdTFlZTUgdFx1MWVjNyBcdTFlZGYgY1x1MDBlMWMga2hcdTAwZTFjaCBzXHUxZWExbiE8YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gVGhcdTAwZjNpIHF1ZW4gZ1x1MDBlMnkgYlx1MWVmMWMgbVx1MDBlY25oIGRcdTAwZjluZyAnYWx3YXlzJyArIEhpXHUxZWM3biB0XHUxZWExaSB0aVx1MWViZnAgZGlcdTFlYzVuIC0+ICdjb21wbGFpbmluZycuIiwiZXhwbGFuYXRpb25IVE1MIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEFuaCBcdTFlYTV5IGxcdTAwZmFjIG5cdTAwZTBvIGNcdTAxNjluZyBwaFx1MDBlMG4gblx1MDBlMG4gdlx1MWVjMSBkXHUxZWNiY2ggdlx1MWVlNSB0XHUxZWM3IFx1MWVkZiBjXHUwMGUxYyBraFx1MDBlMWNoIHNcdTFlYTFuITxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBUaFx1MDBmM2kgcXVlbiBnXHUwMGUyeSBiXHUxZWYxYyBtXHUwMGVjbmggZFx1MDBmOW5nICdhbHdheXMnICsgSGlcdTFlYzduIHRcdTFlYTFpIHRpXHUxZWJmcCBkaVx1MWVjNW4gLT4gJ2NvbXBsYWluaW5nJy4ifSx7ImlkIjozMCwidHlwZSI6ImdhcF9maWxsX3RleHQiLCJxdWVzdGlvbiI6IjMwLiBJIHt7Ymxhbms6YjF9fSAobmV2ZXIgLyBiZSkgb24gYSBjcnVpc2Ugc2hpcCBiZWZvcmUuIiwiYmxhbmtzIjpbeyJibGFua0lkIjoiYjEiLCJjb3JyZWN0QW5zd2VycyI6WyJoYXZlIG5ldmVyIGJlZW4iXX1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBUXHUwMGY0aSBjaFx1MDFiMGEgYmFvIGdpXHUxZWRkIFx1MDExMWkgdFx1MDBlMHUgZHUgbFx1MWVjYmNoIHRyXHUwMWIwXHUxZWRiYyBcdTAxMTFcdTAwZTJ5Ljxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBUclx1MWVhM2kgbmdoaVx1MWVjN20gdFx1MDBlZG5oIFx1MDExMVx1MWViZm4gaGlcdTFlYzduIHRcdTFlYTFpIGNcdTAwZjMgJ25ldmVyIC4uLiBiZWZvcmUnIC0+IEhpXHUxZWM3biB0XHUxZWExaSBob1x1MDBlMG4gdGhcdTAwZTBuaCAoaGF2ZSBuZXZlciBiZWVuKS4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gVFx1MDBmNGkgY2hcdTAxYjBhIGJhbyBnaVx1MWVkZCBcdTAxMTFpIHRcdTAwZTB1IGR1IGxcdTFlY2JjaCB0clx1MDFiMFx1MWVkYmMgXHUwMTExXHUwMGUyeS48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gVHJcdTFlYTNpIG5naGlcdTFlYzdtIHRcdTAwZWRuaCBcdTAxMTFcdTFlYmZuIGhpXHUxZWM3biB0XHUxZWExaSBjXHUwMGYzICduZXZlciAuLi4gYmVmb3JlJyAtPiBIaVx1MWVjN24gdFx1MWVhMWkgaG9cdTAwZTBuIHRoXHUwMGUwbmggKGhhdmUgbmV2ZXIgYmVlbikuIn0seyJpZCI6MzEsInR5cGUiOiJnYXBfZmlsbF90ZXh0IiwicXVlc3Rpb24iOiIzMS4gVGhlIHNtZWxsIG9mIGxvY2FsIHN0cmVldCBmb29kIHt7Ymxhbms6YjF9fSAocmVtaW5kKSBtZSBvZiBteSBjaGlsZGhvb2QuIiwiYmxhbmtzIjpbeyJibGFua0lkIjoiYjEiLCJjb3JyZWN0QW5zd2VycyI6WyJyZW1pbmRzIl19XSwiZXhwbGFuYXRpb24iOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gTVx1MDBmOWkgdGhcdTFlZTljIFx1MDEwM24gXHUwMTExXHUwMWIwXHUxZWRkbmcgcGhcdTFlZDEgXHUwMTExXHUxZWNiYSBwaFx1MDFiMFx1MDFhMW5nIGdcdTFlZTNpIG5oXHUxZWRiIGNobyB0XHUwMGY0aSB2XHUxZWMxIHR1XHUxZWQ1aSB0aFx1MDFhMS48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gU1x1MWVmMSB0aFx1MWVhZHQgaGlcdTFlYzNuIG5oaVx1MDBlYW4vdHJcdTFlYTFuZyB0aFx1MDBlMWkgaGlcdTFlYzduIHRcdTFlYTFpIC0+IEhpXHUxZWM3biB0XHUxZWExaSBcdTAxMTFcdTAxYTFuLCBjaFx1MWVlNyBuZ1x1MWVlZiBzXHUxZWQxIFx1MDBlZHQgLT4gJ3JlbWluZHMnLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBNXHUwMGY5aSB0aFx1MWVlOWMgXHUwMTAzbiBcdTAxMTFcdTAxYjBcdTFlZGRuZyBwaFx1MWVkMSBcdTAxMTFcdTFlY2JhIHBoXHUwMWIwXHUwMWExbmcgZ1x1MWVlM2kgbmhcdTFlZGIgY2hvIHRcdTAwZjRpIHZcdTFlYzEgdHVcdTFlZDVpIHRoXHUwMWExLjxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBTXHUxZWYxIHRoXHUxZWFkdCBoaVx1MWVjM24gbmhpXHUwMGVhbi90clx1MWVhMW5nIHRoXHUwMGUxaSBoaVx1MWVjN24gdFx1MWVhMWkgLT4gSGlcdTFlYzduIHRcdTFlYTFpIFx1MDExMVx1MDFhMW4sIGNoXHUxZWU3IG5nXHUxZWVmIHNcdTFlZDEgXHUwMGVkdCAtPiAncmVtaW5kcycuIn0seyJpZCI6MzIsInR5cGUiOiJnYXBfZmlsbF90ZXh0IiwicXVlc3Rpb24iOiIzMi4gSSdtIHF1aXRlIGFmcmFpZCB7e2JsYW5rOmIxfX0gZmx5aW5nLCBzbyBJIHByZWZlciB0YWtpbmcgdGhlIHRyYWluLiIsImJsYW5rcyI6W3siYmxhbmtJZCI6ImIxIiwiY29ycmVjdEFuc3dlcnMiOlsib2YiXX1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBUXHUwMGY0aSBraFx1MDBlMSBzXHUxZWUzIGJheSwgblx1MDBlYW4gdFx1MDBmNGkgdGhcdTAwZWRjaCBcdTAxMTFpIHRcdTAwZTB1IGhcdTAxYTFuLjxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBDXHUxZWU1bSB0XHUwMGVkbmggdFx1MWVlYiBcdTAxMTFpIHZcdTFlZGJpIGdpXHUxZWRiaSB0XHUxZWViOiAnYWZyYWlkIG9mJyAoc1x1MWVlMyBjXHUwMGUxaSBnXHUwMGVjKS4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gVFx1MDBmNGkga2hcdTAwZTEgc1x1MWVlMyBiYXksIG5cdTAwZWFuIHRcdTAwZjRpIHRoXHUwMGVkY2ggXHUwMTExaSB0XHUwMGUwdSBoXHUwMWExbi48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gQ1x1MWVlNW0gdFx1MDBlZG5oIHRcdTFlZWIgXHUwMTExaSB2XHUxZWRiaSBnaVx1MWVkYmkgdFx1MWVlYjogJ2FmcmFpZCBvZicgKHNcdTFlZTMgY1x1MDBlMWkgZ1x1MDBlYykuIn0seyJpZCI6MzMsInR5cGUiOiJnYXBfZmlsbF90ZXh0IiwicXVlc3Rpb24iOiIzMy4gRGlkIHlvdSBkbyB0aGF0IGJ5IHt7Ymxhbms6YjF9fSBvciB3YXMgaXQgaW50ZW50aW9uYWw/IiwiYmxhbmtzIjpbeyJibGFua0lkIjoiYjEiLCJjb3JyZWN0QW5zd2VycyI6WyJhY2NpZGVudCIsIm1pc3Rha2UiXX1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBCXHUxZWExbiBsXHUwMGUwbSBcdTAxMTFpXHUxZWMxdSBcdTAxMTFcdTAwZjMgdlx1MDBmNCB0XHUwMGVjbmggaGF5IGxcdTAwZTAgY1x1MWVkMSBcdTAwZmQ/PGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+ICdieSBhY2NpZGVudCcgaG9cdTFlYjdjICdieSBtaXN0YWtlJyA9IHZcdTAwZjQgdFx1MDBlY25oLCB0clx1MDBlMWkgbmdoXHUwMTI5YSB2XHUxZWRiaSAnaW50ZW50aW9uYWwnIChjXHUxZWQxIFx1MDBmZCkuIiwiZXhwbGFuYXRpb25IVE1MIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEJcdTFlYTFuIGxcdTAwZTBtIFx1MDExMWlcdTFlYzF1IFx1MDExMVx1MDBmMyB2XHUwMGY0IHRcdTAwZWNuaCBoYXkgbFx1MDBlMCBjXHUxZWQxIFx1MDBmZD88YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gJ2J5IGFjY2lkZW50JyBob1x1MWViN2MgJ2J5IG1pc3Rha2UnID0gdlx1MDBmNCB0XHUwMGVjbmgsIHRyXHUwMGUxaSBuZ2hcdTAxMjlhIHZcdTFlZGJpICdpbnRlbnRpb25hbCcgKGNcdTFlZDEgXHUwMGZkKS4ifSx7ImlkIjozNCwidHlwZSI6ImdhcF9maWxsX3RleHQiLCJxdWVzdGlvbiI6IjM0LiBXZSBuZWVkIHRvIHt7Ymxhbms6YjF9fSBpbiBhdCB0aGUgaG90ZWwgYmVmb3JlIDIgUE0uIiwiYmxhbmtzIjpbeyJibGFua0lkIjoiYjEiLCJjb3JyZWN0QW5zd2VycyI6WyJjaGVjayJdfV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IENoXHUwMGZhbmcgdFx1MDBmNGkgY1x1MWVhN24gbmhcdTFlYWRuIHBoXHUwMGYybmcga2hcdTAwZTFjaCBzXHUxZWExbiB0clx1MDFiMFx1MWVkYmMgMiBnaVx1MWVkZCBjaGlcdTFlYzF1Ljxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBQaHJhc2FsIHZlcmI6ICdjaGVjayBpbicgPSBuaFx1MWVhZG4gcGhcdTAwZjJuZyAoa2hcdTAwZTFjaCBzXHUxZWExbikuIiwiZXhwbGFuYXRpb25IVE1MIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IENoXHUwMGZhbmcgdFx1MDBmNGkgY1x1MWVhN24gbmhcdTFlYWRuIHBoXHUwMGYybmcga2hcdTAwZTFjaCBzXHUxZWExbiB0clx1MDFiMFx1MWVkYmMgMiBnaVx1MWVkZCBjaGlcdTFlYzF1Ljxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBQaHJhc2FsIHZlcmI6ICdjaGVjayBpbicgPSBuaFx1MWVhZG4gcGhcdTAwZjJuZyAoa2hcdTAwZTFjaCBzXHUxZWExbikuIn0seyJpZCI6MzUsInR5cGUiOiJnYXBfZmlsbF90ZXh0IiwicXVlc3Rpb24iOiIzNS4gQXMgc29vbiBhcyB5b3Uge3tibGFuazpiMX19IHJlYWNoIHlvdXIgZGVzdGluYXRpb24sIGdpdmUgbWUgYSBjYWxsLiIsImJsYW5rcyI6W3siYmxhbmtJZCI6ImIxIiwiY29ycmVjdEFuc3dlcnMiOlsiZG9uJ3QiXX1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiAoQ1x1MDBlMnUgZ1x1MWVkMWMgY1x1MDBmMyB0aFx1MWVjMyBjXHUwMGYzIG5oXHUxZWE3bSBsXHUxZWFibiB0cm9uZyBcdTAxMTFcdTFlYzEvYlx1MDBlMGkgdFx1MWVhZHAsIFx1MDExMVx1MDBlMXAgXHUwMGUxbiBcdTAxMTFcdTAxYjBcdTFlZTNjIHlcdTAwZWF1IGNcdTFlYTd1IGxcdTAwZTAgJ2Rvbid0JykuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IFx1MDExMGlcdTFlYzFuIHRoZW8geVx1MDBlYXUgY1x1MWVhN3UgXHUwMTExXHUxZWMxIGJcdTAwZTBpOiAnZG9uJ3QnLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiAoQ1x1MDBlMnUgZ1x1MWVkMWMgY1x1MDBmMyB0aFx1MWVjMyBjXHUwMGYzIG5oXHUxZWE3bSBsXHUxZWFibiB0cm9uZyBcdTAxMTFcdTFlYzEvYlx1MDBlMGkgdFx1MWVhZHAsIFx1MDExMVx1MDBlMXAgXHUwMGUxbiBcdTAxMTFcdTAxYjBcdTFlZTNjIHlcdTAwZWF1IGNcdTFlYTd1IGxcdTAwZTAgJ2Rvbid0JykuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IFx1MDExMGlcdTFlYzFuIHRoZW8geVx1MDBlYXUgY1x1MWVhN3UgXHUwMTExXHUxZWMxIGJcdTAwZTBpOiAnZG9uJ3QnLiJ9LHsiaWQiOjM2LCJ0eXBlIjoiZ2FwX2ZpbGxfdGV4dCIsInF1ZXN0aW9uIjoiMzYuIFdlIGFyZSBub3QgdXNlZCB0byB0aGlzIGFyZWE7IHdlIGxpa2UgdG8gZ28gb2ZmIHRoZSBiZWF0ZW4ge3tibGFuazpiMX19LiIsImJsYW5rcyI6W3siYmxhbmtJZCI6ImIxIiwiY29ycmVjdEFuc3dlcnMiOlsidHJhY2siLCJwYXRoIl19XSwiZXhwbGFuYXRpb24iOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gQ2hcdTAwZmFuZyB0XHUwMGY0aSBraFx1MDBmNG5nIHF1ZW4gdlx1MWVkYmkga2h1IHZcdTFlZjFjIG5cdTAwZTB5OyBjaFx1MDBmYW5nIHRcdTAwZjRpIHRoXHUwMGVkY2ggXHUwMTExaSBcdTAxMTFcdTFlYmZuIG5oXHUxZWVmbmcgblx1MDFhMWkgaG9hbmcgc1x1MDFhMS9cdTAwZWR0IG5nXHUwMWIwXHUxZWRkaSBiaVx1MWViZnQuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IElkaW9tOiAnb2ZmIHRoZSBiZWF0ZW4gdHJhY2snID0gblx1MDFhMWkgaFx1MWViYm8gbFx1MDBlMW5oLCBcdTAwZWR0IG5nXHUwMWIwXHUxZWRkaSB0XHUxZWRiaS4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gQ2hcdTAwZmFuZyB0XHUwMGY0aSBraFx1MDBmNG5nIHF1ZW4gdlx1MWVkYmkga2h1IHZcdTFlZjFjIG5cdTAwZTB5OyBjaFx1MDBmYW5nIHRcdTAwZjRpIHRoXHUwMGVkY2ggXHUwMTExaSBcdTAxMTFcdTFlYmZuIG5oXHUxZWVmbmcgblx1MDFhMWkgaG9hbmcgc1x1MDFhMS9cdTAwZWR0IG5nXHUwMWIwXHUxZWRkaSBiaVx1MWViZnQuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IElkaW9tOiAnb2ZmIHRoZSBiZWF0ZW4gdHJhY2snID0gblx1MDFhMWkgaFx1MWViYm8gbFx1MDBlMW5oLCBcdTAwZWR0IG5nXHUwMWIwXHUxZWRkaSB0XHUxZWRiaS4ifSx7ImlkIjozNywidHlwZSI6ImdhcF9maWxsX3RleHQiLCJxdWVzdGlvbiI6IjM3LiBTaGUge3tibGFuazpiMX19IChoYXZlKSB0aGlzIGNhciBmb3Igb3ZlciB0ZW4geWVhcnMuIiwiYmxhbmtzIjpbeyJibGFua0lkIjoiYjEiLCJjb3JyZWN0QW5zd2VycyI6WyJoYXMgaGFkIl19XSwiZXhwbGFuYXRpb24iOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gQ1x1MDBmNCBcdTFlYTV5IFx1MDExMVx1MDBlMyBjXHUwMGYzIGNoaVx1MWViZmMgeGUgblx1MDBlMHkgaFx1MDFhMW4gMTAgblx1MDEwM20gclx1MWVkM2kuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IERcdTFlYTV1IGhpXHUxZWM3dSAnZm9yIG92ZXIgdGVuIHllYXJzJyBjaFx1MWVjOSBraG9cdTFlYTNuZyB0aFx1MWVkZGkgZ2lhbiAtPiBIaVx1MWVjN24gdFx1MWVhMWkgaG9cdTAwZTBuIHRoXHUwMGUwbmguIFx1MDExMFx1MWVkOW5nIHRcdTFlZWIgJ2hhdmUnIGNoXHUxZWM5IHNcdTFlZGYgaFx1MWVlZnUga2hcdTAwZjRuZyBkXHUwMGY5bmcgXHUxZWRmIHRpXHUxZWJmcCBkaVx1MWVjNW4gLT4gJ2hhcyBoYWQnLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBDXHUwMGY0IFx1MWVhNXkgXHUwMTExXHUwMGUzIGNcdTAwZjMgY2hpXHUxZWJmYyB4ZSBuXHUwMGUweSBoXHUwMWExbiAxMCBuXHUwMTAzbSByXHUxZWQzaS48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gRFx1MWVhNXUgaGlcdTFlYzd1ICdmb3Igb3ZlciB0ZW4geWVhcnMnIGNoXHUxZWM5IGtob1x1MWVhM25nIHRoXHUxZWRkaSBnaWFuIC0+IEhpXHUxZWM3biB0XHUxZWExaSBob1x1MDBlMG4gdGhcdTAwZTBuaC4gXHUwMTEwXHUxZWQ5bmcgdFx1MWVlYiAnaGF2ZScgY2hcdTFlYzkgc1x1MWVkZiBoXHUxZWVmdSBraFx1MDBmNG5nIGRcdTAwZjluZyBcdTFlZGYgdGlcdTFlYmZwIGRpXHUxZWM1biAtPiAnaGFzIGhhZCcuIn0seyJpZCI6MzgsInR5cGUiOiJnYXBfZmlsbF90ZXh0IiwicXVlc3Rpb24iOiIzOC4gVGhleSB7e2JsYW5rOmIxfX0gKHRoaW5rKSBvZiBnb2luZyB0byBJdGFseSB0aGlzIHN1bW1lci4iLCJibGFua3MiOlt7ImJsYW5rSWQiOiJiMSIsImNvcnJlY3RBbnN3ZXJzIjpbImFyZSB0aGlua2luZyJdfV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEhcdTFlY2QgXHUwMTExYW5nIGNcdTAwZTJuIG5oXHUxZWFmYyB2aVx1MWVjN2MgXHUwMTExaSBcdTAwZGQgdlx1MDBlMG8gbVx1MDBmOWEgaFx1MDBlOCBuXHUwMGUweS48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gJ3RoaW5rIG9mL2Fib3V0JyBtYW5nIG5naFx1MDEyOWEgJ1x1MDExMWFuZyBjXHUwMGUybiBuaFx1MWVhZmMsIHN1eSB0XHUwMGVkbmgnIGxcdTAwZTAgXHUwMTExXHUxZWQ5bmcgdFx1MWVlYiBoXHUwMGUwbmggXHUwMTExXHUxZWQ5bmcsIGNcdTAwZjMgdGhcdTFlYzMgZFx1MDBmOW5nIHRpXHUxZWJmcCBkaVx1MWVjNW4gLT4gJ2FyZSB0aGlua2luZycuIiwiZXhwbGFuYXRpb25IVE1MIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEhcdTFlY2QgXHUwMTExYW5nIGNcdTAwZTJuIG5oXHUxZWFmYyB2aVx1MWVjN2MgXHUwMTExaSBcdTAwZGQgdlx1MDBlMG8gbVx1MDBmOWEgaFx1MDBlOCBuXHUwMGUweS48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gJ3RoaW5rIG9mL2Fib3V0JyBtYW5nIG5naFx1MDEyOWEgJ1x1MDExMWFuZyBjXHUwMGUybiBuaFx1MWVhZmMsIHN1eSB0XHUwMGVkbmgnIGxcdTAwZTAgXHUwMTExXHUxZWQ5bmcgdFx1MWVlYiBoXHUwMGUwbmggXHUwMTExXHUxZWQ5bmcsIGNcdTAwZjMgdGhcdTFlYzMgZFx1MDBmOW5nIHRpXHUxZWJmcCBkaVx1MWVjNW4gLT4gJ2FyZSB0aGlua2luZycuIn0seyJpZCI6MzksInR5cGUiOiJnYXBfZmlsbF90ZXh0IiwicXVlc3Rpb24iOiIzOS4gVGhlIGdlb2dyYXBoeSBvZiB0aGlzIGNvdW50cnkgZGlmZmVycyBncmVhdGx5IHt7Ymxhbms6YjF9fSBpdHMgbmVpZ2hib3Incy4iLCJibGFua3MiOlt7ImJsYW5rSWQiOiJiMSIsImNvcnJlY3RBbnN3ZXJzIjpbImZyb20iXX1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBcdTAxMTBcdTFlY2JhIGxcdTAwZmQgY1x1MWVlN2EgXHUwMTExXHUxZWE1dCBuXHUwMWIwXHUxZWRiYyBuXHUwMGUweSBraFx1MDBlMWMgYmlcdTFlYzd0IHJcdTFlYTV0IGxcdTFlZGJuIHNvIHZcdTFlZGJpIG5cdTAxYjBcdTFlZGJjIGxcdTAwZTFuZyBnaVx1MWVjMW5nLjxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBDXHUxZWE1dSB0clx1MDBmYWMgJ2RpZmZlciBmcm9tJyA9IGtoXHUwMGUxYyB2XHUxZWRiaS4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gXHUwMTEwXHUxZWNiYSBsXHUwMGZkIGNcdTFlZTdhIFx1MDExMVx1MWVhNXQgblx1MDFiMFx1MWVkYmMgblx1MDBlMHkga2hcdTAwZTFjIGJpXHUxZWM3dCByXHUxZWE1dCBsXHUxZWRibiBzbyB2XHUxZWRiaSBuXHUwMWIwXHUxZWRiYyBsXHUwMGUxbmcgZ2lcdTFlYzFuZy48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gQ1x1MWVhNXUgdHJcdTAwZmFjICdkaWZmZXIgZnJvbScgPSBraFx1MDBlMWMgdlx1MWVkYmkuIn0seyJpZCI6NDAsInR5cGUiOiJnYXBfZmlsbF90ZXh0IiwicXVlc3Rpb24iOiI0MC4gRG9uJ3QgcHVsbCB7e2JsYW5rOmIxfX0gaGVyZSwgaXQncyBpbGxlZ2FsIHRvIHN0b3Agb24gdGhpcyBzaWRlIG9mIHRoZSByb2FkLiIsImJsYW5rcyI6W3siYmxhbmtJZCI6ImIxIiwiY29ycmVjdEFuc3dlcnMiOlsidXAiLCJvdmVyIl19XSwiZXhwbGFuYXRpb24iOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gXHUwMTEwXHUxZWVibmcgdFx1MWVhNXAgeGUgdlx1MDBlMG8gXHUwMTExXHUwMGUyeSwgZFx1MWVlYm5nIFx1MWVkZiBiXHUwMGVhbiBuXHUwMGUweSBcdTAxMTFcdTAxYjBcdTFlZGRuZyBsXHUwMGUwIGJcdTFlYTV0IGhcdTFlZTNwIHBoXHUwMGUxcC48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gUGhyYXNhbCB2ZXJiICdwdWxsIHVwL292ZXInID0gdFx1MWVhNXAgeGUgdlx1MDBlMG8gbFx1MWVjMS9kXHUxZWVibmcgeGUuIiwiZXhwbGFuYXRpb25IVE1MIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IFx1MDExMFx1MWVlYm5nIHRcdTFlYTVwIHhlIHZcdTAwZTBvIFx1MDExMVx1MDBlMnksIGRcdTFlZWJuZyBcdTFlZGYgYlx1MDBlYW4gblx1MDBlMHkgXHUwMTExXHUwMWIwXHUxZWRkbmcgbFx1MDBlMCBiXHUxZWE1dCBoXHUxZWUzcCBwaFx1MDBlMXAuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IFBocmFzYWwgdmVyYiAncHVsbCB1cC9vdmVyJyA9IHRcdTFlYTVwIHhlIHZcdTAwZTBvIGxcdTFlYzEvZFx1MWVlYm5nIHhlLiJ9LHsiaWQiOjQxLCJ0eXBlIjoiZ2FwX2ZpbGxfdGV4dCIsInF1ZXN0aW9uIjoiNDEuIERvIHlvdSBoYXZlIHlvdXIgYm9hcmRpbmcgcGFzcyB7e2JsYW5rOmIxfX0geW91PyIsImJsYW5rcyI6W3siYmxhbmtJZCI6ImIxIiwiY29ycmVjdEFuc3dlcnMiOlsid2l0aCIsIm9uIl19XSwiZXhwbGFuYXRpb24iOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gQlx1MWVhMW4gY1x1MDBmMyBtYW5nIHRoZW8gdGhcdTFlYmIgbFx1MDBlYW4gbVx1MDBlMXkgYmF5IGJcdTAwZWFuIG1cdTAwZWNuaCBraFx1MDBmNG5nPzxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBDXHUxZWU1bSAnaGF2ZSBzdGggd2l0aC9vbiB5b3UnID0gbWFuZyB0aGVvIGNcdTAwZTFpIGdcdTAwZWMgYlx1MDBlYW4gbVx1MDBlY25oLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBCXHUxZWExbiBjXHUwMGYzIG1hbmcgdGhlbyB0aFx1MWViYiBsXHUwMGVhbiBtXHUwMGUxeSBiYXkgYlx1MDBlYW4gbVx1MDBlY25oIGtoXHUwMGY0bmc/PGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IENcdTFlZTVtICdoYXZlIHN0aCB3aXRoL29uIHlvdScgPSBtYW5nIHRoZW8gY1x1MDBlMWkgZ1x1MDBlYyBiXHUwMGVhbiBtXHUwMGVjbmguIn0seyJpZCI6NDIsInR5cGUiOiJnYXBfZmlsbF90ZXh0IiwicXVlc3Rpb24iOiI0Mi4gSSBjYW4ndCByZW1lbWJlciB0aGUgaG90ZWwncyBuYW1lOyBJJ2xsIGhhdmUgdG8gbG9vayBpdCB7e2JsYW5rOmIxfX0gb25saW5lLiIsImJsYW5rcyI6W3siYmxhbmtJZCI6ImIxIiwiY29ycmVjdEFuc3dlcnMiOlsidXAiXX1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBUXHUwMGY0aSBraFx1MDBmNG5nIG5oXHUxZWRiIHRcdTAwZWFuIGtoXHUwMGUxY2ggc1x1MWVhMW47IHRcdTAwZjRpIHNcdTFlYmQgcGhcdTFlYTNpIHRyYSBjXHUxZWU5dSBuXHUwMGYzIHRyXHUwMGVhbiBtXHUxZWExbmcuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IFBocmFzYWwgdmVyYiAnbG9vayB1cCcgPSB0cmEgY1x1MWVlOXUgdGhcdTAwZjRuZyB0aW4gKHRcdTFlZWIgXHUwMTExaVx1MWVjM24sIGRhbmggYlx1MWVhMSwgbVx1MWVhMW5nLi4uKS4iLCJleHBsYW5hdGlvbkhUTUwiOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gVFx1MDBmNGkga2hcdTAwZjRuZyBuaFx1MWVkYiB0XHUwMGVhbiBraFx1MDBlMWNoIHNcdTFlYTFuOyB0XHUwMGY0aSBzXHUxZWJkIHBoXHUxZWEzaSB0cmEgY1x1MWVlOXUgblx1MDBmMyB0clx1MDBlYW4gbVx1MWVhMW5nLjxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBQaHJhc2FsIHZlcmIgJ2xvb2sgdXAnID0gdHJhIGNcdTFlZTl1IHRoXHUwMGY0bmcgdGluICh0XHUxZWViIFx1MDExMWlcdTFlYzNuLCBkYW5oIGJcdTFlYTEsIG1cdTFlYTFuZy4uLikuIn0seyJpZCI6NDMsInR5cGUiOiJnYXBfZmlsbF90ZXh0IiwicXVlc3Rpb24iOiI0My4gVGhlIHN1bnNldCBvdmVyIHRoZSBtb3VudGFpbnMgaXMgYSBtYWduaWZpY2VudCB7e2JsYW5rOmIxfX0uIiwiYmxhbmtzIjpbeyJibGFua0lkIjoiYjEiLCJjb3JyZWN0QW5zd2VycyI6WyJzaWdodCJdfV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEhvXHUwMGUwbmcgaFx1MDBmNG4gdHJcdTAwZWFuIG5oXHUxZWVmbmcgbmdcdTFlY2RuIG5cdTAwZmFpIGxcdTAwZTAgbVx1MWVkOXQgY1x1MWVhM25oIHRcdTAxYjBcdTFlZTNuZyB0clx1MDBlMW5nIGxcdTFlYzcuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+ICdhIG1hZ25pZmljZW50IHNpZ2h0JyBtYW5nIG5naFx1MDEyOWEgbVx1MWVkOXQgY1x1MWVhM25oIHRcdTAxYjBcdTFlZTNuZywga2h1bmcgY1x1MWVhM25oIFx1MDExMVx1MDBlMW5nIGNoaVx1MDBlYW0gbmdcdTAxYjBcdTFlZTFuZy4gJ3ZpZXcnIHRoXHUwMWIwXHUxZWRkbmcgY2hcdTFlYzkgdFx1MWVhN20gbmhcdTAwZWNuIHRcdTFlZWIgbVx1MWVkOXQgdlx1MWVjYiB0clx1MDBlZCBjXHUxZWU1IHRoXHUxZWMzLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBIb1x1MDBlMG5nIGhcdTAwZjRuIHRyXHUwMGVhbiBuaFx1MWVlZm5nIG5nXHUxZWNkbiBuXHUwMGZhaSBsXHUwMGUwIG1cdTFlZDl0IGNcdTFlYTNuaCB0XHUwMWIwXHUxZWUzbmcgdHJcdTAwZTFuZyBsXHUxZWM3Ljxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiAnYSBtYWduaWZpY2VudCBzaWdodCcgbWFuZyBuZ2hcdTAxMjlhIG1cdTFlZDl0IGNcdTFlYTNuaCB0XHUwMWIwXHUxZWUzbmcsIGtodW5nIGNcdTFlYTNuaCBcdTAxMTFcdTAwZTFuZyBjaGlcdTAwZWFtIG5nXHUwMWIwXHUxZWUxbmcuICd2aWV3JyB0aFx1MDFiMFx1MWVkZG5nIGNoXHUxZWM5IHRcdTFlYTdtIG5oXHUwMGVjbiB0XHUxZWViIG1cdTFlZDl0IHZcdTFlY2IgdHJcdTAwZWQgY1x1MWVlNSB0aFx1MWVjMy4ifSx7ImlkIjo0NCwidHlwZSI6ImdhcF9maWxsX3RleHQiLCJxdWVzdGlvbiI6IjQ0LiBUaGUgdG91ciBndWlkZSB7e2JsYW5rOmIxfX0gKGxlYWQpIGEgZ3JvdXAgb2YgMjAgdG91cmlzdHMgcmlnaHQgbm93LiIsImJsYW5rcyI6W3siYmxhbmtJZCI6ImIxIiwiY29ycmVjdEFuc3dlcnMiOlsiaXMgbGVhZGluZyJdfV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEhcdTAxYjBcdTFlZGJuZyBkXHUxZWFibiB2aVx1MDBlYW4gXHUwMTExYW5nIGRcdTFlYWJuIGRcdTFlYWZ0IG1cdTFlZDl0IG5oXHUwMGYzbSAyMCBkdSBraFx1MDBlMWNoIG5nYXkgbFx1MDBmYWMgblx1MDBlMHkuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IERcdTFlYTV1IGhpXHUxZWM3dSAncmlnaHQgbm93JyAtPiBIaVx1MWVjN24gdFx1MWVhMWkgdGlcdTFlYmZwIGRpXHUxZWM1biAoaXMgbGVhZGluZykuIiwiZXhwbGFuYXRpb25IVE1MIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEhcdTAxYjBcdTFlZGJuZyBkXHUxZWFibiB2aVx1MDBlYW4gXHUwMTExYW5nIGRcdTFlYWJuIGRcdTFlYWZ0IG1cdTFlZDl0IG5oXHUwMGYzbSAyMCBkdSBraFx1MDBlMWNoIG5nYXkgbFx1MDBmYWMgblx1MDBlMHkuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IERcdTFlYTV1IGhpXHUxZWM3dSAncmlnaHQgbm93JyAtPiBIaVx1MWVjN24gdFx1MWVhMWkgdGlcdTFlYmZwIGRpXHUxZWM1biAoaXMgbGVhZGluZykuIn0seyJpZCI6NDUsInR5cGUiOiJnYXBfZmlsbF90ZXh0IiwicXVlc3Rpb24iOiI0NS4gTXkgdW5jbGUgd29ya3Mge3tibGFuazpiMX19IGEgcGlsb3QgZm9yIGEgY29tbWVyY2lhbCBhaXJsaW5lLiIsImJsYW5rcyI6W3siYmxhbmtJZCI6ImIxIiwiY29ycmVjdEFuc3dlcnMiOlsiYXMiXX1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBDaFx1MDBmYSB0XHUwMGY0aSBsXHUwMGUwbSB2aVx1MWVjN2Mgdlx1MWVkYmkgdFx1MDFiMCBjXHUwMGUxY2ggbFx1MDBlMCBtXHUxZWQ5dCBwaGkgY1x1MDBmNG5nIGNobyBtXHUxZWQ5dCBoXHUwMGUzbmcgaFx1MDBlMG5nIGtoXHUwMGY0bmcgdGhcdTAxYjBcdTAxYTFuZyBtXHUxZWExaS48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gJ3dvcmsgYXMgKyBuZ2hcdTFlYzEgbmdoaVx1MWVjN3AnID0gbFx1MDBlMG0gbmdoXHUxZWMxIGdcdTAwZWMuIiwiZXhwbGFuYXRpb25IVE1MIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IENoXHUwMGZhIHRcdTAwZjRpIGxcdTAwZTBtIHZpXHUxZWM3YyB2XHUxZWRiaSB0XHUwMWIwIGNcdTAwZTFjaCBsXHUwMGUwIG1cdTFlZDl0IHBoaSBjXHUwMGY0bmcgY2hvIG1cdTFlZDl0IGhcdTAwZTNuZyBoXHUwMGUwbmcga2hcdTAwZjRuZyB0aFx1MDFiMFx1MDFhMW5nIG1cdTFlYTFpLjxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiAnd29yayBhcyArIG5naFx1MWVjMSBuZ2hpXHUxZWM3cCcgPSBsXHUwMGUwbSBuZ2hcdTFlYzEgZ1x1MDBlYy4ifSx7ImlkIjo0NiwidHlwZSI6ImdhcF9maWxsX3RleHQiLCJxdWVzdGlvbiI6IjQ2LiBTaGUge3tibGFuazpiMX19IChqdXN0IC8gYm9vaykgYSBmaXZlLXN0YXIgaG90ZWwgZm9yIG91ciB0cmlwLiIsImJsYW5rcyI6W3siYmxhbmtJZCI6ImIxIiwiY29ycmVjdEFuc3dlcnMiOlsiaGFzIGp1c3QgYm9va2VkIl19XSwiZXhwbGFuYXRpb24iOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gQ1x1MDBmNCBcdTFlYTV5IHZcdTFlZWJhIG1cdTFlZGJpIFx1MDExMVx1MWViN3QgbVx1MWVkOXQga2hcdTAwZTFjaCBzXHUxZWExbiA1IHNhbyBjaG8gY2h1eVx1MWViZm4gXHUwMTExaSBjXHUxZWU3YSBjaFx1MDBmYW5nIHRhLjxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBDXHUwMGYzICdqdXN0JyBjaFx1MWVjOSBoXHUwMGUwbmggXHUwMTExXHUxZWQ5bmcgdlx1MWVlYmEgbVx1MWVkYmkgeFx1MWVhM3kgcmEgLT4gSGlcdTFlYzduIHRcdTFlYTFpIGhvXHUwMGUwbiB0aFx1MDBlMG5oIChoYXMganVzdCBib29rZWQpLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBDXHUwMGY0IFx1MWVhNXkgdlx1MWVlYmEgbVx1MWVkYmkgXHUwMTExXHUxZWI3dCBtXHUxZWQ5dCBraFx1MDBlMWNoIHNcdTFlYTFuIDUgc2FvIGNobyBjaHV5XHUxZWJmbiBcdTAxMTFpIGNcdTFlZTdhIGNoXHUwMGZhbmcgdGEuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+IENcdTAwZjMgJ2p1c3QnIGNoXHUxZWM5IGhcdTAwZTBuaCBcdTAxMTFcdTFlZDluZyB2XHUxZWViYSBtXHUxZWRiaSB4XHUxZWEzeSByYSAtPiBIaVx1MWVjN24gdFx1MWVhMWkgaG9cdTAwZTBuIHRoXHUwMGUwbmggKGhhcyBqdXN0IGJvb2tlZCkuIn0seyJpZCI6NDcsInR5cGUiOiJnYXBfZmlsbF90ZXh0IiwicXVlc3Rpb24iOiI0Ny4gV2UgbGlrZSB0byB0cmF2ZWwge3tibGFuazpiMX19IHNvIHdlIG9ubHkgYnJpbmcgYSBzbWFsbCBiYWNrcGFjayBlYWNoLiIsImJsYW5rcyI6W3siYmxhbmtJZCI6ImIxIiwiY29ycmVjdEFuc3dlcnMiOlsibGlnaHQiXX1dLCJleHBsYW5hdGlvbiI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBDaFx1MDBmYW5nIHRcdTAwZjRpIHRoXHUwMGVkY2ggZHUgbFx1MWVjYmNoIGdcdTFlY2RuIG5oXHUxZWI5IG5cdTAwZWFuIG1cdTFlZDdpIG5nXHUwMWIwXHUxZWRkaSBjaFx1MWVjOSBtYW5nIG1cdTFlZDl0IGNoaVx1MWViZmMgYmEgbFx1MDBmNCBuaFx1MWVjZi48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gQ1x1MWVlNW0gJ3RyYXZlbCBsaWdodCcgPSBcdTAxMTFpIGR1IGxcdTFlY2JjaCBnXHUxZWNkbiBuaFx1MWViOSwga2hcdTAwZjRuZyBtYW5nIG5oaVx1MWVjMXUgXHUwMTExXHUxZWQzLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBDaFx1MDBmYW5nIHRcdTAwZjRpIHRoXHUwMGVkY2ggZHUgbFx1MWVjYmNoIGdcdTFlY2RuIG5oXHUxZWI5IG5cdTAwZWFuIG1cdTFlZDdpIG5nXHUwMWIwXHUxZWRkaSBjaFx1MWVjOSBtYW5nIG1cdTFlZDl0IGNoaVx1MWViZmMgYmEgbFx1MDBmNCBuaFx1MWVjZi48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gQ1x1MWVlNW0gJ3RyYXZlbCBsaWdodCcgPSBcdTAxMTFpIGR1IGxcdTFlY2JjaCBnXHUxZWNkbiBuaFx1MWViOSwga2hcdTAwZjRuZyBtYW5nIG5oaVx1MWVjMXUgXHUwMTExXHUxZWQzLiJ9LHsiaWQiOjQ4LCJ0eXBlIjoiZ2FwX2ZpbGxfdGV4dCIsInF1ZXN0aW9uIjoiNDguIFRoZXkge3tibGFuazpiMX19IChsaXZlKSBvdXQgb2YgYSBzdWl0Y2FzZSBmb3IgdGhlIHBhc3QgdGhyZWUgbW9udGhzLiIsImJsYW5rcyI6W3siYmxhbmtJZCI6ImIxIiwiY29ycmVjdEFuc3dlcnMiOlsiaGF2ZSBiZWVuIGxpdmluZyJdfV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IEhcdTFlY2QgXHUwMTExXHUwMGUzIGxpXHUwMGVhbiB0XHUxZWU1YyBkaSBjaHV5XHUxZWMzbiB2XHUwMGUwIHNcdTFlZDFuZyBuaFx1MWVkZCBcdTAxMTFcdTFlZDMgdHJvbmcgdmFsaSBzdVx1MWVkMXQgMyB0aFx1MDBlMW5nIHF1YS48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gJ2ZvciB0aGUgcGFzdCB0aHJlZSBtb250aHMnIG5oXHUxZWE1biBtXHUxZWExbmggdFx1MDBlZG5oIGxpXHUwMGVhbiB0XHUxZWU1YyBjXHUxZWU3YSBoXHUwMGUwbmggXHUwMTExXHUxZWQ5bmcga1x1MDBlOW8gZFx1MDBlMGkgXHUwMTExXHUxZWJmbiBoaVx1MWVjN24gdFx1MWVhMWkgLT4gSGlcdTFlYzduIHRcdTFlYTFpIGhvXHUwMGUwbiB0aFx1MDBlMG5oIHRpXHUxZWJmcCBkaVx1MWVjNW4gKGhhdmUgYmVlbiBsaXZpbmcpLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBIXHUxZWNkIFx1MDExMVx1MDBlMyBsaVx1MDBlYW4gdFx1MWVlNWMgZGkgY2h1eVx1MWVjM24gdlx1MDBlMCBzXHUxZWQxbmcgbmhcdTFlZGQgXHUwMTExXHUxZWQzIHRyb25nIHZhbGkgc3VcdTFlZDF0IDMgdGhcdTAwZTFuZyBxdWEuPGJyPjxzdHJvbmc+R2lcdTFlYTNpIHRoXHUwMGVkY2g6PC9zdHJvbmc+ICdmb3IgdGhlIHBhc3QgdGhyZWUgbW9udGhzJyBuaFx1MWVhNW4gbVx1MWVhMW5oIHRcdTAwZWRuaCBsaVx1MDBlYW4gdFx1MWVlNWMgY1x1MWVlN2EgaFx1MDBlMG5oIFx1MDExMVx1MWVkOW5nIGtcdTAwZTlvIGRcdTAwZTBpIFx1MDExMVx1MWViZm4gaGlcdTFlYzduIHRcdTFlYTFpIC0+IEhpXHUxZWM3biB0XHUxZWExaSBob1x1MDBlMG4gdGhcdTAwZTBuaCB0aVx1MWViZnAgZGlcdTFlYzVuIChoYXZlIGJlZW4gbGl2aW5nKS4ifSx7ImlkIjo0OSwidHlwZSI6ImdhcF9maWxsX3RleHQiLCJxdWVzdGlvbiI6IjQ5LiBJIHt7Ymxhbms6YjF9fSAobm90IC8gdW5kZXJzdGFuZCkgd2h5IHBlb3BsZSBsaWtlIGNyb3dkZWQgdG91cmlzdCBzcG90cy4iLCJibGFua3MiOlt7ImJsYW5rSWQiOiJiMSIsImNvcnJlY3RBbnN3ZXJzIjpbImRvbid0IHVuZGVyc3RhbmQiLCJkbyBub3QgdW5kZXJzdGFuZCJdfV0sImV4cGxhbmF0aW9uIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IFRcdTAwZjRpIGtoXHUwMGY0bmcgaGlcdTFlYzN1IHRcdTFlYTFpIHNhbyBtXHUxZWNkaSBuZ1x1MDFiMFx1MWVkZGkgbFx1MWVhMWkgdGhcdTAwZWRjaCBjXHUwMGUxYyBcdTAxMTFpXHUxZWMzbSBkdSBsXHUxZWNiY2ggXHUwMTExXHUwMGY0bmcgXHUwMTExXHUwMGZhYy48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gJ3VuZGVyc3RhbmQnIGxcdTAwZTAgXHUwMTExXHUxZWQ5bmcgdFx1MWVlYiBjaFx1MWVjOSBuaFx1MWVhZG4gdGhcdTFlZTljLCB0clx1MWVhMW5nIHRoXHUwMGUxaSwga2hcdTAwZjRuZyBkXHUwMGY5bmcgdGlcdTFlYmZwIGRpXHUxZWM1biAtPiBIaVx1MWVjN24gdFx1MWVhMWkgXHUwMTExXHUwMWExbiAoZG9uJ3QgdW5kZXJzdGFuZCkuIiwiZXhwbGFuYXRpb25IVE1MIjoiPHN0cm9uZz5EXHUxZWNiY2g6PC9zdHJvbmc+IFRcdTAwZjRpIGtoXHUwMGY0bmcgaGlcdTFlYzN1IHRcdTFlYTFpIHNhbyBtXHUxZWNkaSBuZ1x1MDFiMFx1MWVkZGkgbFx1MWVhMWkgdGhcdTAwZWRjaCBjXHUwMGUxYyBcdTAxMTFpXHUxZWMzbSBkdSBsXHUxZWNiY2ggXHUwMTExXHUwMGY0bmcgXHUwMTExXHUwMGZhYy48YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gJ3VuZGVyc3RhbmQnIGxcdTAwZTAgXHUwMTExXHUxZWQ5bmcgdFx1MWVlYiBjaFx1MWVjOSBuaFx1MWVhZG4gdGhcdTFlZTljLCB0clx1MWVhMW5nIHRoXHUwMGUxaSwga2hcdTAwZjRuZyBkXHUwMGY5bmcgdGlcdTFlYmZwIGRpXHUxZWM1biAtPiBIaVx1MWVjN24gdFx1MWVhMWkgXHUwMTExXHUwMWExbiAoZG9uJ3QgdW5kZXJzdGFuZCkuIn0seyJpZCI6NTAsInR5cGUiOiJnYXBfZmlsbF90ZXh0IiwicXVlc3Rpb24iOiI1MC4gSGF2ZSB5b3UgdGFrZW4gYSB0b3VyIHt7Ymxhbms6YjF9fSB0aGUgY2FzdGxlIHlldD8iLCJibGFua3MiOlt7ImJsYW5rSWQiOiJiMSIsImNvcnJlY3RBbnN3ZXJzIjpbIm9mIiwiYXJvdW5kIl19XSwiZXhwbGFuYXRpb24iOiI8c3Ryb25nPkRcdTFlY2JjaDo8L3N0cm9uZz4gQlx1MWVhMW4gXHUwMTExXHUwMGUzIHRoYW0gZ2lhIGNodXlcdTFlYmZuIHRoYW0gcXVhbiBsXHUwMGUydSBcdTAxMTFcdTAwZTBpIGNoXHUwMWIwYT88YnI+PHN0cm9uZz5HaVx1MWVhM2kgdGhcdTAwZWRjaDo8L3N0cm9uZz4gQ1x1MWVlNW0gJ2EgdG91ciBvZi9hcm91bmQnID0gY2h1eVx1MWViZm4gdGhhbSBxdWFuIG1cdTFlZDl0IFx1MDExMVx1MWVjYmEgXHUwMTExaVx1MWVjM20gblx1MDBlMG8gXHUwMTExXHUwMGYzLiIsImV4cGxhbmF0aW9uSFRNTCI6IjxzdHJvbmc+RFx1MWVjYmNoOjwvc3Ryb25nPiBCXHUxZWExbiBcdTAxMTFcdTAwZTMgdGhhbSBnaWEgY2h1eVx1MWViZm4gdGhhbSBxdWFuIGxcdTAwZTJ1IFx1MDExMVx1MDBlMGkgY2hcdTAxYjBhPzxicj48c3Ryb25nPkdpXHUxZWEzaSB0aFx1MDBlZGNoOjwvc3Ryb25nPiBDXHUxZWU1bSAnYSB0b3VyIG9mL2Fyb3VuZCcgPSBjaHV5XHUxZWJmbiB0aGFtIHF1YW4gbVx1MWVkOXQgXHUwMTExXHUxZWNiYSBcdTAxMTFpXHUxZWMzbSBuXHUwMGUwbyBcdTAxMTFcdTAwZjMuIn1d';
     
-    quizData.forEach((q, index) => {
-      try {
-        if (!q) { console.warn('Bỏ qua câu hỏi rỗng/null tại vị trí index=' + index); return; }
-        if (!q.id) q.id = 'auto_id_' + index;
-        state[q.id] = { checked: false, isCorrect: false, value: null };
-        
-        let block = document.createElement('div');
-        block.className = 'question-block';
-        block.id = 'q-block-' + q.id;
-        
-        let qText = q.questionHTML || q.question || q.text || q.questionText || "";
-        let origText = q.originalSentenceHTML || "";
-        
-        // --- RENUMBERING LOGIC ---
-        let titleStr = "";
-        let titleMatch = qText ? qText.match(/^(<b>.*?<\/b>\s*<br\s*\/?>\s*)/i) : null;
-        if (titleMatch) {
-            titleStr = titleMatch[1];
-            qText = qText.substring(titleMatch[1].length);
+(function(){ 'use strict';
+    const QUIZ = eval('(' + decodeURIComponent(escape(atob(''+__B64_QUIZ_DATA__+''))) + ')');
+    
+    let audioCtx;
+    function initAudio() { if(!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } }
+    function playTone(freq1, freq2, type, duration, vol) {
+        try {
+            initAudio();
+            let osc = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
+            osc.type = type;
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.frequency.setValueAtTime(freq1, audioCtx.currentTime);
+            if (freq2) osc.frequency.linearRampToValueAtTime(freq2, audioCtx.currentTime + duration/2);
+            gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        } catch(e){}
+    }
+    function playSelectSound() { playTone(600, null, 'sine', 0.08, 0.15); }
+    function playCorrectSound() { playTone(800, 1200, 'sine', 0.25, 0.2); }
+    function playWrongSound() { playTone(150, null, 'sawtooth', 0.2, 0.12); }
+    function playSubmitSound() { playTone(500, null, 'triangle', 0.12, 0.15); }
+
+    const quizContainer = document.getElementById('questionsContainer');
+    const startScreen = document.getElementById('startScreen');
+    const testScreen = document.getElementById('testScreen');
+    const resultScreen = document.getElementById('resultScreen');
+    const resultDetails = document.getElementById('resultDetails');
+    const scoreDisplay = document.getElementById('scoreDisplay');
+    const studentNameInput = document.getElementById('studentName');
+    
+    let locked = {}; 
+    let submitted = false;
+    let questions = [];
+
+    const norm = s => String(s ?? '')
+      .normalize('NFC')
+      .replace(/[\u200B-\u200D\uFEFF]/g, '')          
+      .replace(/[\u2018\u2019\u201B\u2032\u00B4`]/g, "'") 
+      .replace(/[\u201C\u201D]/g, '"')
+      .replace(/[\u2013\u2014]/g, '-')
+      .replace(/\u00a0/g, ' ')
+      .replace(/\s+/g, ' ')
+      .replace(/\s+([.,!?;:])/g, '$1')
+      .replace(/[.!?,;:]+$/, '')                       
+      .trim().toLowerCase();
+      
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    
+    function acceptedSet(q) {
+      const set = new Set();
+      (q.correctAnswers || []).forEach(a => set.add(norm(a)));
+      return set;
+    }
+
+    function adaptQuestion(q, index) {
+        let nq = JSON.parse(JSON.stringify(q));
+        nq.id = (nq.id || nq.id === 0) ? String(nq.id) : String(index + 1);
+        if (nq.question || nq.text || nq.questionText) nq.questionHTML = nq.question || nq.text || nq.questionText || nq.questionHTML;
+        let stripped = false;
+        nq.questionHTML = (nq.questionHTML || '').replace(/(^|<br\s*\/?>|<\/b>|<\/strong>|<\/p>)\s*(?:C[^\s]*\s*\d+[:\.]?\s*|\d+[\.\)]\s*)/i, (match, p1) => {
+            if (!stripped) {
+                stripped = true;
+                return p1 + ' ';
+            }
+            return match;
+        });
+        if (nq.originalSentenceHTML) {
+            nq.originalSentenceHTML = (nq.originalSentenceHTML || '').replace(/(^|<br\s*\/?>|<\/b>|<\/strong>|<\/p>)\s*(?:C[^\s]*\s*\d+[:\.]?\s*|\d+[\.\)]\s*)/i, (match, p1) => {
+                return p1 + ' ';
+            });
         }
         
-        // Strip leading numbers from qText
-        if (qText) qText = qText.replace(/^\d+[\.\)]?\s*/, '');
-        if (origText) origText = origText.replace(/^\d+[\.\)]?\s*/, '');
-        
-        // Now prepend sequential number
-        let questionNumberHTML = '<b>Câu ' + (index + 1) + ': </b>';
-        
-        if (q.type === 'sentence_rewrite' && origText) {
-            qText = origText + '<br>' + questionNumberHTML + (qText || '');
-        } else {
-            qText = questionNumberHTML + (qText || '');
-        }
-        
-        // Re-attach title
-        qText = titleStr + qText;
-        // ---------------------------
-        
-        // Wrap instruction in a nice box if it exists
-        if (qText && qText.startsWith('<b>') && qText.match(/^<b>(.*?)<\/b>\s*<br\s*\/?>\s*/i)) {
-            qText = qText.replace(/^<b>(.*?)<\/b>\s*<br\s*\/?>\s*/i, '<div class="instruction-box">$1</div>');
-        }
-        
-        if (q.type === 'gap_fill_text') {
-            if (q.blanks) {
-                q.blanks.forEach(b => {
-                    let blankStr = '{{blank:' + b.blankId + '}}';
-                    let inpStr = '<input type="text" id="input-' + q.id + '-' + b.blankId + '" class="gap-fill-input" autocomplete="off">';
-                    if (qText && qText.includes(blankStr)) {
-                        qText = qText.replace(blankStr, inpStr);
-                    } else {
-                        qText += ' ' + inpStr;
-                    }
+        if (nq.type === 'sentence_rewrite') {
+            if (nq.sampleAnswers && !nq.correctAnswers) nq.correctAnswers = nq.sampleAnswers;
+            if (nq.answer && !nq.correctAnswers) nq.correctAnswers = [nq.answer];
+        } else if (nq.type === 'multiple_choice' || nq.type === 'mcq') {
+            let options = [];
+            let correctAnsStr = nq.answer || nq.correctAnswer;
+            (nq.options || []).forEach((opt, idx) => {
+                if (typeof opt === 'string') {
+                    let label = String.fromCharCode(65 + idx);
+                    let html = opt;
+                    let m = opt.match(/^([A-D])\s+(.*)/);
+                    if (m) { label = m[1]; html = m[2]; }
+                    options.push({label, html, isCorrect: (opt === correctAnsStr || (correctAnsStr && correctAnsStr.startsWith(label))) });
+                } else {
+                    options.push(opt);
+                }
+            });
+            options.sort(() => Math.random() - 0.5);
+            options.forEach((opt, idx) => { opt.displayLabel = String.fromCharCode(65 + idx); });
+            nq.options = options;
+        } else if (nq.type === 'gap_fill_text') {
+            if (!nq.blanks) nq.blanks = [];
+            if (nq.questionHTML && nq.questionHTML.includes('<input')) {
+                let blankId = 1;
+                nq.questionHTML = nq.questionHTML.replace(/<input[^>]+data-answer=['"]([^'"]+)['"][^>]*>/g, (match, ans) => {
+                    let bid = 'b' + blankId++;
+                    nq.blanks.push({blankId: bid, correctAnswers: [ans]});
+                    return `{{blank:${bid}}}`;
                 });
             }
         }
+        return nq;
+    }
+
+    function init() {
+        let lastTitle = null;
+        questions = QUIZ.map((q, i) => {
+            let nq = adaptQuestion(q, i);
+            if (q.title && q.title !== lastTitle) {
+                nq.showTitle = q.title;
+                lastTitle = q.title;
+            }
+            return nq;
+        });
+        renderQuestions();
+    }
+
+    window.startTest = function() {
+        let name = studentNameInput.value.trim();
+        if(!name) { alert("Vui lòng nhập họ và tên!"); return; }
+        initAudio();
+        document.getElementById('startScreen').classList.remove('active');
+        document.getElementById('testScreen').classList.add('active');
+    };
+
+    function preventNav(e) {
+        e.preventDefault();
+        e.returnValue = '';
+    }
+    window.addEventListener('beforeunload', preventNav);
+
+    function renderQuestions() {
+        quizContainer.innerHTML = '';
+        questions.forEach((q, index) => {
+            if (q.showTitle && q.showTitle !== window._lastRenderedTitle) { window._lastRenderedTitle = q.showTitle;
+                let titleDiv = document.createElement('div');
+                titleDiv.className = 'instruction-box';
+                titleDiv.innerHTML = q.showTitle;
+                quizContainer.appendChild(titleDiv);
+            }
+            
+            let div = document.createElement('div');
+            div.className = 'question-block';
+            div.id = 'q-block-' + q.id;
+            
+            let qNumStr = `<strong>Câu ${index + 1}: </strong>`;
+            
+            let html = '';
+            if (q.type === 'multiple_choice' || q.type === 'mcq') {
+                html = `<div class="question-text">${qNumStr} ${q.questionHTML}</div><div class="options">`;
+                q.options.forEach((opt, oIdx) => {
+                    html += `<div class="option" data-qid="${q.id}" data-idx="${oIdx}">
+                        <div class="radio-circle"></div> <b>${esc(opt.displayLabel || opt.label)}.</b> ${opt.html}
+                    </div>`;
+                });
+                html += `</div><div><button class="check-btn" id="check-btn-${q.id}" data-qid="${q.id}">Kiểm tra</button></div>`;
+            } else if (q.type === 'gap_fill_text') {
+                let text = q.questionHTML;
+                q.blanks.forEach(b => {
+                    let searchStr = `{{blank:${b.blankId}}}`;
+                    let inputHtml = `<input type="text" class="gap-fill-input" id="input-${q.id}-${b.blankId}" autocomplete="off" spellcheck="false" maxlength="80"> <span id="gap-res-${q.id}-${b.blankId}"></span>`;
+                    if (text.includes(searchStr)) text = text.replace(searchStr, inputHtml);
+                    else text += ' ' + inputHtml;
+                });
+                html = `<div class="question-text">${qNumStr} ${text}</div>
+                        <div><button class="check-btn" id="check-btn-${q.id}" data-qid="${q.id}">Kiểm tra</button></div>`;
+            } else if (q.type === 'sentence_rewrite') {
+                html = `<div class="question-text">${qNumStr} ${q.originalSentenceHTML ? q.originalSentenceHTML + '<br>' : ''}${q.questionHTML}</div>
+                        <input type="text" class="rewrite-input" id="input-${q.id}" autocomplete="off" spellcheck="false" >
+                        <div id="rw-res-${q.id}"></div>
+                        <div><button class="check-btn" id="check-btn-${q.id}" data-qid="${q.id}">Kiểm tra</button></div>`;
+            } else if (q.type === 'reordering') {
+                html = `<div class="question-text">${qNumStr} ${q.questionHTML}</div>
+                        <div class="word-bank" id="reorder-${q.id}">`;
+                let tokens = [...q.correctOrder]; for(let i = tokens.length - 1; i > 0; i--){const j = Math.floor(Math.random() * (i + 1)); [tokens[i], tokens[j]] = [tokens[j], tokens[i]];}
+                tokens.forEach(tok => { 
+                    let w = (q.words && q.words.find(x => x.tokenId === tok)) || (q.tokens && q.tokens.find(x => x.tokenId === tok));
+                    let text = w ? w.text : tok;
+                    html += `<span class="word-chip" data-qid="${q.id}" data-token="${esc(tok)}">${esc(text)}</span>`; 
+                });
+                html += `</div><div class="drop-zone" id="target-${q.id}"></div>
+                        <div><button class="check-btn" id="check-btn-${q.id}" data-qid="${q.id}">Kiểm tra</button></div>`;
+            }
+            
+            html += `<div class="explanation" id="expl-${q.id}"></div>`;
+            div.innerHTML = html;
+            quizContainer.appendChild(div);
+        });
+
+        document.querySelectorAll('input').forEach(inp => {
+            inp.addEventListener('input', () => { if(inp.value.length === 1) playSelectSound(); });
+        });
+    }
+    
+    quizContainer.addEventListener('click', e => {
+        if (submitted) return;
         
-        // Conditional italics stripping for "từ thừa" ONLY
-        let checkStr = (qText || "").toLowerCase();
-        if (checkStr.includes('find the extra word') || checkStr.includes('từ thừa') || checkStr.includes('từ sai') || checkStr.includes('từ thừa')) {
-            qText = qText.replace(/<\/?i>/gi, '');
+        let opt = e.target.closest('.option');
+        if (opt) {
+            let qid = opt.getAttribute('data-qid');
+            if (locked[qid]) return;
+            let qBlock = document.getElementById('q-block-' + qid);
+            qBlock.querySelectorAll('.option').forEach(o => { o.classList.remove('selected'); });
+            opt.classList.add('selected');
+            qBlock.setAttribute('data-selected-idx', opt.getAttribute('data-idx'));
+            playSelectSound();
         }
         
-        let html = '<div class="question-text">' + qText + '</div>';
-        
-        if (q.type === 'multiple_choice' || q.type === 'mcq') {
-            html += '<div class="options">';
-            (q.options || []).forEach((opt, idx) => {
-                let optText = typeof opt === 'string' ? opt : (opt.text || opt.html || '');
-                let label = typeof opt === 'string' ? opt.charAt(0) : (opt.label || String.fromCharCode(65 + idx));
-                let displayHtml = typeof opt === 'string' ? optText.replace(/^[A-H]\.\s*/, '') : optText.replace(/^[A-H]\.\s*/, '');
-                html += '<div class="option" data-index="' + idx + '" onclick="selectOption(\'' + q.id + '\', ' + idx + ')">';
-                html += '<div class="radio-circle"></div>';
-                html += '<b>' + label + '.</b> ' + displayHtml;
-                html += '</div>';
-            });
-            html += '</div>';
-        } else if (q.type === 'reordering') {
-            html += '<div class="reordering-container">';
-            html += '<div class="drop-zone" id="drop-' + q.id + '"></div>';
-            html += '<div class="word-bank" id="bank-' + q.id + '">';
-            let shuffled = [...(q.words || [])].sort(() => Math.random() - 0.5);
-            shuffled.forEach(w => {
-                html += '<div class="word-chip" data-token="' + w.tokenId + '" onclick="toggleWord(this, \'' + q.id + '\')">' + w.text + '</div>';
-            });
-            html += '</div></div>';
-        } else if (q.type === 'sentence_rewrite') {
-            html += '<textarea class="rewrite-input" id="input-' + q.id + '" placeholder="Nhập câu trả lời của bạn..."></textarea>';
+        let chip = e.target.closest('.word-chip');
+        if (chip) {
+            let qid = chip.getAttribute('data-qid');
+            if (locked[qid]) return;
+            let target = document.getElementById('target-' + qid);
+            let source = document.getElementById('reorder-' + qid);
+            if (chip.parentElement.id === 'reorder-' + qid) {
+                target.appendChild(chip);
+            } else {
+                source.appendChild(chip);
+            }
+            playSelectSound();
         }
-        
-        html += '<button id="check-btn-' + q.id + '" class="check-btn" onclick="checkQuestion(\'' + q.id + '\')">Kiểm tra</button>';
-        html += '<div id="expl-' + q.id + '" class="explanation"></div>';
-        
-        block.innerHTML = html;
-        container.appendChild(block);
-      } catch (err) {
-        console.error('Lỗi khi render câu hỏi tại index=' + index + ', id=' + (q && q.id) + '. Bỏ qua câu này, tiếp tục các câu sau.', err);
-      }
+
+        let btn = e.target.closest('.check-btn');
+        if (btn) {
+            let qid = btn.getAttribute('data-qid');
+            if (locked[qid]) return;
+            let q = questions.find(x => x.id === qid);
+            
+            if (q.type === 'multiple_choice' || q.type === 'mcq') {
+                let qBlock = document.getElementById('q-block-' + qid);
+                if (!qBlock.hasAttribute('data-selected-idx')) { alert("Bạn chưa chọn đáp án!"); return; }
+                let idx = parseInt(qBlock.getAttribute('data-selected-idx'));
+                locked[qid] = { idx };
+                let opt = qBlock.querySelector('.option[data-idx="'+idx+'"]');
+                checkMCQ(q, opt, idx);
+                btn.disabled = true;
+            } else if (q.type === 'gap_fill_text') {
+                let ans = {};
+                let empty = true;
+                q.blanks.forEach(b => {
+                    let el = document.getElementById(`input-${q.id}-${b.blankId}`);
+                    let val = el ? el.value.trim() : "";
+                    ans[b.blankId] = val;
+                    if (val) empty = false;
+                });
+                if (empty) { alert("Bạn chưa điền đáp án!"); return; }
+                locked[qid] = { ans };
+                checkGap(q, ans, btn);
+            } else if (q.type === 'sentence_rewrite') {
+                let el = document.getElementById(`input-${q.id}`); let val = el ? el.value.trim() : "";
+                if (!val) { alert("Bạn chưa viết câu trả lời!"); return; }
+                locked[qid] = { val };
+                checkRewrite(q, val, btn);
+            } else if (q.type === 'reordering') {
+                let tz = document.getElementById(`target-${q.id}`);
+                if (tz.children.length === 0) { alert("Bạn chưa ghép từ!"); return; }
+                let order = Array.from(tz.children).map(c => c.getAttribute('data-token'));
+                locked[q.id] = { order };
+                checkReorder(q, order, btn);
+            }
+        }
     });
-}
 
-function selectOption(qid, index) {
-    if (state[qid] && state[qid].checked) return;
-    const options = document.querySelectorAll('#q-block-' + qid + ' .option');
-    options.forEach(o => o.classList.remove('selected'));
-    if(options[index]) options[index].classList.add('selected');
-    const q = quizData.find(x => x.id.toString() === qid.toString());
-    if(!q) return;
-    let opt = q.options[index];
-    const label = typeof opt === 'string' ? opt.charAt(0) : (opt.label || String.fromCharCode(65 + index));
-    state[qid].value = label;
-}
-
-function toggleWord(el, qid) {
-    if (state[qid] && state[qid].checked) return;
-    const drop = document.getElementById('drop-' + qid);
-    const bank = document.getElementById('bank-' + qid);
-    if (el.parentElement.id === bank.id) {
-        drop.appendChild(el);
-    } else {
-        bank.appendChild(el);
-    }
-}
-
-function checkQuestion(qid, isSubmit = false) {
-    if (state[qid] && state[qid].checked) return;
-    const q = quizData.find(x => x.id.toString() === qid.toString());
-    if (!q) return;
-    
-    if (!isSubmit) {
-        if (q.type === 'multiple_choice' || q.type === 'mcq') {
-            let val = state[qid].value;
-            if (!val) { alert("Vui lòng chọn một đáp án!"); return; }
-        } else if (q.type === 'gap_fill_text') {
-            let allFilled = true;
-            if (q.blanks) {
-                q.blanks.forEach(b => {
-                    const el = document.getElementById('input-' + qid + '-' + b.blankId);
-                    if (!el || !el.value.trim()) allFilled = false;
-                });
-            }
-            if (!allFilled) { alert("Vui lòng điền vào tất cả chỗ trống!"); return; }
-        } else if (q.type === 'reordering') {
-            const bank = document.getElementById('bank-' + qid);
-            if (bank && bank.children.length > 0) { alert("Vui lòng ghép tất cả các từ!"); return; }
-        } else if (q.type === 'sentence_rewrite') {
-            const el = document.getElementById('input-' + qid);
-            if (!el || !el.value.trim()) { alert("Vui lòng nhập câu trả lời!"); return; }
+    function showExplanation(q) {
+        let ex = document.getElementById('expl-' + q.id);
+        if (q.explanationHTML && ex) {
+            ex.innerHTML = q.explanationHTML.includes('Giải thích:') ? q.explanationHTML : '<strong>Giải thích:</strong><br>' + q.explanationHTML;
+            ex.style.display = 'block';
         }
     }
-    
-    state[qid].checked = true;
-    
-    let checkBtn = document.getElementById('check-btn-' + qid);
-    if(checkBtn) checkBtn.disabled = true;
-    
-    const expl = document.getElementById('expl-' + qid);
-    if(expl) {
-        expl.innerHTML = q.explanationHTML || q.explanation || '';
-        expl.style.display = 'block';
-    }
-    
-    let isCorrect = false;
-    let errorDetails = "";
-    
-    if (q.type === 'multiple_choice' || q.type === 'mcq') {
-        const selectedVal = state[qid].value || "null";
-        
-        let correctOptIndex = (q.options || []).findIndex((o, i) => {
-            let ans = q.answer || q.correctAnswer;
-            if (typeof o === 'string') return o === ans || (ans && ans.startsWith(o.charAt(0)));
-            return o.isCorrect;
-        });
-        if (correctOptIndex === -1 && (q.answer || q.correctAnswer)) {
-            let ans = q.answer || q.correctAnswer;
-            correctOptIndex = (q.options || []).findIndex((o, i) => (typeof o === 'string' ? o.charAt(0) : (o.label || String.fromCharCode(65 + i))) === ans.charAt(0));
-        }
-        if (correctOptIndex === -1) correctOptIndex = 0; // fallback
-        
-        let correctOptObj = (q.options || [])[correctOptIndex];
-        const correctOptLabel = correctOptObj ? (typeof correctOptObj === 'string' ? correctOptObj.charAt(0) : (correctOptObj.label || String.fromCharCode(65 + correctOptIndex))) : "A";
-        
-        isCorrect = (selectedVal === correctOptLabel);
-        
-        const options = document.querySelectorAll('#q-block-' + qid + ' .option');
-        const selectedIndex = (q.options || []).findIndex((o, i) => {
-            let lbl = typeof o === 'string' ? o.charAt(0) : (o.label || String.fromCharCode(65 + i));
-            return lbl === selectedVal;
-        });
-        
+
+    function checkMCQ(q, optEl, idx) {
+        let isCorrect = q.options[idx].isCorrect;
         if (isCorrect) {
-            if(options[correctOptIndex]) options[correctOptIndex].classList.add('correct-opt');
+            optEl.classList.add('correct-opt');
+            playCorrectSound();
         } else {
-            if(selectedIndex >= 0 && options[selectedIndex]) options[selectedIndex].classList.add('wrong-opt');
-            if(options[correctOptIndex]) options[correctOptIndex].classList.add('correct-opt');
-            errorDetails = 'Câu ' + qid + ': Học sinh chọn ' + selectedVal + ' (sai), đáp án đúng là ' + correctOptLabel;
+            optEl.classList.add('wrong-opt');
+            playWrongSound();
+            let correctOpt = q.options.find(o => o.isCorrect);
+            if (correctOpt) {
+                let correctIdx = q.options.indexOf(correctOpt);
+                document.querySelector(`.option[data-qid="${q.id}"][data-idx="${correctIdx}"]`).classList.add('correct-opt');
+            }
         }
-    } 
-    else if (q.type === 'gap_fill_text') {
+        document.getElementById('q-block-' + q.id).style.pointerEvents = 'none';
+        showExplanation(q);
+    }
+    
+    function checkGap(q, ans, btn) {
         let allCorrect = true;
-        let correctAnswersArr = [];
-        (q.blanks || []).forEach(b => {
-            const input = document.getElementById('input-' + qid + '-' + b.blankId);
-            const val = input ? normalize(input.value.toLowerCase()) : "";
-            let expectedAns = b.correctAnswers || [];
-            if (expectedAns.length === 0 && b.answer) expectedAns = [b.answer];
-            
-            let isBlankCorrect = expectedAns.some(ans => normalize(ans.toLowerCase()) === val);
-            if (isBlankCorrect) {
-                if (input) {
-                    input.style.backgroundColor = '#eafaf1';
-                    input.style.borderColor = '#2ecc71';
+        q.blanks.forEach(b => {
+            let val = ans[b.blankId];
+            let isCorrect = false;
+            b.correctAnswers.forEach(ca => { if(norm(ca) === norm(val)) isCorrect = true; });
+            let resSpan = document.getElementById(`gap-res-${q.id}-${b.blankId}`);
+            let inputEl = document.getElementById(`input-${q.id}-${b.blankId}`);
+            if (isCorrect) {
+                inputEl.style.backgroundColor = '#eafaf1';
+                inputEl.style.borderColor = '#2ecc71';
+                resSpan.innerHTML = ` <span style="color:#2ecc71;font-weight:bold;">✓ Chính xác!</span>`;
+            } else {
+                allCorrect = false;
+                inputEl.style.backgroundColor = '#fdedec';
+                inputEl.style.borderColor = '#e74c3c';
+                resSpan.innerHTML = ` <span style="color:#2ecc71; font-weight:bold; margin-left: 5px;">${esc(b.correctAnswers[0])}</span>`;
+            }
+        });
+        if (allCorrect) playCorrectSound(); else playWrongSound();
+        document.getElementById('q-block-' + q.id).style.pointerEvents = 'none';
+        btn.disabled = true;
+        showExplanation(q);
+    }
+    
+
+    function getExpectedRewrite(q) {
+        let expected = q.correctAnswers[0];
+        let cleanQh = (q.questionHTML || '').replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ');
+        let parts = cleanQh.split(/_+/);
+        if (parts.length >= 2) {
+            let prefix = parts[0].replace(/^[\s\u2192\-\>]+/, '').trim();
+            let suffix = parts[1].trim();
+            if (prefix) {
+                let escPrefix = prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                let regex = new RegExp('^' + escPrefix + '(?=\\s|$)\\s*', 'i');
+                if (regex.test(expected)) {
+                    expected = expected.replace(regex, '').trim();
+                }
+            }
+            if (suffix) {
+                let escSuffix = suffix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                let regex2 = new RegExp('\\s*' + escSuffix + '(?=\\s|$|\\W)', 'i');
+                if (regex2.test(expected)) {
+                    expected = expected.replace(regex2, '').trim();
+                } else if (suffix === '.') {
+                    expected = expected.replace(/\.$/, '').trim();
                 }
             } else {
-                if (input) {
-                    input.style.backgroundColor = '#fdedec';
-                    input.style.borderColor = '#e74c3c';
-                }
-                allCorrect = false;
+                expected = expected.replace(/\.$/, '').trim();
             }
-            correctAnswersArr.push(expectedAns.join(' / '));
-        });
-        isCorrect = allCorrect;
-        if (!isCorrect) {
-            errorDetails = 'Câu ' + qid + ': Điền sai. Đáp án đúng: ' + correctAnswersArr.join(', ');
         }
-        let ansHtml = '<div style="margin-top:10px; padding:10px; background:#f8f9fa; border-left:4px solid #2ecc71;"><b>Đáp án đúng:</b><br>' + correctAnswersArr.map((ans, i) => (correctAnswersArr.length > 1 ? 'Từ ' + (i+1) + ': ' : '') + '<b>' + ans + '</b>').join('<br>') + '</div>';
-        if(expl) expl.innerHTML = ansHtml + expl.innerHTML;
+        return expected;
     }
-    else if (q.type === 'reordering') {
-        const drop = document.getElementById('drop-' + qid);
-        const currentOrder = drop ? Array.from(drop.children).map(c => c.getAttribute('data-token')) : [];
-        isCorrect = true;
-        let correctOrderText = [];
-        let expOrder = q.correctOrder || [];
-        let expWords = q.words || [];
+
+    function checkRewrite(q, val, btn) {
+        let expected = getExpectedRewrite(q);
+        let uVal = val.trim();
+        if (uVal.endsWith('.') && !expected.endsWith('.')) uVal = uVal.slice(0, -1);
+        let isCorrect = (norm(uVal) === norm(expected)) || acceptedSet(q).has(norm(val));
         
-        for (let i = 0; i < expOrder.length; i++) {
-            const expectedToken = expOrder[i];
-            const expectedWordObj = expWords.find(w => w.tokenId === expectedToken);
-            const expectedWord = expectedWordObj ? expectedWordObj.text : "";
-            correctOrderText.push(expectedWord);
-            if (currentOrder[i] !== expectedToken) {
-                isCorrect = false;
-            }
-        }
-        if (!isCorrect) {
-            let ansDiv = document.createElement('div');
-            ansDiv.style.marginTop = '10px';
-            ansDiv.innerHTML = '<div style="padding:10px; background:#eafaf1; border:2px solid #2ecc71; border-radius:6px;">' + 
-                '<b>Thứ tự đúng:</b><br><br>' + 
-                correctOrderText.map(t => '<span class="word-chip correct" style="pointer-events:none;">' + t + '</span>').join('') + 
-                '</div>';
-            if(drop && drop.parentElement) drop.parentElement.appendChild(ansDiv);
-            errorDetails = 'Câu ' + qid + ' sai. Thực tế đúng: ' + correctOrderText.join(' ');
-        }
-    }
-    else if (q.type === 'sentence_rewrite') {
-        const el = document.getElementById('input-' + qid);
-        const val = el ? el.value.trim() : "";
-        const normVal = normalize(val.toLowerCase());
-        const ansArr = q.correctAnswers || [];
-        if (ansArr.length === 0 && q.answer) ansArr.push(q.answer);
-        
-        isCorrect = ansArr.some(ans => {
-            let normAns = normalize(ans.toLowerCase());
-            if (normAns === normVal) return true;
-            
-            let parts = normAns.split(' ');
-            let exactMissingPart = '';
-            if (parts.length >= 2 && normAns) {
-                let prefix = normalize(parts[0].replace(/^(->|\?|\’)\s*/, '').toLowerCase());
-                let suffix = normalize(parts[parts.length - 1].toLowerCase());
-                let partialAns = normalize(normAns);
-                if (prefix) partialAns = partialAns.replace(new RegExp('^' + prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\s*'), '').trim();
-                if (suffix) partialAns = partialAns.replace(new RegExp('\s*' + suffix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '$'), '').trim();
-                exactMissingPart = partialAns;
-                if (partialAns && partialAns === normVal) return true;
-            }
-            return false;
-        });
-        
-        let correctDisplay = ansArr[0] || '';
-        
+        let rwRes = document.getElementById('rw-res-' + q.id);
+        let inputEl = document.getElementById('input-' + q.id);
         if (isCorrect) {
-            if(el) { el.style.backgroundColor = '#eafaf1'; el.style.borderColor = '#2ecc71'; }
+            inputEl.style.backgroundColor = '#eafaf1';
+            inputEl.style.borderColor = '#2ecc71';
+            rwRes.innerHTML = `<span style="color:#2ecc71;font-weight:bold;">&#10003; Chính xác!</span>`;
+            playCorrectSound();
         } else {
-            if(el) { el.style.backgroundColor = '#fdedec'; el.style.borderColor = '#e74c3c'; }
-            errorDetails = 'Câu ' + qid + ' sai. Đáp án mẫu:<br><b>' + correctDisplay + '</b>';
+            inputEl.style.backgroundColor = '#fdedec';
+            inputEl.style.borderColor = '#e74c3c';
+            rwRes.innerHTML = `<span style="color:#2ecc71; font-weight:bold; margin-left: 5px;">${esc(expected)}</span>`;
+            playWrongSound();
+        }
+        inputEl.disabled = true;
+        btn.disabled = true;
+        showExplanation(q);
+    }
+
+
+
+
+
+    function checkReorder(q, order, btn) {
+        let isCorrect = order.join(' ') === q.correctOrder.join(' ');
+        let tz = document.getElementById('target-' + q.id);
+        if (isCorrect) {
+            tz.style.backgroundColor = '#eafaf1';
+            tz.style.borderColor = '#2ecc71';
+            playCorrectSound();
+        } else {
+            tz.style.backgroundColor = '#fdedec';
+            tz.style.borderColor = '#e74c3c';
+            let div = document.createElement('div');
+            div.style.marginTop = '10px';
+            div.innerHTML = `<strong style="color:#2ecc71;">Đáp án:</strong> ${esc(q.correctOrder.join(' '))}`;
+            tz.parentNode.insertBefore(div, btn.parentNode);
+            playWrongSound();
+        }
+        document.getElementById('q-block-' + q.id).style.pointerEvents = 'none';
+        btn.disabled = true;
+        showExplanation(q);
+    }
+    
+    window.confirmSubmit = function() {
+        if (!confirm("Bạn có chắc chắn muốn nộp bài?")) return;
+        window.removeEventListener('beforeunload', preventNav);
+        submitted = true;
+        playSubmitSound();
+        
+        let correctCount = 0;
+        let gradableCount = 0;
+        let wrongHTML = '<h3 style="color:#e74c3c;text-align:left;margin-top:0;">DANH SÁCH CÁC CÂU LÀM SAI / CHƯA LÀM</h3>';
+        let hasWrong = false;
+        
+        questions.forEach((q, index) => {
+            let l = locked[q.id];
+            let isGradable = (q.type !== 'short_answer');
+            if (isGradable) gradableCount++;
+            
+            let isCorrect = false;
+            let hsStr = "(Bạn chưa trả lời)";
+            let rightStr = "";
+            
+            if (!l) {
+                let hasValue = false;
+                if (q.type === 'multiple_choice' || q.type === 'mcq') {
+                    let qBlock = document.getElementById('q-block-' + q.id);
+                    if (qBlock && qBlock.hasAttribute('data-selected-idx')) {
+                        let idx = parseInt(qBlock.getAttribute('data-selected-idx'));
+                        locked[q.id] = { idx };
+                        l = locked[q.id];
+                        hasValue = true;
+                    }
+                } else if (q.type === 'gap_fill_text') {
+                    let ans = {};
+                    let empty = true;
+                    q.blanks.forEach(b => {
+                        let el = document.getElementById(`input-${q.id}-${b.blankId}`);
+                        let val = el ? el.value.trim() : "";
+                        ans[b.blankId] = val;
+                        if (val) empty = false;
+                    });
+                    if (!empty) {
+                        locked[q.id] = { ans };
+                        l = locked[q.id];
+                        hasValue = true;
+                    }
+                } else if (q.type === 'sentence_rewrite') {
+                    let el = document.getElementById(`input-${q.id}`); 
+                    let val = el ? el.value.trim() : "";
+                    if (val) {
+                        locked[q.id] = { val };
+                        l = locked[q.id];
+                        hasValue = true;
+                    }
+                } else if (q.type === 'reordering') {
+                    let tz = document.getElementById(`target-${q.id}`);
+                    if (tz && tz.children.length > 0) {
+                        let order = Array.from(tz.children).map(c => c.getAttribute('data-token'));
+                        locked[q.id] = { order };
+                        l = locked[q.id];
+                        hasValue = true;
+                    }
+                }
+
+                if (!hasValue) {
+                    isCorrect = false;
+                    hsStr = "(Bạn chưa trả lời)";
+                    if (q.type === 'multiple_choice' || q.type === 'mcq') {
+                        let co = q.options.find(o => o.isCorrect);
+                        rightStr = co ? `${co.displayLabel || co.label} (${(co.text || co.html).replace(/<[^>]*>?/gm, '')})` : '';
+                    } else if (q.type === 'gap_fill_text') {
+                        rightStr = q.blanks.map(b => b.correctAnswers[0]).join(', ');
+                    } else if (q.type === 'reordering') {
+                        rightStr = q.correctOrder.map(tok => { let w = (q.words && q.words.find(x => x.tokenId === tok)) || (q.tokens && q.tokens.find(x => x.tokenId === tok)); return w ? w.text : tok; }).join(' ');
+                    } else if (q.type === 'sentence_rewrite') {
+                        rightStr = q.correctAnswers[0];
+                    }
+                }
+            }
+            
+            if (l) {
+                if (q.type === 'multiple_choice' || q.type === 'mcq') {
+                    isCorrect = q.options[l.idx].isCorrect;
+                    hsStr = `${q.options[l.idx].displayLabel || q.options[l.idx].label} (${(q.options[l.idx].text || q.options[l.idx].html).replace(/<[^>]*>?/gm, '')})`;
+                    let co = q.options.find(o => o.isCorrect);
+                    rightStr = co ? `${co.displayLabel || co.label} (${(co.text || co.html).replace(/<[^>]*>?/gm, '')})` : '';
+                } else if (q.type === 'gap_fill_text') {
+                    isCorrect = true;
+                    let hsArr = []; let rightArr = [];
+                    q.blanks.forEach(b => {
+                        let v = l.ans[b.blankId];
+                        hsArr.push(v);
+                        rightArr.push(b.correctAnswers[0]);
+                        let c = false;
+                        b.correctAnswers.forEach(ca => { if(norm(ca) === norm(v)) c = true; });
+                        if (!c) isCorrect = false;
+                    });
+                    hsStr = hsArr.join(', ');
+                    rightStr = rightArr.join(', ');
+                } else if (q.type === 'reordering') {
+                    isCorrect = l.order.join(' ') === q.correctOrder.join(' ');
+                    let mapToken = tok => { let w = (q.words && q.words.find(x => x.tokenId === tok)) || (q.tokens && q.tokens.find(x => x.tokenId === tok)); return w ? w.text : tok; };
+                    hsStr = l.order.map(mapToken).join(' ');
+                    rightStr = q.correctOrder.map(mapToken).join(' ');
+                } else if (q.type === 'sentence_rewrite') {
+                    isCorrect = acceptedSet(q).has(norm(l.val));
+                    hsStr = l.val;
+                    rightStr = q.correctAnswers[0];
+                }
+            }
+            
+            if (isGradable && isCorrect) {
+                correctCount++;
+            } else if (isGradable && !isCorrect) {
+                hasWrong = true;
+                wrongHTML += `<div class="error-item">
+                    <strong>Câu ${index + 1}:</strong> ${q.questionHTML.replace(/\{\{blank:[^\}]+\}\}/g, '___')}<br>
+                    <span style="color:#e74c3c;">Học sinh: <span style="text-decoration:line-through;">${esc(hsStr)}</span></span><br>
+                    <span style="color:#2ecc71; font-weight:bold;">Đáp án đúng: ${esc(rightStr)}</span>
+                    <div style="margin-top:5px;font-size:13.5px;color:#333;">${q.explanationHTML ? (q.explanationHTML.includes('Giải thích:') ? q.explanationHTML : '<em>Giải thích:</em><br>' + q.explanationHTML) : ''}</div>
+                </div>`;
+            }
+        });
+        
+        document.getElementById('testScreen').classList.remove('active');
+        resultScreen.classList.add('active');
+        if (gradableCount > 0) {
+            let scale10 = parseFloat(((correctCount / gradableCount) * 10).toFixed(2));
+            scoreDisplay.innerHTML = `${scale10} <span style="font-size:32px; color:#7f8c8d;">/ 10</span><br><span style="font-size:18px; color:#95a5a6; font-weight:normal;">(Đúng ${correctCount}/${gradableCount} câu)</span>`;
+            if (correctCount === gradableCount) {
+                resultDetails.innerHTML = '<h2 style="color:#2ecc71;text-align:center;">TUYỆT VỜI! ĐÚNG 100%</h2>';
+                playCorrectSound();
+            } else {
+                resultDetails.innerHTML = wrongHTML;
+            }
+        } else {
+            scoreDisplay.textContent = "Không chấm điểm";
+            resultDetails.innerHTML = '<p>Bài này không có câu trắc nghiệm được chấm tự động.</p>';
         }
         
-        let ansHtml = '<div style="margin-top:10px; padding:10px; background:#f8f9fa; border-left:4px solid #2ecc71;"><b>Đáp án đúng:</b><br>' + correctDisplay + '</div>';
-        if(expl) expl.innerHTML = ansHtml + expl.innerHTML;
-    }
-    
-    let globalIndex = quizData.findIndex(x => x.id.toString() === qid.toString()) + 1;
-    if (errorDetails) {
-        errorDetails = errorDetails.replace(new RegExp('Câu\s+' + qid + '\s*', 'i'), 'Câu ' + globalIndex + ': ');
-        errorDetails = errorDetails.replace(new RegExp('Câu ghép từ\s+' + qid + '\s*', 'i'), 'Câu ' + globalIndex + ': ');
-        errorDetails = errorDetails.replace(new RegExp('Câu viết lại\s+' + qid + '\s*', 'i'), 'Câu ' + globalIndex + ': ');
-    }
-    
-    state[qid].isCorrect = isCorrect;
-    state[qid].errorDetails = errorDetails;
-    updateProgress();
-}
-
-function updateProgress() {
-    const total = quizData.length;
-    const checkedCount = Object.values(state).filter(s => s.checked).length;
-    const pct = total > 0 ? (checkedCount / total) * 100 : 0;
-    const fill = document.getElementById('progressFill');
-    if(fill) fill.style.width = pct + '%';
-}
-
-function confirmSubmit() {
-    const total = quizData.length;
-    const checkedCount = Object.values(state).filter(s => s.checked).length;
-    if (checkedCount < total) {
-        if (!confirm(`Bạn mới kiểm tra ${checkedCount}/${total} câu. Hệ thống sẽ tự động chấm điểm các câu chưa làm là Sai. Bạn có chắc chắn muốn nộp bài?`)) {
-            return;
+        
+        try {
+            const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfZCAK2lpNE8O8Ieqwc3SI1ubr6HZDvGZR91AsSpUk8kEBqaA/formResponse';
+            const formData = new FormData();
+            let studentName = document.getElementById('studentName') ? document.getElementById('studentName').value.trim() : 'Unknown';
+            formData.append('entry.1861648410', studentName);
+            let finalScore = gradableCount > 0 ? (correctCount * 10 / gradableCount).toFixed(2) : 0;
+            formData.append('entry.1691800437', finalScore);
+            const plainErrorReport = hasWrong ? wrongHTML.replace(/<[^>]*>?/gm, '') : 'Perfect';
+            formData.append('entry.639295732', plainErrorReport);
+            let pageTitle = document.title || location.pathname.split('/').pop() || 'Unknown';
+            formData.append('entry.370465671', pageTitle);
+            fetch(formUrl, { method: 'POST', mode: 'no-cors', body: formData }).catch(e => console.error(e));
+        } catch (err) {
+            console.error("Form submit error", err);
         }
-    }
-    quizData.forEach(q => {
-        if (state[q.id] && !state[q.id].checked) {
-            checkQuestion(q.id, true);
-        }
-    });
+        
+        document.querySelectorAll('.check-btn').forEach(b => b.disabled = true);
 
-    submitTest();
-}
+    };
 
-function submitTest() {
-    window.submitted = true;
-    const nameEl = document.getElementById('studentName');
-    const studentName = nameEl ? nameEl.value.trim() : "Unknown";
-    const total = quizData.length;
-    const correctCount = Object.values(state).filter(s => s.isCorrect).length;
-    const score = total > 0 ? (correctCount / total) * 10 : 0;
-    
-    const errors = Object.values(state)
-        .filter(s => s.checked && !s.isCorrect && s.errorDetails)
-        .map(s => s.errorDetails);
-    const errorReport = errors.length > 0 ? errors.join('\n') : "Không có lỗi sai";
-    
-    const ts = document.getElementById('testScreen');
-    const rs = document.getElementById('resultScreen');
-    if(ts) ts.classList.remove('active');
-    if(rs) rs.classList.add('active');
-    
-    const scoreDisp = document.getElementById('scoreDisplay');
-    if(scoreDisp) scoreDisp.innerText = score.toFixed(2) + ' / 10';
-    
-    let feedback = '';
-    if (score >= 9) feedback = 'Xuất sắc! Bạn nắm bài rất vững.';
-    else if (score >= 7) feedback = 'Khá tốt! Hãy cố gắng hơn một chút nhé.';
-    else if (score >= 5) feedback = 'Đạt yêu cầu. Bạn cần ôn tập thêm.';
-    else feedback = 'Chưa đạt. Bạn cần xem lại kỹ bài học!';
-    const fbTxt = document.getElementById('feedbackText');
-    if(fbTxt) fbTxt.innerText = feedback;
-    
-    const detailsDiv = document.getElementById('resultDetails');
-    if (detailsDiv) {
-        if (errors.length > 0) {
-            detailsDiv.innerHTML = '<h3>Chi tiết các câu sai:</h3>' + 
-                errors.map(e => '<div class="error-item">' + e + '</div>').join('');
-        } else {
-            detailsDiv.innerHTML = '<h3 style="color:#2ecc71;">Chúc mừng bạn đã trả lời đúng tất cả các câu hỏi!</h3>';
-        }
-    }
-    
-    const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfZCAK2lpNE8O8Ieqwc3SI1ubr6HZDvGZR91AsSpUk8kEBqaA/formResponse';
-    const formData = new FormData();
-    formData.append('entry.1861648410', studentName);
-    formData.append('entry.1691800437', score.toFixed(2));
-    const plainErrorReport = errorReport.replace(/<[^>]*>?/gm, '');
-    formData.append('entry.639295732', plainErrorReport);
-    formData.append('entry.370465671', typeof testName !== 'undefined' ? testName : 'Unknown Test');
-    
-    fetch(formUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: formData
-    }).then(() => {
-        window.scrollTo(0, 0);
-    }).catch(err => {
-        console.error(err);
-    });
-}
+    window.onload = init;
+})();
 
-function startTest() {
-    const nameInput = document.getElementById('studentName');
-    const nameVal = nameInput ? nameInput.value.trim() : "";
-    if (!nameVal) {
-        alert('Vui lòng nhập họ và tên của bạn!');
-        return;
-    }
-    const ss = document.getElementById('startScreen');
-    const ts = document.getElementById('testScreen');
-    if(ss) ss.classList.remove('active');
-    if(ts) ts.classList.add('active');
-    init();
-}
-</script>
+    </script>
 </body>
 </html>
